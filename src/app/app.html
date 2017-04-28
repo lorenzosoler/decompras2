@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-content class="sidemenu">
+    <button type="button" ion-item menuClose no-lines detail-none>
+      <ion-thumbnail item-left>
+        <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
+      </ion-thumbnail>
+      <h2>{{currentUser?.fullname}}</h2>
+    </button>
+
+    <ion-list margin-top no-lines>
+      <button *ngFor="let p of pages" ion-item padding-left detail-none menuClose color="lightgray" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
+        {{p.title}}
+      </button>
+      <button ion-item padding-left (click)="logout()" detail-none color="lightgray">
+        <ion-icon name="exit" item-left></ion-icon>
+        Salir
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

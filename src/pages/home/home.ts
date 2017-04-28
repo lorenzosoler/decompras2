@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Content } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { LoginPage } from "../login/login";
 
@@ -8,6 +8,7 @@ import { LoginPage } from "../login/login";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild(Content) content: Content;
 
   constructor(public navCtrl: NavController, public authService: AuthService) {
 

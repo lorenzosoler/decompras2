@@ -8,6 +8,6 @@ export class User {
     this.uid = user.uid;
     this.fullname = user.displayName;
     this.email = user.email;
-    this.photo = user.photo;
+    this.photo = user.photoURL;
   }
 }
