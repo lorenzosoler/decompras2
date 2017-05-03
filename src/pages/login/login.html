@@ -7,5 +7,9 @@
 </ion-header>
 
 <ion-content>
-  <button ion-button outline (click)="login()">Facebook</button>
+  <button ion-button outline (click)="facebookLogin()">Facebook</button>
+  <div *ngIf="currentUser">
+    <p>{{currentUser.fullname}}</p>
+    <img [src]="currentUser.photo">
+  </div>
 </ion-content>
