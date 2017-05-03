@@ -6,12 +6,14 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
+import { MisListasPage } from "../pages/mis-listas/mis-listas";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from "@ionic-native/facebook";
 import { AuthService } from '../providers/auth-service';
+import { UserService } from "../providers/user-service";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCApY3KncwgAc-9eHhwdw1_XoBfubdCVWM",
@@ -27,7 +29,7 @@ export const firebaseConfig = {
     MyApp,
     AboutPage,
     LoginPage,
-    HomePage
+    MisListasPage
   ],
   imports: [
     BrowserModule,
@@ -39,13 +41,14 @@ export const firebaseConfig = {
     MyApp,
     AboutPage,
     LoginPage,
-    HomePage
+    MisListasPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Facebook,
     AuthService,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
