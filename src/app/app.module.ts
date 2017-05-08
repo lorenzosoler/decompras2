@@ -13,7 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from "@ionic-native/facebook";
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
-
+import { NetworkService } from "../providers/network-service";
+import { Network } from "@ionic-native/network";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCApY3KncwgAc-9eHhwdw1_XoBfubdCVWM",
@@ -46,9 +47,11 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Network,
     Facebook,
     AuthService,
     UserService,
+    NetworkService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

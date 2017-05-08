@@ -28,18 +28,16 @@ export class LoginPage {
   facebookLogin(): void {
     if (this.platform.is('cordova')) {
       this.facebook.login(['public_profile','email']).then( (response) => {
-        const facebookCredential = firebase.auth.FacebookAuthProvider
-          .credential(response.authResponse.accessToken);
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
 
         firebase.auth().signInWithCredential(facebookCredential)
-          .then((success) => {
-            console.log("Firebase success: " + JSON.stringify(success));
-            this.currentUser = new User(success);
-            this.userService.saveUser(this.currentUser);
-            this.navCtrl.setRoot(MisListasPage, {currentUser: this.currentUser});
-          })
-          .catch((error) => {
-            console.log("Firebase failure: " + JSON.stringify(error));
+        .then((success) => {
+          console.log("Firebase success: " + JSON.stringify(success));
+          this.userService.saveUser(new User(success));
+          this.navCtrl.setRoot(MisListasPage);
+        })
+        .catch((error) => {
+          console.log("Firebase failure: " + JSON.stringify(error));
         });
 
       }).catch((error) => { console.log(error) });
@@ -48,10 +46,11 @@ export class LoginPage {
         provider: AuthProviders.Facebook,
         method: AuthMethods.Popup
       }).then((user) => {
-        this.currentUser = new User(user.auth);
-        this.userService.saveUser(this.currentUser);
-        this.navCtrl.setRoot(MisListasPage, {currentUser: this.currentUser});
-      });
+        this.userService.saveUser(new User(user.auth));
+        this.navCtrl.setRoot(MisListasPage);
+      }).catch(error=>{
+        alert("No hay conexion a internet, intente mas tarde");
+      })
     }
   }
 }

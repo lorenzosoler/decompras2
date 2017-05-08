@@ -12,13 +12,23 @@ import { User } from "../models/user";
 */
 @Injectable()
 export class UserService {
+  private currentUser: User;
   private usersRef = firebase.database().ref('users');
 
   constructor() {
   }
 
   public saveUser(user: User) {
+    this.currentUser = user;
     this.usersRef.child(user.uid).set(user);
+  }
+
+  public serCurrentUser(user: User) {
+    this.currentUser = user;
+  }
+
+  public getCurrentUser(): User {
+    return this.currentUser;
   }
 
 }
