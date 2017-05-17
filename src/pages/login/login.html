@@ -1,15 +1,10 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      De Compras
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
-  <button ion-button outline (click)="facebookLogin()">Facebook</button>
-  <div *ngIf="currentUser">
-    <p>{{currentUser.fullname}}</p>
-    <img [src]="currentUser.photo">
-  </div>
+    <ion-row>
+      <ion-col>
+          <button class="button-login" ion-button full icon-left (click)="facebookLogin()">
+            <ion-icon name="logo-facebook"></ion-icon>
+            Facebook
+          </button>
+      </ion-col>
+    </ion-row> 
 </ion-content>

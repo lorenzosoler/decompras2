@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import { AddListPage } from '../pages/add-list/add-list';
 import { LoginPage } from '../pages/login/login';
 import { MisListasPage } from "../pages/mis-listas/mis-listas";
 
@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from "@ionic-native/facebook";
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
+import { ListService } from "../providers/list-service";
 import { NetworkService } from "../providers/network-service";
 import { Network } from "@ionic-native/network";
 
@@ -28,7 +29,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    AddListPage,
     LoginPage,
     MisListasPage
   ],
@@ -40,7 +41,7 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    AddListPage,
     LoginPage,
     MisListasPage
   ],
@@ -51,6 +52,7 @@ export const firebaseConfig = {
     Facebook,
     AuthService,
     UserService,
+    ListService,
     NetworkService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

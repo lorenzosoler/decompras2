@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss();">
+        Cancelar
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button  (click)="saveList(addListForm.value)">
+        Publicar
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
+      </ion-thumbnail>
+      <h2>
+        <strong>{{currentUser?.fullname}}</strong>
+      </h2>
+    </ion-item>
+    <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="name" placeholder="Titulo de la lista"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="detail" placeholder="Titulo de la lista"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>

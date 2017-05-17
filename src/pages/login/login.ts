@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 
-import { AuthService } from '../../providers/auth-service';
-
 import { Facebook } from "@ionic-native/facebook";
 
 import firebase from 'firebase';
@@ -27,9 +25,8 @@ export class LoginPage {
   
   facebookLogin(): void {
     if (this.platform.is('cordova')) {
-      this.facebook.login(['public_profile','email']).then( (response) => {
+      this.facebook.login(['public_profile', 'user_friends', 'email']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
-
         firebase.auth().signInWithCredential(facebookCredential)
         .then((success) => {
           console.log("Firebase success: " + JSON.stringify(success));
