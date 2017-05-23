@@ -26,23 +26,19 @@ export class MisListasPage {
     this.currentUser = this.userService.getCurrentUser();
   }
 
-  public addList(fab?: FabContainer) {
+  public addList() {
     let that = this;
     let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
 
     // Si se realizo una publicacion, cuando se cierra el modal, se agrega el post al principio de la lista
-    addListModal.onDidDismiss((list) => {
+    addListModal.onDidDismiss(list => {
       if (list) {
-        that.myLists.unshift(list);
+        that.myLists.unshift(new Lista(list));
         that.content.scrollToTop();
       }
     });
 
-    addListModal.present().then(() => {
-      if (fab) {
-        fab.close();
-      }
-    });
+    addListModal.present();
   }
 
 }

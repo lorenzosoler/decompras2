@@ -37,8 +37,8 @@ export class AddListPage {
         loader.present();
 
         let list = this.listService.saveList(newList);
-        this.viewCtrl.dismiss(new Lista(list));
         loader.dismiss();
+        this.viewCtrl.dismiss(list);
     }
 
     public dismiss() {
