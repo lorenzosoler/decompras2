@@ -23,10 +23,10 @@ export class UserService {
     return this.usersRef.child(user.uid).set(user);
   }
 
-  public addList (listId: string): firebase.Promise<any> {
+  public addList (userId: string, listId: string): firebase.Promise<any> {
     let updates = {};
     updates[listId] = true;
-    return this.usersRef.child('lists').update(updates);
+    return this.usersRef.child(userId).child('lists').update(updates);
   }
 
   public serCurrentUser(user: User) {

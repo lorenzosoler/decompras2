@@ -25,7 +25,7 @@ export class ListService {
     list.users = {};
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;
-    this.userService.addList(listId);
+    this.userService.addList(currentUser.uid,listId);
     list.creator = currentUser;
     return list;
   }
