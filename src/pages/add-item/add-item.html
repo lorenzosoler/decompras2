@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss();">
+        Cancelar
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button  (click)="saveItem(addItemForm.value)">
+        Publicar
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
+      </ion-thumbnail>
+      <h2>
+        <strong>{{currentUser?.fullname}}</strong>
+      </h2>
+    </ion-item>
+    <form [formGroup]="addItemForm" (ngSubmit)="saveItem(addItemForm.value)" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="name" placeholder="Titulo del item"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>

@@ -7,6 +7,8 @@ import { MyApp } from './app.component';
 import { AddListPage } from '../pages/add-list/add-list';
 import { LoginPage } from '../pages/login/login';
 import { MisListasPage } from "../pages/mis-listas/mis-listas";
+import { AddItemPage } from "../pages/add-item/add-item";
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +18,8 @@ import { UserService } from "../providers/user-service";
 import { ListService } from "../providers/list-service";
 import { NetworkService } from "../providers/network-service";
 import { Network } from "@ionic-native/network";
+import { ListaPage } from "../pages/lista/lista";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCApY3KncwgAc-9eHhwdw1_XoBfubdCVWM",
@@ -31,7 +35,9 @@ export const firebaseConfig = {
     MyApp,
     AddListPage,
     LoginPage,
-    MisListasPage
+    MisListasPage,
+    ListaPage,
+    AddItemPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,9 @@ export const firebaseConfig = {
     MyApp,
     AddListPage,
     LoginPage,
-    MisListasPage
+    MisListasPage,
+    ListaPage,
+    AddItemPage
   ],
   providers: [
     StatusBar,

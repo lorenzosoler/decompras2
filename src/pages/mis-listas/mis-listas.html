@@ -9,8 +9,16 @@
 
 <ion-content padding>
   <h2>Welcome {{currentUser?.fullname}}</h2>
+  <ion-card *ngFor="let list of myLists" (click)="openList(list)">
+    <ion-card-header>
+      {{list.name}}
+    </ion-card-header>
+    <ion-card-content>
+      {{list.detail}}
+    </ion-card-content>
+  </ion-card>
   <ion-fab right bottom #fab>
-    <button type="button" ion-fab color="primary" (click)="addList(fab);">
+    <button type="button" ion-fab color="primary" (click)="addList();">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

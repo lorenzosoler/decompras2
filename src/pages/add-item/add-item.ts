@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, ViewController } from "ionic-angular";
+import { LoadingController, ViewController, NavParams } from "ionic-angular";
 
 import { ListService } from "../../providers/list-service";
 import { User } from "../../models/user";
@@ -8,21 +8,23 @@ import { UserService } from "../../providers/user-service";
 
 
 @Component({
-  selector: 'page-add-list',
-  templateUrl: 'add-list.html'
+  selector: 'page-add-item',
+  templateUrl: 'add-item.html'
 })
-export class AddListPage {
+export class AddItemPage {
     public currentUser: User;
-    public addListForm: FormGroup;
+    public listId: string;
+    public addItemForm: FormGroup;
 
     constructor(private loadingCtrl: LoadingController,
+    public navParams: NavParams,
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
     public userService: UserService,
     public listService: ListService) {
-        this.addListForm = this.formBuilder.group({
-            name: ['', Validators.required],
-            detail: ['', Validators.required]
+        this.listId = this.navParams.get('listId');
+        this.addItemForm = this.formBuilder.group({
+            name: ['', Validators.required]
         });
     }
 
@@ -30,15 +32,16 @@ export class AddListPage {
         this.currentUser = this.userService.getCurrentUser();
     }
 
-    public saveList(newList: any) {    
+    public saveItem(newItem: any) {    
         let loader = this.loadingCtrl.create({
             content: 'Creando...'
         });
         loader.present();
 
-        this.listService.saveList(newList);
-        loader.dismiss();
-        this.viewCtrl.dismiss();
+        this.listService.addItem(this.listId, newItem).then(data => {
+            loader.dismiss();
+            this.viewCtrl.dismiss();
+        })
     }
 
     public dismiss() {

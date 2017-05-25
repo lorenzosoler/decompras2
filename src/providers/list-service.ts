@@ -3,8 +3,9 @@ import 'rxjs/add/operator/map';
 
 import firebase from 'firebase';
 import { UserService } from "./user-service";
-import { Lista } from "../models/lista"
+
 import { Observable } from "rxjs/Observable";
+import { FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 
 /*
   Generated class for the UserService provider.
@@ -16,7 +17,7 @@ import { Observable } from "rxjs/Observable";
 export class ListService {
   private listsRef = firebase.database().ref('lists');
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
 
   public saveList(list: any) {
@@ -25,9 +26,25 @@ export class ListService {
     list.users = {};
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;
-    this.userService.addList(currentUser.uid,listId);
-    list.creator = currentUser;
-    return list;
+    this.userService.addList(currentUser.uid, listId);
+  }
+
+  public getLists() {
+    let uid = this.userService.getCurrentUser().uid;
+    return this.db.list('lists', {
+      query: {
+        orderByChild: `users/${uid}`,
+        equalTo: true
+      }
+    });
+  }
+
+  public addItem(listId: string, item: any): firebase.database.ThenableReference {
+    return this.db.list(this.listsRef.child(listId).child('items')).push(item);
+  }
+
+  public getItems(listId: string): FirebaseListObservable<any> {
+    return this.db.list(`lists/${listId}/items`);
   }
 
 }

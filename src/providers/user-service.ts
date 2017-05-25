@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 
 import firebase from 'firebase';
 import { User } from "../models/user";
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2";
 
 /*
   Generated class for the UserService provider.
@@ -15,7 +16,7 @@ export class UserService {
   private currentUser: User;
   private usersRef = firebase.database().ref('users');
 
-  constructor() {
+  constructor(public db: AngularFireDatabase) {
   }
 
   public saveUser(user: User): firebase.Promise<any> {
@@ -23,10 +24,12 @@ export class UserService {
     return this.usersRef.child(user.uid).set(user);
   }
 
+  public getUser(uid: string): FirebaseObjectObservable<any> {
+    return this.db.object(this.usersRef.child(uid));
+  }
+
   public addList (userId: string, listId: string): firebase.Promise<any> {
-    let updates = {};
-    updates[listId] = true;
-    return this.usersRef.child(userId).child('lists').update(updates);
+    return this.usersRef.child(userId).child('lists').update( { listId: true } );
   }
 
   public serCurrentUser(user: User) {
