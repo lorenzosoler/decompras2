@@ -29,7 +29,9 @@ export class UserService {
   }
 
   public addList (userId: string, listId: string): firebase.Promise<any> {
-    return this.usersRef.child(userId).child('lists').update( { listId: true } );
+    let updateUserList = {};
+    updateUserList[listId] = true;
+    return this.usersRef.child(userId).child('lists').update(updateUserList);
   }
 
   public serCurrentUser(user: User) {

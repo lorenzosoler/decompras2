@@ -26,10 +26,16 @@
     </ion-item>
     <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="name" placeholder="Titulo de la lista"></ion-input>
+        <ion-input formControlName="name" placeholder="Titulo"></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="detail" placeholder="Titulo de la lista"></ion-input>
+        <ion-input formControlName="detail" placeholder="Detalle"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="date" placeholder="Fecha" type="date"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="hour" placeholder="Hora" type="time"></ion-input>
       </ion-item>
     </form>
   </ion-list>

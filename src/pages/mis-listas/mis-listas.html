@@ -1,20 +1,22 @@
 <ion-header>
   <ion-navbar color="primary">
-    <button ion-button color="light" menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-avatar ion-button menuToggle>
+      <img [src]="currentUser?.photo" [alt]="currentUser?.fullname" class="img-menu" image-error-fallback/>
+    </ion-avatar>
     <ion-title>Mis Listas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>Welcome {{currentUser?.fullname}}</h2>
+  <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-card *ngFor="let list of myLists" (click)="openList(list)">
-    <ion-card-header>
-      {{list.name}}
-    </ion-card-header>
+    <ion-item>
+      <h2>{{list.name}}</h2>
+      <p>Debe realizarse: <br> {{list.date}} {{list.hour}} hs.</p>
+    </ion-item>
     <ion-card-content>
-      {{list.detail}}
+      <p>{{list.detail}}</p>
     </ion-card-content>
   </ion-card>
   <ion-fab right bottom #fab>

@@ -22,7 +22,9 @@ export class ListService {
 
   public saveList(list: any) {
     var currentUser = this.userService.getCurrentUser();
-    list.creator = currentUser.uid;
+    list.userCreator = currentUser.uid;
+    list.createdFec = new Date().toLocaleDateString()
+    list.createdTime = new Date().toLocaleTimeString();
     list.users = {};
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;

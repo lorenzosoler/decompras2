@@ -22,7 +22,9 @@ export class AddListPage {
     public listService: ListService) {
         this.addListForm = this.formBuilder.group({
             name: ['', Validators.required],
-            detail: ['', Validators.required]
+            detail: ['', Validators.required],
+            date: ['', Validators.required],
+            hour: ['', Validators.required]
         });
     }
 

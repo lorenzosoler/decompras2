@@ -17,6 +17,7 @@ export class MisListasPage {
   @ViewChild(Content) content: Content;
   private currentUser: User;
   private myLists: any[] = [];
+  public showLoader: boolean = false;
 
   constructor(
   public navCtrl: NavController,
@@ -27,8 +28,10 @@ export class MisListasPage {
 
   ionViewDidLoad() {
     this.currentUser = this.userService.getCurrentUser();
+    this.showLoader = true;
     this.listService.getLists().subscribe(lists => {
        this.myLists = lists;
+       this.showLoader = false;
     });
   }
 
@@ -36,7 +39,6 @@ export class MisListasPage {
     let that = this;
     let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
 
-    // Si se realizo una publicacion, cuando se cierra el modal, se agrega el post al principio de la lista
     addListModal.onDidDismiss(list => {
       if (list) {
         that.content.scrollToTop();

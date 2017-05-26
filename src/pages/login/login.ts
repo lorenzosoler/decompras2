@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, LoadingController } from 'ionic-angular';
 
 import { Facebook } from "@ionic-native/facebook";
 
@@ -18,20 +18,26 @@ export class LoginPage {
 
   constructor(private platform:Platform, 
   private navCtrl: NavController,
+  public loadingCtrl: LoadingController,
   private af:AngularFire, 
   private facebook: Facebook,
   public userService:UserService) {
   }
   
   facebookLogin(): void {
+    let loader = this.loadingCtrl.create({
+        content: 'Autenticando...'
+    });
     if (this.platform.is('cordova')) {
       this.facebook.login(['public_profile', 'user_friends', 'email']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
         firebase.auth().signInWithCredential(facebookCredential)
         .then((success) => {
-          console.log("Firebase success: " + JSON.stringify(success));
-          this.userService.saveUser(new User(success));
-          this.navCtrl.setRoot(MisListasPage);
+          loader.present();
+          this.userService.saveUser(new User(success)).then(()=> {
+            loader.dismiss();
+            this.navCtrl.setRoot(MisListasPage);
+          });
         })
         .catch((error) => {
           console.log("Firebase failure: " + JSON.stringify(error));
@@ -43,8 +49,11 @@ export class LoginPage {
         provider: AuthProviders.Facebook,
         method: AuthMethods.Popup
       }).then((user) => {
-        this.userService.saveUser(new User(user.auth));
-        this.navCtrl.setRoot(MisListasPage);
+        loader.present();
+        this.userService.saveUser(new User(user.auth)).then(()=> {
+          loader.dismiss();
+          this.navCtrl.setRoot(MisListasPage);
+        });
       }).catch(error=>{
         alert("No hay conexion a internet, intente mas tarde");
       })
