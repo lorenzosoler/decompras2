@@ -4,6 +4,7 @@ import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { Component } from "@angular/core";
 import { AddItemPage } from "../add-item/add-item";
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'page-lista',
@@ -12,6 +13,10 @@ import { AddItemPage } from "../add-item/add-item";
 export class ListaPage {
   public items: any[];
   public currentList: any;
+  private originalItems: any;
+
+  searchTerm: string = '';
+  searchControl: FormControl;
 
   constructor(
   public navCtrl: NavController,
@@ -22,11 +27,13 @@ export class ListaPage {
   public listService: ListService,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
+      this.searchControl = new FormControl();
   }
 
   ionViewDidLoad() {
     this.listService.getItems(this.currentList.$key).subscribe(items => {
         this.items = items;
+        this.originalItems = items;
     })
   }
 
@@ -70,6 +77,18 @@ export class ListaPage {
     } else {
       this.listService.setPrice(this.currentList.$key, item, 0);
     }
-
   }
+
+    getItems(ev: any) {
+      this.items = this.originalItems;
+      // set val to the value of the searchbar
+      let val = ev.target.value;
+
+      // if the value is an empty string don't filter the items
+      if (val && val.trim() != '') {
+        this.items = this.items.filter((item) => {
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    }
 }
