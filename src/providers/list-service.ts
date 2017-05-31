@@ -42,11 +42,21 @@ export class ListService {
   }
 
   public addItem(listId: string, item: any): firebase.database.ThenableReference {
+    item.price = 0;
+    item.done = false;
     return this.db.list(this.listsRef.child(listId).child('items')).push(item);
   }
 
   public getItems(listId: string): FirebaseListObservable<any> {
     return this.db.list(`lists/${listId}/items`);
+  }
+
+  public setPrice(listId: string, item: any, price: number): firebase.Promise<any> {
+    let updateItem = {
+      'done': item.done,
+      'price': price
+    };
+    return this.listsRef.child(`${listId}/items/${item.$key}`).update(updateItem);
   }
 
 }

@@ -23,7 +23,7 @@ export class MyApp {
   currentUser: User;
 
   pages: PageObj[] = [
-    { title: 'Mis Listas', component: MisListasPage, icon: 'megaphone' }
+    { title: 'Mis Listas', component: MisListasPage, icon: 'clipboard' }
   ];
 
   constructor(platform: Platform, 

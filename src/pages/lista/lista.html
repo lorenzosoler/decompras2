@@ -15,9 +15,17 @@
 </ion-header>
 
 <ion-content>
+  <h3 *ngIf="items?.length == 0" text-center>toca en el boton + para agregar un item</h3>
   <ion-list>
+    <ion-list-header>
+      Items
+    </ion-list-header>
     <ion-item *ngFor="let item of items">
+      <ion-badge item-right>${{item.price}}</ion-badge>
+      <ion-label>
         {{item.name}}
+      </ion-label>
+      <ion-checkbox [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
   </ion-list>
   <ion-fab right bottom #fab>
