@@ -51,6 +51,10 @@ export class ListService {
     return this.db.list(`lists/${listId}/items`);
   }
 
+  public getUsers(listId: string): FirebaseListObservable<any> {
+    return this.userService.getUsersByListId(listId);
+  }
+
   public setPrice(listId: string, item: any, price: number): firebase.Promise<any> {
     let updateItem = {
       'done': item.done,

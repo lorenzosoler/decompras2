@@ -1,4 +1,33 @@
 <ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Nueva lista</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-list no-lines>
+    <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label>Titulo</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label>Detalle</ion-label>
+        <ion-input formControlName="detail"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label>Fecha</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label>Hora</ion-label>
+        <ion-datetime displayFormat="HH:mm" formControlName="hour"></ion-datetime>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
   <ion-toolbar color="light">
     <ion-buttons left>
       <button ion-button (click)="dismiss();">
@@ -7,36 +36,9 @@
     </ion-buttons>
 
     <ion-buttons right>
-      <button ion-button  (click)="saveList(addListForm.value)">
+      <button ion-button color="primary" (click)="saveList(addListForm.value)">
         Guardar
       </button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content #content>
-  <ion-list no-lines>
-    <ion-item>
-      <ion-thumbnail item-left>
-        <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
-      </ion-thumbnail>
-      <h2>
-        <strong>{{currentUser?.fullname}}</strong>
-      </h2>
-    </ion-item>
-    <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
-      <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="name" placeholder="Titulo"></ion-input>
-      </ion-item>
-      <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="detail" placeholder="Detalle"></ion-input>
-      </ion-item>
-      <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="date" placeholder="Fecha" type="date"></ion-input>
-      </ion-item>
-      <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="hour" placeholder="Hora" type="time"></ion-input>
-      </ion-item>
-    </form>
-  </ion-list>
-</ion-content>
+</ion-footer>

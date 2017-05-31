@@ -7,8 +7,8 @@
     </ion-buttons>
     <ion-title>{{currentList.name}}</ion-title>
     <ion-buttons right>
-      <button class="button-person-add" ion-button>
-        <ion-icon name="person-add"></ion-icon>
+      <button (click)="showUsers()" class="button-person-add" ion-button>
+        <ion-icon name="people"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -18,7 +18,7 @@
 </ion-header>
 
 <ion-content>
-  <h3 *ngIf="items?.length == 0" text-center>toca en el boton + para agregar un item</h3>
+  <p padding *ngIf="items?.length == 0" text-center>Toca en el boton + para agregar un item</p>
   <ion-list>
     <ion-list-header>
       Items

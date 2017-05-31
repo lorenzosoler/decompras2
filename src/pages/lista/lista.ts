@@ -5,6 +5,7 @@ import { UserService } from "../../providers/user-service";
 import { Component } from "@angular/core";
 import { AddItemPage } from "../add-item/add-item";
 import { FormControl } from '@angular/forms';
+import { UsersListPage } from "../users-list/users-list";
 
 @Component({
   selector: 'page-lista',
@@ -20,7 +21,6 @@ export class ListaPage {
 
   constructor(
   public navCtrl: NavController,
-
   public navParams: NavParams,
   public modalCtrl: ModalController,
   public alertCtrl: AlertController,
@@ -60,7 +60,7 @@ export class ListaPage {
           {
             text: 'Cancel',
             handler: data => {
-              console.log('Cancel clicked');
+              item.done = false;
             }
           },
           {
@@ -79,7 +79,7 @@ export class ListaPage {
     }
   }
 
-    getItems(ev: any) {
+  public getItems (ev: any) {
       this.items = this.originalItems;
       // set val to the value of the searchbar
       let val = ev.target.value;
@@ -91,4 +91,9 @@ export class ListaPage {
         })
       }
     }
+
+  public showUsers() {
+    this.navCtrl.push(UsersListPage, {'currentList': this.currentList});
+  }
+
 }

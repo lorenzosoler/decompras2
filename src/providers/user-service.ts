@@ -34,6 +34,15 @@ export class UserService {
     return this.usersRef.child(userId).child('lists').update(updateUserList);
   }
 
+  public getUsersByListId(listId) {
+    return this.db.list('users', {
+      query: {
+        orderByChild: `lists/${listId}`,
+        equalTo: true
+      }
+    });
+  }
+
   public serCurrentUser(user: User) {
     this.currentUser = user;
   }

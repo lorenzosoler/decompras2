@@ -1,4 +1,20 @@
 <ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Nuevo item</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-list no-lines>
+    <form [formGroup]="addItemForm" (ngSubmit)="saveItem(addItemForm.value)" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-input formControlName="name" placeholder="Titulo"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
   <ion-toolbar color="light">
     <ion-buttons left>
       <button ion-button (click)="dismiss();">
@@ -7,27 +23,9 @@
     </ion-buttons>
 
     <ion-buttons right>
-      <button ion-button  (click)="saveItem(addItemForm.value)">
+      <button ion-button color="primary" (click)="saveItem(addItemForm.value)">
         Ok
       </button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content #content>
-  <ion-list no-lines>
-    <ion-item>
-      <ion-thumbnail item-left>
-        <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
-      </ion-thumbnail>
-      <h2>
-        <strong>{{currentUser?.fullname}}</strong>
-      </h2>
-    </ion-item>
-    <form [formGroup]="addItemForm" (ngSubmit)="saveItem(addItemForm.value)" padding>
-      <ion-item no-padding no-margin class="no-input-border">
-        <ion-input formControlName="name" placeholder="Titulo del item"></ion-input>
-      </ion-item>
-    </form>
-  </ion-list>
-</ion-content>
+</ion-footer>
