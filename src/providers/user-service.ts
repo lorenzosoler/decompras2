@@ -21,7 +21,7 @@ export class UserService {
 
   public saveUser(user: User): firebase.Promise<any> {
     this.currentUser = user;
-    return this.usersRef.child(user.uid).set(user);
+    return this.usersRef.child(user.uid).update(user);
   }
 
   public getUser(uid: string): FirebaseObjectObservable<any> {
