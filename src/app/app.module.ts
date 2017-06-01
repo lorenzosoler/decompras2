@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AddListPage } from '../pages/add-list/add-list';
 import { LoginPage } from '../pages/login/login';
@@ -42,6 +43,8 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    JsonpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
