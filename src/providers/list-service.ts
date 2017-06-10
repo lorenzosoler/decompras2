@@ -63,4 +63,15 @@ export class ListService {
     return this.listsRef.child(`${listId}/items/${item.$key}`).update(updateItem);
   }
 
+  public deleteItem(listId: string, itemId: string): firebase.Promise<any> {
+    return this.listsRef.child(`${listId}/items/${itemId}`).remove();
+  }
+
+  public addUser (listId:string, userId:string): firebase.Promise<any> {
+    var updates = {};
+    updates[`lists/${listId}/users/${userId}`] = true;
+    updates[`users/${userId}/lists/${listId}`] = true;
+    return firebase.database().ref().update(updates);
+  }
+
 }

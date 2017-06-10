@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+    <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-list>
         <ion-item *ngFor="let user of users">
             <ion-thumbnail item-left>

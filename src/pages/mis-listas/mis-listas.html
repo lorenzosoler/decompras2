@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content class="outer-content" padding>
-  <h2>Welcome {{currentUser?.fullname}}</h2>
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-card *ngFor="let list of myLists" (click)="openList(list)">
     <ion-item>

@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 
 import firebase from 'firebase';
 import { User } from "../models/user";
-import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2";
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2";
 
 /*
   Generated class for the UserService provider.
@@ -41,6 +41,17 @@ export class UserService {
         equalTo: true
       }
     });
+  }
+
+  public searchUsers(email: string): FirebaseListObservable<any[]> {
+    return this.db.list('users', {
+      query: {
+        orderByChild: 'email',
+        startAt: email,
+        endAt: `${email}\uf8ff`,
+        limitToFirst: 10
+      }
+    })
   }
 
   public serCurrentUser(user: User) {
