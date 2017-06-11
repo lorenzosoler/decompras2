@@ -9,8 +9,12 @@
 
 <ion-content class="outer-content" padding>
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-  <ion-card *ngFor="let list of myLists" (click)="openList(list)">
+  <p padding *ngIf="myLists?.length == 0" text-center>Aun no tienes listas. <br> Toca en el boton + para crear una nueva</p>
+  <ion-card  *ngFor="let list of myLists" (click)="openList(list)">
     <ion-item>
+      <button type="button" ion-button icon-only clear small color="gray" class="more-options" (click)="actionSheet($event, list);">
+        <ion-icon name="ios-arrow-down"></ion-icon>
+      </button>
       <h2>{{list.name}}</h2>
       <p>Debe realizarse: <br> {{list.date}} {{list.hour}} hs.</p>
     </ion-item>

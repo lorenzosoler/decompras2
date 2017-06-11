@@ -81,4 +81,13 @@ export class ListService {
     return firebase.database().ref().update(updates);
   }
 
+  public deleteList(listId:string, users: any[]): firebase.Promise<any>{
+    var updates = {};
+    updates[`lists/${listId}`] = null;
+    users.forEach((user) => {
+      updates[`users/${user.$key}/lists/${listId}`] = null;
+    });
+    return firebase.database().ref().update(updates);
+  }
+
 }
