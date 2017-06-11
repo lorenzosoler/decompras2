@@ -18,6 +18,7 @@
 </ion-header>
 
 <ion-content>
+  <button *ngIf="items?.length != 0" ion-button full color="light" (click)="showTotal()">Total</button>
   <p padding *ngIf="items?.length == 0" text-center>Toca en el boton + para agregar un item</p>
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-list>

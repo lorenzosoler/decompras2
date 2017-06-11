@@ -126,4 +126,17 @@ export class ListaPage {
     this.navCtrl.push(UsersListPage, {'currentList': this.currentList});
   }
 
+  public showTotal() {
+    let total = 0;
+    this.items.forEach((item) => {
+      total = total + item.price;
+    })
+    let prompt = this.alertCtrl.create({
+      title: '$' + total,
+      message: 'Es el total de esta lista',
+      buttons: ['OK']
+    });
+    prompt.present();
+  }
+
 }

@@ -42,8 +42,8 @@ export class AddUserPage {
 
     public addUser (user) {
         let confirm = this.alertCtrl.create({
-        title: 'Agregar usuario',
-        message: "El usuario " + user.fullname + ' será miembro de la lista: ' + this.currentList.name,
+        title: 'Agregar al usuario: <br> ' + user.fullname,
+        message: "El usuario <strong>" + user.fullname + '</strong> será miembro de la lista: <strong>' + this.currentList.name +'</strong>',
         buttons: [
           {
             text: 'Cancelar',
