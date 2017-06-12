@@ -9,6 +9,8 @@ import { ListService } from "../../providers/list-service";
 import { FirebaseListObservable } from "angularfire2";
 import { ListaPage } from "../lista/lista";
 
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 @Component({
   selector: 'page-mis-listas',
   templateUrl: 'mis-listas.html'
@@ -22,11 +24,16 @@ export class MisListasPage {
   constructor(
   public navCtrl: NavController,
   public modalCtrl: ModalController,
+  private localNotifications: LocalNotifications,
   public actionSheetCtrl: ActionSheetController,
   public toastCtrl: ToastController,
   public listService: ListService,
   public userService: UserService) {
     this.currentUser = this.userService.getCurrentUser();
+    this.localNotifications.on("click", (notification, state) => {
+      let data = JSON.parse(notification.data);
+      this.openList(data.list);
+    });
   }
 
   ionViewDidLoad() {
@@ -43,7 +50,16 @@ export class MisListasPage {
 
     addListModal.onDidDismiss(list => {
       if (list) {
-        that.content.scrollToTop();
+        let fec = list.date;
+        let time = list.hour;
+        let date = new Date(fec + ' ' + time);
+        this.localNotifications.schedule({
+          title: list.name,
+          text: 'Fue programada para realizar en este momento',
+          icon: 'ic_notifications.png',
+          data: {list: list},
+          at: date
+        });
       }
     });
 

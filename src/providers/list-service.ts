@@ -20,7 +20,7 @@ export class ListService {
   constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
 
-  public saveList(list: any) {
+  public saveList(list: any): any {
     var currentUser = this.userService.getCurrentUser();
     list.userCreator = currentUser.uid;
     list.createdFec = new Date().toLocaleDateString()
@@ -29,6 +29,7 @@ export class ListService {
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;
     this.userService.addList(currentUser.uid, listId);
+    return list;
   }
 
   public getLists() {

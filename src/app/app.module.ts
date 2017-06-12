@@ -22,6 +22,7 @@ import { UserService } from "../providers/user-service";
 import { ListService } from "../providers/list-service";
 import { NetworkService } from "../providers/network-service";
 import { Network } from "@ionic-native/network";
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 export const firebaseConfig = {
@@ -71,6 +72,7 @@ export const firebaseConfig = {
     UserService,
     ListService,
     NetworkService,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

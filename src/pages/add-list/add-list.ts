@@ -38,9 +38,9 @@ export class AddListPage {
         });
         loader.present();
 
-        this.listService.saveList(newList);
+        let list = this.listService.saveList(newList);
         loader.dismiss();
-        this.viewCtrl.dismiss();
+        this.viewCtrl.dismiss(list);
     }
 
     public dismiss() {

@@ -9,7 +9,7 @@
     <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
       <ion-item no-padding no-margin class="no-input-border">
         <ion-label>Titulo</ion-label>
-        <ion-input formControlName="name"></ion-input>
+        <ion-input formControlName="name" autofocus></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
         <ion-label>Detalle</ion-label>
