@@ -12,6 +12,7 @@ import { MisListasPage } from "../pages/mis-listas/mis-listas";
 import firebase from 'firebase';
 import { UserService } from "../providers/user-service";
 import { NetworkService } from "../providers/network-service";
+import { OneSignal, OSNotification } from "@ionic-native/onesignal";
 
 @Component({
   templateUrl: 'app.html'
@@ -28,14 +29,33 @@ export class MyApp {
 
   constructor(platform: Platform, 
   private statusBar: StatusBar, 
-  private splashScreen: SplashScreen, 
+  private splashScreen: SplashScreen,
+  private oneSignal: OneSignal,
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
   public networkService: NetworkService) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      if(platform.is('cordova')) {
+          // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        this.oneSignal.startInit('8e4f03e5-8ffb-4fb8-9dd8-7136c5156202', '955671816280');
+
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+        this.oneSignal.handleNotificationReceived().subscribe(() => {
+        // do something when notification is received
+        });
+
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          alert('Notificacion')
+        });
+
+        this.oneSignal.endInit();
+
+      }
+
+
       statusBar.styleDefault();
 
       this.networkService.watchConnectivity();
@@ -50,11 +70,13 @@ export class MyApp {
   public checkAuthUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
-        let currentUser = new User(user)
+        let currentUser = new User(user);
+        this.oneSignal.sendTag('email', currentUser.email);
         this.userService.serCurrentUser(currentUser);
         this.currentUser = currentUser;
         this.nav.setRoot(MisListasPage);
       } else {
+        this.oneSignal.deleteTag('email');
         this.nav.setRoot(LoginPage);
       }
     })
