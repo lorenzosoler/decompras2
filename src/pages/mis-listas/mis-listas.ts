@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController, AlertController } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { LoginPage } from "../login/login";
 import { User } from "../../models/user";
@@ -10,6 +10,7 @@ import { FirebaseListObservable } from "angularfire2";
 import { ListaPage } from "../lista/lista";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
   selector: 'page-mis-listas',
@@ -24,16 +25,14 @@ export class MisListasPage {
   constructor(
   public navCtrl: NavController,
   public modalCtrl: ModalController,
+  public alertCtrl: AlertController,
   private localNotifications: LocalNotifications,
+  private calendar: Calendar,
   public actionSheetCtrl: ActionSheetController,
   public toastCtrl: ToastController,
   public listService: ListService,
   public userService: UserService) {
     this.currentUser = this.userService.getCurrentUser();
-    this.localNotifications.on("click", (notification, state) => {
-      let data = JSON.parse(notification.data);
-      this.openList(data.list);
-    });
   }
 
   ionViewDidLoad() {
@@ -60,6 +59,29 @@ export class MisListasPage {
           data: {list: list},
           at: date
         });
+        let prompt = this.alertCtrl.create({
+          title: 'Enlazar con su calendario',
+          message: "Agregar esta lista como evento en el calendario?",
+          buttons: [
+            {
+              text: 'No',
+              handler: () => {
+              }
+            },
+            {
+              text: 'Si',
+              handler: () => {
+                this.calendar.createEventInteractivelyWithOptions(list.name, 'Argentina', list.detail, date, date).then((msg) => {
+                  this.toastCtrl.create({
+                      message: 'Se creo evento en el calendario: ' + msg,
+                      duration: 3000
+                  }).present()
+                })
+              }
+            }
+          ]
+        });
+        prompt.present();
       }
     });
 

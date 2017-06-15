@@ -17,11 +17,11 @@
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
         <ion-label>Fecha</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+        <ion-input type="date" formControlName="date" min="nowDate"></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
         <ion-label>Hora</ion-label>
-        <ion-datetime displayFormat="HH:mm" formControlName="hour"></ion-datetime>
+        <ion-input type="time" formControlName="hour"></ion-input>
       </ion-item>
     </form>
   </ion-list>

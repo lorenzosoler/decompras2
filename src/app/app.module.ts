@@ -24,6 +24,7 @@ import { NetworkService } from "../providers/network-service";
 import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
+import { Calendar } from '@ionic-native/calendar';
 
 
 
@@ -76,6 +77,7 @@ export const firebaseConfig = {
     NetworkService,
     LocalNotifications,
     OneSignal,
+    Calendar,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

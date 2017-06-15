@@ -14,12 +14,14 @@ import { UserService } from "../../providers/user-service";
 export class AddListPage {
     public currentUser: User;
     public addListForm: FormGroup;
+    public nowData: Date;
 
     constructor(private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
     public userService: UserService,
     public listService: ListService) {
+        this.nowData = new Date();
         this.addListForm = this.formBuilder.group({
             name: ['', Validators.required],
             detail: ['', Validators.required],

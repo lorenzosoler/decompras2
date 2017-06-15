@@ -54,4 +54,5 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="~0.8.5" />
     <plugin name="onesignal-cordova-plugin" spec="~2.1.2" />
+    <plugin name="cordova-plugin-calendar" spec="~4.5.5" />
 </widget>

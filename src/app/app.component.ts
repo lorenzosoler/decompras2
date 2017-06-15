@@ -13,6 +13,7 @@ import firebase from 'firebase';
 import { UserService } from "../providers/user-service";
 import { NetworkService } from "../providers/network-service";
 import { OneSignal, OSNotification } from "@ionic-native/onesignal";
+import { LocalNotifications } from "@ionic-native/local-notifications";
 
 @Component({
   templateUrl: 'app.html'
@@ -31,11 +32,14 @@ export class MyApp {
   private statusBar: StatusBar, 
   private splashScreen: SplashScreen,
   private oneSignal: OneSignal,
+  private localNotifications: LocalNotifications,
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
   public networkService: NetworkService) {
     platform.ready().then(() => {
+      this.checkAuthUser();
+
       if(platform.is('cordova')) {
           // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
@@ -53,14 +57,17 @@ export class MyApp {
 
         this.oneSignal.endInit();
 
+        this.localNotifications.on("click", (notification, state) => {
+          let data = JSON.parse(notification.data);
+          this.nav.push(data.list);
+        });
+
       }
 
 
       statusBar.styleDefault();
 
       this.networkService.watchConnectivity();
-      
-      this.checkAuthUser();
       
       splashScreen.hide();
 
