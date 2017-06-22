@@ -1,6 +1,16 @@
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null"
+    ".write": "auth != null",
+    "lists": {
+      "$list_id": {
+        ".indexOn": ["users"]
+      }
+    },
+    "users": {
+      "$user_id": {
+        ".indexOn": ["lists"]
+      }
+    }
   }
 }
