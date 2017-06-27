@@ -4,6 +4,7 @@ import { Component } from "@angular/core";
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { AlertController, NavParams, ToastController } from "ionic-angular";
+import { NotificationsService } from "../../providers/notifications-service";
 
 @Component({
   selector: 'page-add-user',
@@ -19,7 +20,8 @@ export class AddUserPage {
                 public alertCtrl: AlertController,
                 public navParams: NavParams,
                 public toastCtrl: ToastController,
-                public listService: ListService) {
+                public listService: ListService,
+                public notificationsService: NotificationsService) {
             this.currentList = this.navParams.get('currentList');
     }
 
@@ -65,10 +67,11 @@ export class AddUserPage {
                     }
                 };
                 this.listService.addUser(this.currentList.$key, user.$key).then((data) =>{
+                    this.notificationsService.addUserList(this.currentList, user);
                     this.toastCtrl.create({
                         message: 'Usuario agregado correctamente a la lista',
                         duration: 3000
-                    }).present()
+                    }).present();
                 });
             }
           }

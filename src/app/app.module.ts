@@ -13,14 +13,16 @@ import { ListaPage } from "../pages/lista/lista";
 import { UsersListPage } from "../pages/users-list/users-list";
 import { AddUserPage } from "../pages/add-user/add-user";
 
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { Facebook } from "@ionic-native/facebook";
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
 import { ListService } from "../providers/list-service";
 import { NetworkService } from "../providers/network-service";
+import { NotificationsService } from '../providers/notifications-service';
+
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { Facebook } from "@ionic-native/facebook";
 import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
@@ -75,6 +77,7 @@ export const firebaseConfig = {
     UserService,
     ListService,
     NetworkService,
+    NotificationsService,
     LocalNotifications,
     OneSignal,
     Calendar,
