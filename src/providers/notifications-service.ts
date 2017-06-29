@@ -14,7 +14,9 @@ export class NotificationsService {
   public addUserList(list: any, user: any) {
     let body = {
         app_id: "8e4f03e5-8ffb-4fb8-9dd8-7136c5156202",
-        included_segments: ["All"],
+        filters: [
+          {"field": "tag", "key": "email", "relation": "=", "value": user.email}
+        ],
         headings: {"en": this.currentUser.fullname },
         contents: {"en": `Te agrego a la lista ${list.name}`},
         large_icon: this.currentUser.photo
