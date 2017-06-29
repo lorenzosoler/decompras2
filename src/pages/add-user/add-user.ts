@@ -30,7 +30,7 @@ export class AddUserPage {
     }
 
     public searchUsers(ev: any) {
-        let val = ev.target.value;
+        let val: string = ev.target.value;
         if (val.trim() === '') {
             this.allUsers = [];
             return;

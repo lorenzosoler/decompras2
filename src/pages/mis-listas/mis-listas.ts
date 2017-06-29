@@ -55,7 +55,7 @@ export class MisListasPage {
         this.localNotifications.schedule({
           title: list.name,
           text: 'Fue programada para realizar en este momento',
-          icon: 'ic_notifications.png',
+          icon: 'ic_stat_onesignal_default.png',
           data: {list: list},
           at: date
         });

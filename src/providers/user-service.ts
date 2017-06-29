@@ -43,12 +43,13 @@ export class UserService {
     });
   }
 
-  public searchUsers(email: string): FirebaseListObservable<any[]> {
+  public searchUsers(name: string): FirebaseListObservable<any[]> {
+    name = name.toLowerCase().replace(/\s/g,"");
     return this.db.list('users', {
       query: {
-        orderByChild: 'email',
-        startAt: email,
-        endAt: `${email}\uf8ff`,
+        orderByChild: 'searchname',
+        startAt: name,
+        endAt: `${name}\uf8ff`,
         limitToFirst: 10
       }
     })
@@ -61,5 +62,4 @@ export class UserService {
   public getCurrentUser(): User {
     return this.currentUser;
   }
-
 }
