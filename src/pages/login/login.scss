@@ -1,4 +1,19 @@
-page-contact {
+page-login {
+    .login {
+        background-image: url('../assets/login/fondo.png');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .logo {
+        margin: auto;
+        padding: 27% 0;
+    }
+
+    .button-face {
+        margin: auto;
+    }
+
     button.button-login {
         appearance: none;
         -moz-appearance: none;
