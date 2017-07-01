@@ -28,33 +28,34 @@ export class LoginPage {
     let loader = this.loadingCtrl.create({
         content: 'Autenticando...'
     });
+    loader.present();
     if (this.platform.is('cordova')) {
       this.facebook.login(['public_profile', 'user_friends', 'email']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
         firebase.auth().signInWithCredential(facebookCredential)
         .then((success) => {
-          loader.present();
           this.userService.saveUser(new User(success)).then(()=> {
             loader.dismiss();
             this.navCtrl.setRoot(MisListasPage);
           });
         })
         .catch((error) => {
+          loader.dismiss();
           console.log("Firebase failure: " + JSON.stringify(error));
         });
 
-      }).catch((error) => { console.log(error) });
+      }).catch((error) => { loader.dismiss(); console.log(error); });
     } else {
       this.af.auth.login({
         provider: AuthProviders.Facebook,
         method: AuthMethods.Popup
       }).then((user) => {
-        loader.present();
         this.userService.saveUser(new User(user.auth)).then(()=> {
           loader.dismiss();
           this.navCtrl.setRoot(MisListasPage);
         });
       }).catch(error=>{
+        loader.dismiss();
         alert("No hay conexion a internet, intente mas tarde");
       })
     }

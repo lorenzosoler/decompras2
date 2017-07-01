@@ -9,7 +9,7 @@
 
 <ion-content class="outer-content" padding>
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-  <p padding *ngIf="myLists?.length == 0" text-center>Aun no tienes listas. <br> Toca en el boton + para crear una nueva</p>
+  <p padding *ngIf="myLists?.length == 0 && !showLoader" text-center>Aun no tienes listas. <br> Toca en el boton + para crear una nueva</p>
   <ion-card  *ngFor="let list of myLists" (click)="openList(list)">
     <ion-item>
       <button type="button" ion-button icon-only clear small color="gray" class="more-options" (click)="actionSheet($event, list);">

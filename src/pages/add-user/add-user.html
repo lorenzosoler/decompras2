@@ -3,14 +3,14 @@
     <ion-title>Agregar usuario</ion-title>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar (ionInput)="searchUsers($event)" type="search" placeholder="Buscá un usuario por su email" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
+    <ion-searchbar (ionInput)="searchUsers($event)" type="search" placeholder="Buscá un usuario por su nombre" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-    <p padding text-center *ngIf="allUsers.length == 0">Ingrese el email del usuario que desea agregar a la lista.</p>
-    <p padding text-center *ngIf="allUsers.length == 0">Si no encuentras a la persona que buscas, dile que se baje esta app!</p>
+    <p padding text-center *ngIf="allUsers.length == 0">Ingrese el nombre del usuario que desea agregar a la lista.</p>
+    <button ion-button full color="primary">Invitar personas </button>
     <ion-list>
         <ion-item (click)="addUser(user)" *ngFor="let user of allUsers">
             <ion-thumbnail item-left>

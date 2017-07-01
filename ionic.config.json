@@ -1,6 +1,5 @@
 {
   "name": "DeCompras",
   "app_id": "6f518697",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }
