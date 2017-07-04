@@ -64,7 +64,6 @@ export class MyApp {
 
       }
 
-
       statusBar.styleDefault();
 
       this.networkService.watchConnectivity();
@@ -78,12 +77,12 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         let currentUser = new User(user);
-        this.oneSignal.sendTag('email', currentUser.email);
+        this.oneSignal.sendTag('userId', currentUser.uid);
         this.userService.serCurrentUser(currentUser);
         this.currentUser = currentUser;
         this.nav.setRoot(MisListasPage);
       } else {
-        this.oneSignal.deleteTag('email');
+        this.oneSignal.deleteTag('userId');
         this.nav.setRoot(LoginPage);
       }
     })

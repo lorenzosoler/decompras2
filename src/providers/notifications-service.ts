@@ -15,7 +15,7 @@ export class NotificationsService {
     let body = {
         app_id: "8e4f03e5-8ffb-4fb8-9dd8-7136c5156202",
         filters: [
-          {"field": "tag", "key": "email", "relation": "=", "value": user.email}
+          {"field": "tag", "key": "userId", "relation": "=", "value": user.uid}
         ],
         headings: {"en": this.currentUser.fullname },
         contents: {"en": `Te agrego a la lista ${list.name}`},
