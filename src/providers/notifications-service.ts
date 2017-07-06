@@ -19,6 +19,7 @@ export class NotificationsService {
         ],
         headings: {"en": this.currentUser.fullname },
         contents: {"en": `Te agrego a la lista ${list.name}`},
+        data: {"list": list},
         large_icon: this.currentUser.photo
     };
     let headers = new Headers({ 'Authorization': 'Basic NzgyYmQ1NjktNTMwNS00MWRmLWExMTYtNjEyYWU2OTA5OGUy' });
