@@ -47,20 +47,7 @@ export class MyApp {
 
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-        this.oneSignal.handleNotificationReceived().subscribe(() => {
-        // do something when notification is received
-        });
-
-        this.oneSignal.handleNotificationOpened().subscribe(() => {
-          alert('Notificacion')
-        });
-
         this.oneSignal.endInit();
-
-        this.localNotifications.on("click", (notification, state) => {
-          let data = JSON.parse(notification.data);
-          this.nav.push(data.list);
-        });
 
       }
 

@@ -11,6 +11,7 @@ import { ListaPage } from "../lista/lista";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Calendar } from '@ionic-native/calendar';
+import { OneSignal } from "@ionic-native/onesignal";
 
 @Component({
   selector: 'page-mis-listas',
@@ -28,10 +29,19 @@ export class MisListasPage {
   public alertCtrl: AlertController,
   private localNotifications: LocalNotifications,
   private calendar: Calendar,
+  private oneSignal: OneSignal,
   public actionSheetCtrl: ActionSheetController,
   public toastCtrl: ToastController,
   public listService: ListService,
   public userService: UserService) {
+    this.localNotifications.on("click", (notification, state) => {
+      let data = JSON.parse(notification.data);
+      this.navCtrl.push(data.list);
+    });
+    this.oneSignal.handleNotificationOpened().subscribe((data) => {
+      let list = data.notification.payload.additionalData.list;
+      this.navCtrl.push(ListaPage, {currentList: list});
+    });
     this.currentUser = this.userService.getCurrentUser();
   }
 
