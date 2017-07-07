@@ -85,6 +85,7 @@ export class MisListasPage {
           ]
         });
         prompt.present();
+        this.openList(list);
       }
     });
 
