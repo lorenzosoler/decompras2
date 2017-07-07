@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController, AlertController, Platform } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { LoginPage } from "../login/login";
 import { User } from "../../models/user";
@@ -24,6 +24,7 @@ export class MisListasPage {
   public showLoader: boolean = false;
 
   constructor(
+  private platform: Platform,
   public navCtrl: NavController,
   public modalCtrl: ModalController,
   public alertCtrl: AlertController,
@@ -34,14 +35,6 @@ export class MisListasPage {
   public toastCtrl: ToastController,
   public listService: ListService,
   public userService: UserService) {
-    this.localNotifications.on("click", (notification, state) => {
-      let data = JSON.parse(notification.data);
-      this.navCtrl.push(data.list);
-    });
-    this.oneSignal.handleNotificationOpened().subscribe((data) => {
-      let list = data.notification.payload.additionalData.list;
-      this.navCtrl.push(ListaPage, {currentList: list});
-    });
     this.currentUser = this.userService.getCurrentUser();
   }
 
