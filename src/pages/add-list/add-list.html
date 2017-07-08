@@ -8,19 +8,19 @@
   <ion-list no-lines>
     <form [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)" padding>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-label>Titulo</ion-label>
+        <ion-label floating>Titulo</ion-label>
         <ion-input formControlName="name" autofocus></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-label>Detalle</ion-label>
+        <ion-label floating>Detalle</ion-label>
         <ion-input formControlName="detail"></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-label>Fecha</ion-label>
+        <ion-label floating>Fecha</ion-label>
         <ion-input type="date" formControlName="date" min="nowDate"></ion-input>
       </ion-item>
       <ion-item no-padding no-margin class="no-input-border">
-        <ion-label>Hora</ion-label>
+        <ion-label floating>Hora</ion-label>
         <ion-input type="time" formControlName="hour"></ion-input>
       </ion-item>
     </form>

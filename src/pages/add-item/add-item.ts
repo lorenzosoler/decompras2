@@ -32,16 +32,18 @@ export class AddItemPage {
         this.currentUser = this.userService.getCurrentUser();
     }
 
-    public saveItem(newItem: any) {    
-        let loader = this.loadingCtrl.create({
-            content: 'Creando...'
-        });
-        loader.present();
+    public saveItem(newItem: any) {
+        if (newItem.name.trim()) {
+            let loader = this.loadingCtrl.create({
+                content: 'Creando...'
+            });
+            loader.present();
 
-        this.listService.addItem(this.listId, newItem).then(data => {
-            loader.dismiss();
-            this.viewCtrl.dismiss();
-        })
+            this.listService.addItem(this.listId, newItem).then(data => {
+                loader.dismiss();
+                this.viewCtrl.dismiss();
+            })
+        }
     }
 
     public dismiss() {

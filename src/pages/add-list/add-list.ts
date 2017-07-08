@@ -24,9 +24,9 @@ export class AddListPage {
         this.nowData = new Date();
         this.addListForm = this.formBuilder.group({
             name: ['', Validators.required],
-            detail: ['', Validators.required],
-            date: ['', Validators.required],
-            hour: ['', Validators.required]
+            detail: [''],
+            date: [''],
+            hour: ['']
         });
     }
 
@@ -34,15 +34,17 @@ export class AddListPage {
         this.currentUser = this.userService.getCurrentUser();
     }
 
-    public saveList(newList: any) {    
-        let loader = this.loadingCtrl.create({
-            content: 'Creando...'
-        });
-        loader.present();
+    public saveList(newList: any) {
+        if (newList.name.trim()) {
+            let loader = this.loadingCtrl.create({
+                content: 'Creando...'
+            });
+            loader.present();
 
-        let list = this.listService.saveList(newList);
-        loader.dismiss();
-        this.viewCtrl.dismiss(list);
+            let list = this.listService.saveList(newList);
+            loader.dismiss();
+            this.viewCtrl.dismiss(list);
+        }
     }
 
     public dismiss() {
