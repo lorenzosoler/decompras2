@@ -21,6 +21,7 @@
     "@ionic-native/calendar": "^3.12.1",
     "@ionic-native/core": "^3.6.1",
     "@ionic-native/facebook": "^3.4.4",
+    "@ionic-native/globalization": "^4.0.0",
     "@ionic-native/local-notifications": "^3.12.1",
     "@ionic-native/network": "^3.6.1",
     "@ionic-native/onesignal": "^3.12.1",

@@ -27,7 +27,7 @@ import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
-
+import { Globalization } from '@ionic-native/globalization';
 
 
 export const firebaseConfig = {
@@ -81,6 +81,7 @@ export const firebaseConfig = {
     LocalNotifications,
     OneSignal,
     Calendar,
+    Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
