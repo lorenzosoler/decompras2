@@ -6,11 +6,14 @@
 
 <ion-content #content>
   <ion-list no-lines>
-    <form [formGroup]="addItemForm" (ngSubmit)="saveItem(addItemForm.value)" padding>
+    <form [formGroup]="addItemForm" padding>
       <ion-item no-padding no-margin class="no-input-border">
         <ion-label floating>Titulo</ion-label>
-        <ion-input formControlName="name" autofocus></ion-input>
+        <ion-input formControlName="name" [(ngModel)]="addItemForm.value.name" autofocus></ion-input>      
       </ion-item>
+      <button (click)="speech(addItemForm.value)" ion-button icon-only>
+        <ion-icon name="mic"></ion-icon>
+      </button>  
     </form>
   </ion-list>
 </ion-content>

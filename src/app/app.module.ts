@@ -27,6 +27,7 @@ import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 
 
@@ -81,6 +82,7 @@ export const firebaseConfig = {
     LocalNotifications,
     OneSignal,
     Calendar,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
