@@ -66,5 +66,9 @@
     <plugin name="onesignal-cordova-plugin" spec="~2.1.2" />
     <plugin name="cordova-plugin-calendar" spec="~4.5.5" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
+<<<<<<< HEAD
     <plugin name="cordova-plugin-speechrecognition" spec="~1.1.2" />
+=======
+    <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
+>>>>>>> ca9ffa612793b4e2b18951f8cf15cb8d05e74cc7
 </widget>

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule, Http, JsonpModule } from '@angular/http';
 
 import { AddListPage } from '../pages/add-list/add-list';
 import { LoginPage } from '../pages/login/login';
@@ -28,7 +28,13 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Globalization } from '@ionic-native/globalization';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
 export const firebaseConfig = {
@@ -56,7 +62,14 @@ export const firebaseConfig = {
     HttpModule,
     JsonpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -83,6 +96,7 @@ export const firebaseConfig = {
     OneSignal,
     Calendar,
     SpeechRecognition,
+	Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -15,6 +15,9 @@ import { NetworkService } from "../providers/network-service";
 import { OneSignal, OSNotification } from "@ionic-native/onesignal";
 import { LocalNotifications } from "@ionic-native/local-notifications";
 import { ListaPage } from "../pages/lista/lista";
+import { Globalization } from '@ionic-native/globalization';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -30,19 +33,33 @@ export class MyApp {
     { title: 'Mis Listas', component: MisListasPage, icon: 'clipboard' }
   ];
 
-  constructor(platform: Platform, 
+  constructor(platform: Platform,
+  private translate: TranslateService,
   private statusBar: StatusBar, 
   private splashScreen: SplashScreen,
   private oneSignal: OneSignal,
   private localNotifications: LocalNotifications,
+  private globalization: Globalization,
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
   public networkService: NetworkService) {
+    //se setea el lenguaje de la app
+    translate.setDefaultLang('en');
+
     platform.ready().then(() => {
       this.checkAuthUser();
 
       if(platform.is('cordova')) {
+
+        this.globalization.getPreferredLanguage()
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
+
+        this.globalization.getLocaleName()
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+
           // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.oneSignal.startInit('8e4f03e5-8ffb-4fb8-9dd8-7136c5156202', '955671816280');
