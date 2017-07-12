@@ -53,13 +53,27 @@ export class AddItemPage {
             language: 'es-AR'
         }
         // Start the recognition process
-        this.speechRecognition.startListening(options)
-        .subscribe(
-            (matches: Array<string>) => {
-                newItem.name = matches[0];
-            },
-            (onerror) => console.log('error:', onerror)
-        )
+        this.speechRecognition.hasPermission().then((hasPermision) => {
+            if (hasPermision) {
+                this.speechRecognition.startListening(options)
+                .subscribe(
+                    (matches: Array<string>) => {
+                        newItem.name = matches[0];
+                    },
+                    (onerror) => console.log('error:', onerror)
+                )
+            } else {
+                this.speechRecognition.requestPermission().then(() => {
+                    this.speechRecognition.startListening(options)
+                    .subscribe(
+                        (matches: Array<string>) => {
+                            newItem.name = matches[0];
+                        },
+                        (onerror) => console.log('error:', onerror)
+                    )
+                }).catch((err) => { console.log(err) });
+            }
+        })
     }
 
     public dismiss() {
