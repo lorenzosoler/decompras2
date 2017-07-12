@@ -17,6 +17,7 @@ import { LocalNotifications } from "@ionic-native/local-notifications";
 import { ListaPage } from "../pages/lista/lista";
 import { Globalization } from '@ionic-native/globalization';
 import { TranslateService } from '@ngx-translate/core';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class MyApp {
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
+  private androidFullScreen: AndroidFullScreen,
   public networkService: NetworkService) {
     //se setea el lenguaje de la app
     translate.setDefaultLang('en');
@@ -51,6 +53,10 @@ export class MyApp {
       this.checkAuthUser();
 
       if(platform.is('cordova')) {
+
+        this.androidFullScreen.isImmersiveModeSupported()
+        .then(() => this.androidFullScreen.immersiveMode())
+        .catch((error: any) => console.log(error));
 
         this.globalization.getPreferredLanguage()
         .then((res) => {

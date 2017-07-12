@@ -18,6 +18,7 @@
     "@angular/http": "4.0.2",
     "@angular/platform-browser": "4.0.2",
     "@angular/platform-browser-dynamic": "4.0.2",
+    "@ionic-native/android-full-screen": "^4.0.0",
     "@ionic-native/calendar": "^3.12.1",
     "@ionic-native/core": "^3.6.1",
     "@ionic-native/facebook": "^3.4.4",
