@@ -13,7 +13,7 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar (ionInput)="getItems($event)" type="search" placeholder="Buscá un item" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)" type="search" placeholder="{{ 'buscarItem' | translate }}" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

@@ -10,7 +10,7 @@
     <ion-list margin-top no-lines>
       <button *ngFor="let p of pages" ion-item padding-left detail-none menuClose color="lightgray" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
-        {{p.title}}
+        {{p.title | translate}}
       </button>
       <button ion-item padding-left (click)="logout()" detail-none color="lightgray">
         <ion-icon name="exit" item-left></ion-icon>
