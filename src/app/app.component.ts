@@ -59,12 +59,13 @@ export class MyApp {
         .catch((error: any) => console.log(error));
 
         this.globalization.getPreferredLanguage()
-        .then(res => console.log(res))
+        .then((res) => {
+          console.log('lenguaje preferido: ', res);
+          let lang = res.value.substr(0,2);
+          console.log('lenguaje: ', lang);
+          translate.use(lang);
+        })
         .catch(e => console.log(e));
-
-        this.globalization.getLocaleName()
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
 
           // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
