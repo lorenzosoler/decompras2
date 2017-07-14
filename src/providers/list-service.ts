@@ -16,6 +16,7 @@ import { FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 @Injectable()
 export class ListService {
   private listsRef = firebase.database().ref('lists');
+  private itemsListsRef = firebase.database().ref('itemsLists');
 
   constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
@@ -28,6 +29,7 @@ export class ListService {
     list.users = {};
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;
+    list.$key = listId;
     this.userService.addList(currentUser.uid, listId);
     return list;
   }
@@ -45,11 +47,11 @@ export class ListService {
   public addItem(listId: string, item: any): firebase.database.ThenableReference {
     item.price = 0;
     item.done = false;
-    return this.db.list(this.listsRef.child(listId).child('items')).push(item);
+    return this.db.list(this.itemsListsRef.child(listId)).push(item);
   }
 
   public getItems(listId: string): FirebaseListObservable<any> {
-    return this.db.list(`lists/${listId}/items`);
+    return this.db.list(`itemsLists/${listId}`);
   }
 
   public getUsers(listId: string): FirebaseListObservable<any> {
@@ -61,11 +63,11 @@ export class ListService {
       'done': item.done,
       'price': price
     };
-    return this.listsRef.child(`${listId}/items/${item.$key}`).update(updateItem);
+    return this.itemsListsRef.child(`${listId}/${item.$key}`).update(updateItem);
   }
 
   public deleteItem(listId: string, itemId: string): firebase.Promise<any> {
-    return this.listsRef.child(`${listId}/items/${itemId}`).remove();
+    return this.itemsListsRef.child(`${listId}/${itemId}`).remove();
   }
 
   public addUser (listId:string, userId:string): firebase.Promise<any> {
@@ -85,6 +87,7 @@ export class ListService {
   public deleteList(listId:string, users: any[]): firebase.Promise<any>{
     var updates = {};
     updates[`lists/${listId}`] = null;
+    updates[`itemsLists/${listId}`] = null;
     users.forEach((user) => {
       updates[`users/${user.$key}/lists/${listId}`] = null;
     });
