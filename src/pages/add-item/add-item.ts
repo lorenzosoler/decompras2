@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Globalization } from "@ionic-native/globalization";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class AddItemPage {
     constructor(private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private speechRecognition: SpeechRecognition,
+    private globalization: Globalization,
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
     public userService: UserService,
@@ -36,9 +38,7 @@ export class AddItemPage {
 
     public saveItem(newItem: any) {
         if (newItem.name.trim()) {
-            let loader = this.loadingCtrl.create({
-                content: 'Creando...'
-            });
+            let loader = this.loadingCtrl.create();
             loader.present();
 
             this.listService.addItem(this.listId, newItem).then(data => {
@@ -49,21 +49,13 @@ export class AddItemPage {
     }
 
     public speech (newItem: any) {
-        let options = {
-            language: 'es-AR'
-        }
-        // Start the recognition process
-        this.speechRecognition.hasPermission().then((hasPermision) => {
-            if (hasPermision) {
-                this.speechRecognition.startListening(options)
-                .subscribe(
-                    (matches: Array<string>) => {
-                        newItem.name = matches[0];
-                    },
-                    (onerror) => console.log('error:', onerror)
-                )
-            } else {
-                this.speechRecognition.requestPermission().then(() => {
+        this.globalization.getLocaleName().then((locale) => {
+            let options = {
+                language: locale.value
+            }
+            // Start the recognition process
+            this.speechRecognition.hasPermission().then((hasPermision) => {
+                if (hasPermision) {
                     this.speechRecognition.startListening(options)
                     .subscribe(
                         (matches: Array<string>) => {
@@ -71,8 +63,18 @@ export class AddItemPage {
                         },
                         (onerror) => console.log('error:', onerror)
                     )
-                }).catch((err) => { console.log(err) });
-            }
+                } else {
+                    this.speechRecognition.requestPermission().then(() => {
+                        this.speechRecognition.startListening(options)
+                        .subscribe(
+                            (matches: Array<string>) => {
+                                newItem.name = matches[0];
+                            },
+                            (onerror) => console.log('error:', onerror)
+                        )
+                    }).catch((err) => { console.log(err) });
+                }
+            })
         })
     }
 

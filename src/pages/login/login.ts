@@ -25,9 +25,7 @@ export class LoginPage {
   }
   
   facebookLogin(): void {
-    let loader = this.loadingCtrl.create({
-        content: 'Autenticando...'
-    });
+    let loader = this.loadingCtrl.create();
     loader.present();
     if (this.platform.is('cordova')) {
       this.facebook.login(['public_profile', 'user_friends', 'email']).then( (response) => {
@@ -56,7 +54,6 @@ export class LoginPage {
         });
       }).catch(error=>{
         loader.dismiss();
-        alert("No hay conexion a internet, intente mas tarde");
       })
     }
   }

@@ -24,8 +24,7 @@ export class ListService {
   public saveList(list: any): any {
     var currentUser = this.userService.getCurrentUser();
     list.userCreator = currentUser.uid;
-    list.createdFec = new Date().toLocaleDateString()
-    list.createdTime = new Date().toLocaleTimeString();
+    list.created = firebase.database.ServerValue.TIMESTAMP;
     list.users = {};
     list.users[currentUser.uid] = true;
     let listId = this.listsRef.push(list).key;

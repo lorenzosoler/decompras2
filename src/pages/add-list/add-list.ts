@@ -36,9 +36,7 @@ export class AddListPage {
 
     public saveList(newList: any) {
         if (newList.name.trim()) {
-            let loader = this.loadingCtrl.create({
-                content: 'Creando...'
-            });
+            let loader = this.loadingCtrl.create();
             loader.present();
 
             let list = this.listService.saveList(newList);

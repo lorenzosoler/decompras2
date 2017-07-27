@@ -1,5 +1,26 @@
 {
+  "SI": "Si",
   "SALIR": "Salir",
+  "LISTAELIMINADA": "Lista eliminada correctamente",
+  "SALISTE": "Saliste de esta lista",
   "Mis Listas": "Mis Listas",
-  "buscarItem": "Buscar un item"
+  "buscarItem": "Buscar un item",
+  "BUSCARUSUARIO": "Buscá un usuario con el nombre que aparece en Facebook",
+  "EDITAR": "Editar",
+  "ELIMINAR": "Eliminar",
+  "CANCELAR": "Cancelar",
+  "DETALLE": "Detalle",
+  "ELIMINARLISTA": "Eliminar lista",
+  "SEGUROELIMINAR": "Seguro desea eliminar esta lista?",
+  "LISTAPROGRAMADA": "Fue programada para realizar en este momento",
+  "RECORDARCALENDARIO": "Agregar recordatorio en el calendario?",
+  "RECORDATORIOAGREGADO": "El recordatorio fue agregado correctamente en el calendario",
+  "NUEVOITEM": "Nuevo item",
+  "NUEVALISTA": "Nueva lista",
+  "ADDUSER": "Agregar usuario",
+  "TITULO": "Titulo",
+  "GUARDAR": "Guardar",
+  "FECHA": "Fecha",
+  "HORA": "Hora",
+  "MIEMBROSDE": "Miembros de"
 }

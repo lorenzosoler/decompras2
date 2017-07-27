@@ -12,6 +12,8 @@ import { ListaPage } from "../lista/lista";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Calendar } from '@ionic-native/calendar';
 import { OneSignal } from "@ionic-native/onesignal";
+import { TranslateService } from "@ngx-translate/core";
+import { Globalization } from "@ionic-native/globalization";
 
 @Component({
   selector: 'page-mis-listas',
@@ -25,6 +27,8 @@ export class MisListasPage {
 
   constructor(
   private platform: Platform,
+  private translate: TranslateService,
+  private globalization: Globalization,
   public navCtrl: NavController,
   public modalCtrl: ModalController,
   public alertCtrl: AlertController,
@@ -51,42 +55,44 @@ export class MisListasPage {
     let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
 
     addListModal.onDidDismiss(list => {
-      if (list) {
-        let fec = list.date;
-        let time = list.hour;
-        let date = new Date(fec + ' ' + time);
-        this.localNotifications.schedule({
-          title: list.name,
-          text: 'Fue programada para realizar en este momento',
-          icon: 'ic_stat_onesignal_default.png',
-          data: {list: list},
-          at: date
-        });
-        let prompt = this.alertCtrl.create({
-          title: 'Enlazar con su calendario',
-          message: "Agregar esta lista como evento en el calendario?",
-          buttons: [
-            {
-              text: 'No',
-              handler: () => {
+      this.translate.get(["RECORDARCALENDARIO", "RECORDATORIOAGREGADO", "SI"]).subscribe((data) => {
+        if (list) {
+          let fec = list.date;
+          let time = list.hour;
+          let date = new Date(fec + ' ' + time);
+          this.localNotifications.schedule({
+            title: list.name,
+            text: data.LISTAPROGRAMADA,
+            icon: 'ic_stat_onesignal_default.png',
+            data: {list: list},
+            at: date
+          });
+          let prompt = this.alertCtrl.create({
+            title: '',
+            message: data.RECORDARCALENDARIO,
+            buttons: [
+              {
+                text: 'No',
+                handler: () => {
+                }
+              },
+              {
+                text: data.SI,
+                handler: () => {
+                  this.calendar.createEventInteractivelyWithOptions(list.name, '', list.detail, date, date).then((msg) => {
+                    this.toastCtrl.create({
+                        message: data.RECORDATORIOAGREGADO + ': ' + msg,
+                        duration: 3000
+                    }).present()
+                  })
+                }
               }
-            },
-            {
-              text: 'Si',
-              handler: () => {
-                this.calendar.createEventInteractivelyWithOptions(list.name, 'Argentina', list.detail, date, date).then((msg) => {
-                  this.toastCtrl.create({
-                      message: 'Se creo evento en el calendario: ' + msg,
-                      duration: 3000
-                  }).present()
-                })
-              }
-            }
-          ]
-        });
-        prompt.present();
-        this.openList(list);
-      }
+            ]
+          });
+          prompt.present();
+          this.openList(list);
+        }
+      })
     });
 
     addListModal.present();
@@ -100,68 +106,102 @@ export class MisListasPage {
     }
   }
 
+  private deleteList (listId: string) {
+    this.userService.getUsersByListId(listId).subscribe((users) => {
+      this.listService.deleteList(listId, users).then(() => {
+        this.translate.get(["LISTAELIMINADA"]).subscribe((data) => {
+          this.toastCtrl.create({
+              message: data.LISTAELIMINADA,
+              duration: 3000
+          }).present()
+        })
+      })
+    });
+  }
+
+  private showConfirmDelete(listId: string) {
+    this.translate.get(["ELIMINARLISTA", "SEGUROELIMINAR", "CANCELAR", "SI"]).subscribe((data) => {
+      let confirm = this.alertCtrl.create({
+        title: data.ELIMINARLISTA,
+        message: data.SEGUROELIMINAR,
+        buttons: [
+          {
+            text: data.CANCELAR,
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          },
+          {
+            text: data.SI,
+            handler: () => {
+              this.deleteList(listId);
+            }
+          }
+        ]
+      });
+      confirm.present();
+    });
+  }
+
   public presentActionSheetUserCreator(event, list: any) {
     event.stopPropagation();
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: '¿Seguro desea eliminar esta lista? Todos los usuarios que pertenecen a esta lista perderan los datos',
-      buttons: [
-        {
-          text: 'Si, Eliminala',
-          icon:'trash',
-          role: 'destructive',
-          handler: () => {
-            this.userService.getUsersByListId(list.$key).subscribe((users) => {
-              this.listService.deleteList(list.$key, users).then(() => {
-                this.toastCtrl.create({
-                    message: 'Lista eliminada correctamente',
-                    duration: 3000
-                }).present()
-              })
-            });
+    this.translate.get(["EDITAR", "ELIMINAR", "CANCELAR"]).subscribe((data) => {
+      let actionSheet = this.actionSheetCtrl.create({
+        title: '',
+        buttons: [
+          {
+            text: data.EDITAR,
+            icon: 'create',
+            role: 'edit',
+            handler: () => { }
+          },
+          {
+            text: data.ELIMINAR,
+            icon:'trash',
+            role: 'destructive',
+            handler: () => {
+              this.showConfirmDelete(list.$key);
+            }
+          },
+          {
+            text: data.CANCELAR,
+            icon: 'close',
+            role: 'cancel',
+            handler: () => { }
           }
-        },
-        {
-          text: 'Cancelar',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => { }
-        }
-      ]
-    });
-
-    actionSheet.present();
+        ]
+      }).present();
+    })
   }
 
   public presentActionSheet(event, list: any) {
     event.stopPropagation();
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: '¿Seguro desea salir de esta lista?',
-      buttons: [
-        {
-          text: 'Si, Salir',
-          icon:'trash',
-          role: 'destructive',
-          handler: () => {
-            this.listService.deleteUserList(this.currentUser.uid, list.$key).then(()=> {
-                this.toastCtrl.create({
-                    message: 'Saliste de la lista',
-                    duration: 3000
-                }).present()
-            })
+    this.translate.get(["SALIR", "CANCELAR", "SALISTE"]).subscribe((data) => {
+      let actionSheet = this.actionSheetCtrl.create({
+        title: '',
+        buttons: [
+          {
+            text: data.SALIR,
+            icon:'trash',
+            role: 'destructive',
+            handler: () => {
+              this.listService.deleteUserList(this.currentUser.uid, list.$key).then(()=> {
+                  this.toastCtrl.create({
+                      message: data.SALISTE,
+                      duration: 3000
+                  }).present()
+              })
+            }
+          },
+          {
+            text: data.CANCELAR,
+            icon: 'close',
+            role: 'cancel',
+            handler: () => { }
           }
-        },
-        {
-          text: 'Cancelar',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => { }
-        }
-      ]
+        ]
+      }).present();
     });
-
-    actionSheet.present();
   }
 
   public openList(list: any) {

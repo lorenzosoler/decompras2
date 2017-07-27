@@ -1,5 +1,26 @@
 {
+  "SI": "Yes",
   "SALIR": "Exit",
+  "LISTAELIMINADA": "List deleted successfully",
+  "SALISTE": "Did you go out",
   "Mis Listas": "My Lists",
-  "buscarItem": "Search an item"
+  "buscarItem": "Search an item",
+  "BUSCARUSUARIO": "Search a user with the name from Facebook",
+  "EDITAR": "Edit",
+  "ELIMINAR": "Delete",
+  "CANCELAR": "Cancel",
+  "DETALLE": "Detail",
+  "ELIMINARLISTA": "Delete list",
+  "SEGUROELIMINAR": "Are you sure to delete this list?",
+  "LISTAPROGRAMADA": "It was scheduled to perform at this time",
+  "RECORDARCALENDARIO": "Add reminder to the calendar?",
+  "RECORDATORIOAGREGADO": "The reminder was successfully added to the calendar",
+  "NUEVOITEM": "New item",
+  "NUEVALISTA": "New list",
+  "ADDUSER": "Add user",
+  "TITULO": "Title",
+  "GUARDAR": "Save",
+  "FECHA": "Date",
+  "HORA": "Hour",
+  "MIEMBROSDE": "Members of"
 }

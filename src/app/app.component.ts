@@ -17,8 +17,6 @@ import { LocalNotifications } from "@ionic-native/local-notifications";
 import { ListaPage } from "../pages/lista/lista";
 import { Globalization } from '@ionic-native/globalization';
 import { TranslateService } from '@ngx-translate/core';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -44,7 +42,6 @@ export class MyApp {
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
-  private androidFullScreen: AndroidFullScreen,
   public networkService: NetworkService) {
     //se setea el lenguaje de la app
     translate.setDefaultLang('en');
@@ -54,15 +51,11 @@ export class MyApp {
 
       if(platform.is('cordova')) {
 
-        this.androidFullScreen.isImmersiveModeSupported()
-        .then(() => this.androidFullScreen.immersiveMode())
-        .catch((error: any) => console.log(error));
-
+        // Se obtiene el lenguaje del telefono
         this.globalization.getPreferredLanguage()
         .then((res) => {
-          console.log('lenguaje preferido: ', res);
           let lang = res.value.substr(0,2);
-          console.log('lenguaje: ', lang);
+          // Se setea el lenguaje de la app con el lenguaje que tiene configurado el celular
           translate.use(lang);
         })
         .catch(e => console.log(e));
@@ -89,7 +82,7 @@ export class MyApp {
 
       }
 
-      statusBar.styleDefault();
+      this.statusBar.backgroundColorByName('blue');
 
       this.networkService.watchConnectivity();
       
