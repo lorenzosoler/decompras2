@@ -1,18 +1,18 @@
 <ion-menu [content]="content">
   <ion-content class="sidemenu">
-    <button type="button" ion-item menuClose no-lines detail-none>
+    <button color="light" type="button" class="profile-item" ion-item menuClose no-lines detail-none>
       <ion-thumbnail item-left>
         <img [src]="currentUser?.photo" [alt]="currentUser?.fullname"/>
       </ion-thumbnail>
-      <h2>{{currentUser?.fullname}}</h2>
+      <h2 style="color: black">{{currentUser?.fullname}}</h2>
     </button>
 
-    <ion-list margin-top no-lines>
-      <button *ngFor="let p of pages" ion-item padding-left detail-none menuClose color="lightgray" (click)="openPage(p)">
+    <ion-list margin-top>
+      <button *ngFor="let p of pages" ion-item menuClose (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title | translate}}
       </button>
-      <button ion-item padding-left (click)="logout()" detail-none color="lightgray">
+      <button ion-item (click)="logout()" >
         <ion-icon name="exit" item-left></ion-icon>
         {{ 'SALIR' | translate }}
       </button>

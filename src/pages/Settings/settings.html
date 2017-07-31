@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-avatar ion-button menuToggle>
+      <img [src]="currentUser?.photo" [alt]="currentUser?.fullname" class="img-menu" image-error-fallback/>
+    </ion-avatar>
+    <ion-title>{{"Ajustes" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list radio-group [(ngModel)]="idioma" (ionChange)="changeIdioma()">
+    <ion-list-header>{{"IDIOMA" | translate}}</ion-list-header>
+    <ion-item>
+        <ion-label>{{"ESPAÑOL" | translate}}</ion-label>
+        <ion-radio value="es"></ion-radio>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{"INGLES" | translate}}</ion-label>
+        <ion-radio value="en"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>Info</ion-list-header>
+    <button ion-item>
+      {{"ACERCADE" |translate}} DeCompras
+    </button>
+  </ion-list>
+</ion-content>

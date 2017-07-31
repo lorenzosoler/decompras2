@@ -13,6 +13,7 @@
             </ion-thumbnail>
             <h2>{{user.fullname}}</h2>
             <p>{{user.email}}</p>
+            <ion-note color="primary" *ngIf="user.uid == currentList.userCreator" item-end>Creador</ion-note>
             <button type="button" ion-button icon-only clear small color="gray" class="more-options" (click)="presentActionSheet($event, user);" *ngIf="currentUser.uid == currentList.userCreator && user.uid != currentUser.uid">
                 <ion-icon name="ios-arrow-down"></ion-icon>
             </button>

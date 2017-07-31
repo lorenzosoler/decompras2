@@ -14,6 +14,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { OneSignal } from "@ionic-native/onesignal";
 import { TranslateService } from "@ngx-translate/core";
 import { Globalization } from "@ionic-native/globalization";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-mis-listas',
@@ -29,6 +30,7 @@ export class MisListasPage {
   private platform: Platform,
   private translate: TranslateService,
   private globalization: Globalization,
+  private socialSharing: SocialSharing,
   public navCtrl: NavController,
   public modalCtrl: ModalController,
   public alertCtrl: AlertController,
@@ -49,6 +51,12 @@ export class MisListasPage {
        this.showLoader = false;
     });
   }
+
+	public invitPerson () {
+	  this.translate.get(["INVITACION"]).subscribe((data) => {
+		  this.socialSharing.share(data.INVITACION,'',[], 'www.indigodesign.com.ar');
+	  })
+	}
 
   public addList() {
     let that = this;

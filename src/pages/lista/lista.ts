@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 import { AddItemPage } from "../add-item/add-item";
 import { FormControl } from '@angular/forms';
 import { UsersListPage } from "../users-list/users-list";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-lista',
@@ -27,6 +28,7 @@ export class ListaPage {
   public alertCtrl: AlertController,
   public toastCtrl: ToastController,
   public listService: ListService,
+  private translate: TranslateService,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
       this.searchControl = new FormControl();
@@ -49,61 +51,65 @@ export class ListaPage {
   }
 
   public deleteItem(itemId:string) {
-    let prompt = this.alertCtrl.create({
-      title: 'Eliminar',
-      message: "Seguro desea eliminar este item?",
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Si',
-          handler: () => {
-            this.listService.deleteItem(this.currentList.$key, itemId).then(()=>{
-              this.toastCtrl.create({
-                message: 'Item eliminado correctamente',
-                duration: 3000
-              }).present()
-            });
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
-  public updatePrice(item) {
-    if (item.done) {
-        let prompt = this.alertCtrl.create({
-        title: 'Precio',
-        message: "Ingrese el precio de este item",
-        inputs: [
-          {
-            name: 'price',
-            placeholder: 'Precio',
-            type: 'number'
-          },
-        ],
+    this.translate.get(["ELIMINARITEM", "ITEMELIMINADO", "ELIMINAR", "CANCELAR"]).subscribe((data) => {
+      let prompt = this.alertCtrl.create({
+        title: '',
+        message: data.ELIMINARITEM,
         buttons: [
           {
-            text: 'Cancel',
-            handler: data => {
-              item.done = false;
+            text: data.CANCELAR,
+            handler: () => {
             }
           },
           {
-            text: 'Ok',
-            handler: data => {
-              if( data.price > 0) {
-                this.listService.setPrice(this.currentList.$key, item, Number(data.price) );
-              }
+            text: data.ELIMINAR,
+            handler: () => {
+              this.listService.deleteItem(this.currentList.$key, itemId).then(()=>{
+                this.toastCtrl.create({
+                  message: data.ITEMELIMINADO,
+                  duration: 3000
+                }).present()
+              });
             }
           }
         ]
       });
       prompt.present();
+    })
+  }
+
+  public updatePrice(item) {
+    if (item.done) {
+      this.translate.get(["PRECIOITEM", "PRECIO", "CANCELAR"]).subscribe((data) => {
+        let prompt = this.alertCtrl.create({
+          title: '',
+          message: data.PRECIOITEM,
+          inputs: [
+            {
+              name: 'price',
+              placeholder: data.PRECIO,
+              type: 'number'
+            },
+          ],
+          buttons: [
+            {
+              text: data.CANCELAR,
+              handler: data => {
+                item.done = false;
+              }
+            },
+            {
+              text: 'Ok',
+              handler: data => {
+                if( data.price > 0) {
+                  this.listService.setPrice(this.currentList.$key, item, Number(data.price) );
+                }
+              }
+            }
+          ]
+        });
+        prompt.present();
+      });
     } else {
       this.listService.setPrice(this.currentList.$key, item, 0);
     }
@@ -131,12 +137,14 @@ export class ListaPage {
     this.items.forEach((item) => {
       total = total + item.price;
     })
-    let prompt = this.alertCtrl.create({
-      title: '$' + total,
-      message: 'Es el total de esta lista',
-      buttons: ['OK']
-    });
-    prompt.present();
+    this.translate.get(["TOTAL"]).subscribe((data) => {
+      let prompt = this.alertCtrl.create({
+        title: '$ ' + total,
+        message: data.TOTAL,
+        buttons: ['OK']
+      });
+      prompt.present();
+    })
   }
 
 }

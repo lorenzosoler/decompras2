@@ -4,6 +4,11 @@
       <img [src]="currentUser?.photo" [alt]="currentUser?.fullname" class="img-menu" image-error-fallback/>
     </ion-avatar>
     <ion-title>{{ "Mis Listas" | translate }}</ion-title>
+    <ion-buttons right>
+      <button (click)="invitPerson()" style="font-size:22px;" ion-button>
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +21,7 @@
         <ion-icon name="ios-arrow-down"></ion-icon>
       </button>
       <h2>{{list.name}}</h2>
-      <p>Debe realizarse: <br> {{list.date}} {{list.hour}} hs.</p>
+      <p *ngIf="list.date && list.hour">Debe realizarse: <br> <br> {{list.date}} {{list.hour}} hs.</p>
     </ion-item>
     <ion-card-content>
       <p>{{list.detail}}</p>

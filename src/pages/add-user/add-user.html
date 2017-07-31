@@ -9,7 +9,7 @@
 
 <ion-content>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-    <button ion-button full color="primary">Invitar personas</button>
+    <button (click)="invitPerson()" ion-button full color="primary">Invitar personas</button>
     <ion-list>
         <ion-item (click)="addUser(user)" *ngFor="let user of allUsers">
             <ion-thumbnail item-left>

@@ -3,6 +3,7 @@ import { Content, NavController, NavParams, LoadingController, ModalController, 
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { AddUserPage } from "../add-user/add-user";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-users-list',
@@ -20,6 +21,7 @@ export class UsersListPage {
   public navParams: NavParams,
   public loadingCtrl: LoadingController,
   public actionSheetCtrl: ActionSheetController,
+  private translate: TranslateService,
   public toastCtrl: ToastController,
   public listService: ListService,
   public userService: UserService) {
@@ -41,32 +43,37 @@ export class UsersListPage {
 
   public presentActionSheet(event, user: any) {
     event.stopPropagation();
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Estás por eliminar este usuario de la lista. ¿Estás seguro?',
-      buttons: [
-        {
-          text: 'Si, Eliminalo',
-          icon:'trash',
-          role: 'destructive',
-          handler: () => {
-            this.listService.deleteUserList(user.$key, this.currentList.$key).then(()=>{
-              this.toastCtrl.create({
-                  message: 'Usuario eliminado correctamente de la lista',
-                  duration: 3000
-              }).present()
-            });
+    this.translate.get(["ELIMINAR", "CANCELAR", "HACERADMIN", "USUARIOELIMINADO"]).subscribe((data) => {
+      let actionSheet = this.actionSheetCtrl.create({
+        title: '',
+        buttons: [
+          {
+            text: data.HACERADMIN,
+            icon: 'contact',
+            handler: () => { }
+          },
+          {
+            text: data.ELIMINAR,
+            icon:'trash',
+            role: 'destructive',
+            handler: () => {
+              this.listService.deleteUserList(user.$key, this.currentList.$key).then(()=>{
+                this.toastCtrl.create({
+                    message: data.USUARIOELIMINADO,
+                    duration: 3000
+                }).present()
+              });
+            }
+          },
+          {
+            text: data.CANCELAR,
+            icon: 'close',
+            role: 'cancel',
+            handler: () => { }
           }
-        },
-        {
-          text: 'Cancelar',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => { }
-        }
-      ]
-    });
-
-    actionSheet.present();
+        ]
+      });
+      actionSheet.present();
+    })
   }
 }

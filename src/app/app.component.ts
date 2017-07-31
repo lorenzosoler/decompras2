@@ -17,6 +17,7 @@ import { LocalNotifications } from "@ionic-native/local-notifications";
 import { ListaPage } from "../pages/lista/lista";
 import { Globalization } from '@ionic-native/globalization';
 import { TranslateService } from '@ngx-translate/core';
+import { SettingsPage } from "../pages/Settings/settings";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
   isNotif: boolean = false;
 
   pages: PageObj[] = [
-    { title: 'Mis Listas', component: MisListasPage, icon: 'clipboard' }
+    { title: 'Mis Listas', component: MisListasPage, icon: 'clipboard' },
+    { title: 'Ajustes', component: SettingsPage, icon: 'settings' }
   ];
 
   constructor(platform: Platform,
@@ -44,7 +46,7 @@ export class MyApp {
   public userService: UserService,
   public networkService: NetworkService) {
     //se setea el lenguaje de la app
-    translate.setDefaultLang('en');
+    this.translate.setDefaultLang('en');
 
     platform.ready().then(() => {
       this.checkAuthUser();
@@ -56,7 +58,7 @@ export class MyApp {
         .then((res) => {
           let lang = res.value.substr(0,2);
           // Se setea el lenguaje de la app con el lenguaje que tiene configurado el celular
-          translate.use(lang);
+          this.translate.use(lang);
         })
         .catch(e => console.log(e));
 

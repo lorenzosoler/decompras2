@@ -12,6 +12,7 @@ import { AddItemPage } from "../pages/add-item/add-item";
 import { ListaPage } from "../pages/lista/lista";
 import { UsersListPage } from "../pages/users-list/users-list";
 import { AddUserPage } from "../pages/add-user/add-user";
+import { SettingsPage } from "../pages/Settings/settings";
 
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
@@ -29,8 +30,11 @@ import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Globalization } from '@ionic-native/globalization';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { GooglePlus } from '@ionic-native/google-plus';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,7 +59,8 @@ export const firebaseConfig = {
     ListaPage,
     AddItemPage,
     UsersListPage,
-    AddUserPage
+    AddUserPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,8 @@ export const firebaseConfig = {
     ListaPage,
     AddItemPage,
     UsersListPage,
-    AddUserPage
+    AddUserPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
@@ -96,7 +102,9 @@ export const firebaseConfig = {
     OneSignal,
     Calendar,
     SpeechRecognition,
-	Globalization,
+	  Globalization,
+    SocialSharing,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
