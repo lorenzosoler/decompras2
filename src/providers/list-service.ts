@@ -33,6 +33,10 @@ export class ListService {
     return list;
   }
 
+  public editList(key:string, editList: any): any {
+    return this.listsRef.child(key).update(editList);
+  }
+
   public getLists() {
     let uid = this.userService.getCurrentUser().uid;
     return this.db.list('lists', {

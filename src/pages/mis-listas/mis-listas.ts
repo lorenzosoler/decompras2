@@ -15,6 +15,7 @@ import { OneSignal } from "@ionic-native/onesignal";
 import { TranslateService } from "@ngx-translate/core";
 import { Globalization } from "@ionic-native/globalization";
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { EditListPage } from "../edit-list/edit-list";
 
 @Component({
   selector: 'page-mis-listas',
@@ -58,6 +59,30 @@ export class MisListasPage {
 	  })
 	}
 
+  public editList (list: any) {
+    let editListModal = this.modalCtrl.create(EditListPage, {currentList: list}, { enableBackdropDismiss: false });
+
+    editListModal.present();
+
+    editListModal.onDidDismiss((oldList, newList) => {
+      if (list) {
+        let oldDate = new Date(oldList.date + ' ' + oldList.hour);
+        let newDate = new Date(newList.date + ' ' + newList.hour); 
+        this.calendar.deleteEvent(oldList.name, '', oldList.detail, oldDate, oldDate).then((isDeleted) => {
+          if (isDeleted) {
+            this.calendar.createEventInteractivelyWithOptions(newList.name, '', newList.detail, newDate, newDate).then((msg) => {
+              this.toastCtrl.create({
+                  message: "Se edito el evento en el calendario para esta lista" + ': ' + msg,
+                  duration: 3000
+              }).present();
+            })
+          }
+        }).catch(() => { console.log("no habia evento creado para esta lista")})
+      }
+    });
+
+  }
+
   public addList() {
     let that = this;
     let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
@@ -65,16 +90,7 @@ export class MisListasPage {
     addListModal.onDidDismiss(list => {
       this.translate.get(["RECORDARCALENDARIO", "RECORDATORIOAGREGADO", "SI"]).subscribe((data) => {
         if (list) {
-          let fec = list.date;
-          let time = list.hour;
-          let date = new Date(fec + ' ' + time);
-          this.localNotifications.schedule({
-            title: list.name,
-            text: data.LISTAPROGRAMADA,
-            icon: 'ic_stat_onesignal_default.png',
-            data: {list: list},
-            at: date
-          });
+          let date = new Date(list.date + ' ' + list.hour);
           let prompt = this.alertCtrl.create({
             title: '',
             message: data.RECORDARCALENDARIO,
@@ -91,7 +107,7 @@ export class MisListasPage {
                     this.toastCtrl.create({
                         message: data.RECORDATORIOAGREGADO + ': ' + msg,
                         duration: 3000
-                    }).present()
+                    }).present();
                   })
                 }
               }
@@ -161,7 +177,7 @@ export class MisListasPage {
             text: data.EDITAR,
             icon: 'create',
             role: 'edit',
-            handler: () => { }
+            handler: () => { this.editList(list); }
           },
           {
             text: data.ELIMINAR,

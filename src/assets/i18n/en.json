@@ -23,6 +23,7 @@
   "RECORDATORIOAGREGADO": "The reminder was successfully added to the calendar",
   "NUEVOITEM": "New item",
   "NUEVALISTA": "New list",
+  "EDITARLISTA": "Edit list: ",
   "ADDUSER": "Add user",
   "USUARIOELIMINADO": "User successfully deleted from list",
   "HACERADMIN": "Set as administrator",

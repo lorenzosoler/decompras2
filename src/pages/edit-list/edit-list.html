@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{"EDITARLISTA" | translate}} {{currentList.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-list no-lines>
+    <form [formGroup]="editListForm" (ngSubmit)="saveList(editListForm.value)" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label floating>{{ "TITULO" | translate}}</ion-label>
+        <ion-input formControlName="name" autofocus></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label floating>{{"DETALLE" | translate}}</ion-label>
+        <ion-input formControlName="detail"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label floating>{{"FECHA" | translate}}</ion-label>
+        <ion-input type="date" formControlName="date" min="nowDate"></ion-input>
+      </ion-item>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label floating>{{"HORA" | translate}}</ion-label>
+        <ion-input type="time" formControlName="hour"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss();">
+        {{"CANCELAR" | translate}}
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button color="primary" (click)="editList(editListForm.value)">
+        {{"EDITAR" | translate}}
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

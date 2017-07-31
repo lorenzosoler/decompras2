@@ -25,10 +25,10 @@
       Items
     </ion-list-header>
     <ion-item *ngFor="let item of items">
+      <ion-badge item-right>${{item.price}}</ion-badge>
       <button (click)="deleteItem(item.$key)" ion-button color="dark" clear icon-only item-right>
         <ion-icon name="trash" ></ion-icon>
       </button>
-      <ion-badge item-right>${{item.price}}</ion-badge>
       <ion-label>
         {{item.name}}
       </ion-label>

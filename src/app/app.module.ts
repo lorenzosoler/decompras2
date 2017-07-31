@@ -13,6 +13,7 @@ import { ListaPage } from "../pages/lista/lista";
 import { UsersListPage } from "../pages/users-list/users-list";
 import { AddUserPage } from "../pages/add-user/add-user";
 import { SettingsPage } from "../pages/Settings/settings";
+import { EditListPage } from "../pages/edit-list/edit-list";
 
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     AddItemPage,
     UsersListPage,
     AddUserPage,
-    SettingsPage
+    SettingsPage,
+    EditListPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ export const firebaseConfig = {
     AddItemPage,
     UsersListPage,
     AddUserPage,
-    SettingsPage
+    SettingsPage,
+    EditListPage
   ],
   providers: [
     StatusBar,
