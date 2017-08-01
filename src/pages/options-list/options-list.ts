@@ -6,7 +6,7 @@ import { UsersListPage } from "../users-list/users-list";
   selector: 'page-options-list',
   template: `
     <ion-list no-lines no-padding no-margin>
-      <button ion-item (click)="close()">Ordenar por precio</button>
+      <button ion-item (click)="orderByPrice()">Ordenar por precio</button>
       <button ion-item (click)="verMiembros()">Ver miembros</button>
       <button ion-item (click)="addUser()">Agregar miembro</button>
     </ion-list>
@@ -26,5 +26,9 @@ export class OptionsListPage {
 
   addUser() {
     this.viewCtrl.dismiss('addUser');
+  }
+
+  orderByPrice() {
+    this.viewCtrl.dismiss("orderByPrice");
   }
 }

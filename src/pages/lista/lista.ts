@@ -21,6 +21,7 @@ export class ListaPage {
   public total: number;
   private originalItems: any;
   public showLoader: boolean = false;
+  public order: string = '';
 
   searchTerm: string = '';
   searchControl: FormControl;
@@ -57,6 +58,8 @@ export class ListaPage {
         this.showUsers();
       } else if (action == "addUser") {
         this.addUser();
+      } else {
+        this.order = 'price';
       }
     })
 
