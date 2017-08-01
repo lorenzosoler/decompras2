@@ -14,12 +14,15 @@ import { UsersListPage } from "../pages/users-list/users-list";
 import { AddUserPage } from "../pages/add-user/add-user";
 import { SettingsPage } from "../pages/Settings/settings";
 import { EditListPage } from "../pages/edit-list/edit-list";
+import { OptionsListPage } from "../pages/options-list/options-list";
 
 import { AuthService } from '../providers/auth-service';
 import { UserService } from "../providers/user-service";
 import { ListService } from "../providers/list-service";
 import { NetworkService } from "../providers/network-service";
 import { NotificationsService } from '../providers/notifications-service';
+
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -62,10 +65,12 @@ export const firebaseConfig = {
     UsersListPage,
     AddUserPage,
     SettingsPage,
-    EditListPage
+    EditListPage,
+    OptionsListPage,
   ],
   imports: [
     BrowserModule,
+    Ng2OrderModule,
     HttpModule,
     JsonpModule,
     IonicModule.forRoot(MyApp),
@@ -89,7 +94,8 @@ export const firebaseConfig = {
     UsersListPage,
     AddUserPage,
     SettingsPage,
-    EditListPage
+    EditListPage,
+    OptionsListPage
   ],
   providers: [
     StatusBar,

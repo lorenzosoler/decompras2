@@ -7,8 +7,8 @@
     </ion-buttons>
     <ion-title>{{currentList.name}}</ion-title>
     <ion-buttons right>
-      <button (click)="showUsers()" class="button-person-add" ion-button>
-        <ion-icon name="people"></ion-icon>
+      <button (click)="presentOptions($event)" class="button-person-add" ion-button>
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -18,10 +18,9 @@
 </ion-header>
 
 <ion-content>
-  <button *ngIf="items?.length != 0" ion-button full color="light" (click)="showTotal()">Total</button>
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-list>
-    <ion-list-header>
+    <ion-list-header no-margin>
       Items
     </ion-list-header>
     <ion-item *ngFor="let item of items">
@@ -35,6 +34,10 @@
       <ion-checkbox [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
   </ion-list>
+  <ion-row class="total" padding>
+    <ion-col><strong>TOTAL</strong></ion-col>
+    <ion-col><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
+  </ion-row>
   <ion-fab right bottom #fab>
     <button type="button" ion-fab color="primary" (click)="addItem();">
       <ion-icon name="add"></ion-icon>

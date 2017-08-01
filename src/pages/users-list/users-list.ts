@@ -38,7 +38,7 @@ export class UsersListPage {
   }
 
   public addUser() {
-    let addListModal = this.navCtrl.push(AddUserPage, {currentList: this.currentList});
+    this.navCtrl.push(AddUserPage, {currentList: this.currentList});
   }
 
   public presentActionSheet(event, user: any) {
