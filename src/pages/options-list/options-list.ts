@@ -6,9 +6,9 @@ import { UsersListPage } from "../users-list/users-list";
   selector: 'page-options-list',
   template: `
     <ion-list no-lines no-padding no-margin>
-      <button ion-item (click)="orderByPrice()">Ordenar por precio</button>
-      <button ion-item (click)="verMiembros()">Ver miembros</button>
-      <button ion-item (click)="addUser()">Agregar miembro</button>
+      <button ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>
+      <button ion-item (click)="verMiembros()">{{"VERMIEMBROS" | translate}}</button>
+      <button ion-item (click)="addUser()">{{"ADDUSER" | translate}}</button>
     </ion-list>
   `
 })
