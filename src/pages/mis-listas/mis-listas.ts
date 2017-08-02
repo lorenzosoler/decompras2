@@ -66,18 +66,29 @@ export class MisListasPage {
 
     editListModal.onDidDismiss((oldList, newList) => {
       if (oldList && newList) {
-        let oldDate = new Date(oldList.date + ' ' + oldList.hour);
-        let newDate = new Date(newList.date + ' ' + newList.hour); 
-        this.calendar.deleteEvent(oldList.name, '', oldList.detail, oldDate, oldDate).then((isDeleted) => {
-          if (isDeleted) {
-            this.calendar.createEventInteractivelyWithOptions(newList.name, '', newList.detail, newDate, newDate).then((msg) => {
-              this.toastCtrl.create({
-                  message: "Se edito el evento en el calendario para esta lista" + ': ' + msg,
-                  duration: 3000
-              }).present();
-            })
-          }
-        }).catch(() => { console.log("no habia evento creado para esta lista")})
+        let newDate;
+        if(oldList.date != "") {
+          let oldDate = new Date(oldList.date + ' ' + oldList.hour);
+          newDate = new Date(newList.date + ' ' + newList.hour); 
+          this.calendar.deleteEvent(oldList.name, '', oldList.detail, oldDate, oldDate).then((isDeleted) => {
+            if (isDeleted) {
+              this.calendar.createEventInteractivelyWithOptions(newList.name, '', newList.detail, newDate, newDate).then((msg) => {
+                this.toastCtrl.create({
+                    message: "Se edito el evento en el calendario para esta lista" + ': ' + msg,
+                    duration: 3000
+                }).present();
+              })
+            }
+          }).catch(() => { console.log("no habia evento creado para esta lista")})
+        } else {
+          newDate = new Date(newList.date + ' ' + newList.hour); 
+          this.calendar.createEventInteractivelyWithOptions(newList.name, '', newList.detail, newDate, newDate).then((msg) => {
+            this.toastCtrl.create({
+                message: "Se edito el evento en el calendario para esta lista" + ': ' + msg,
+                duration: 3000
+            }).present();
+          })
+        }
       }
     });
 
@@ -144,7 +155,7 @@ export class MisListasPage {
   }
 
   private showConfirmDelete(listId: string) {
-    this.translate.get(["ELIMINARLISTA", "SEGUROELIMINAR", "CANCELAR", "SI"]).subscribe((data) => {
+    this.translate.get(["ELIMINARLISTA", "SEGUROELIMINAR", "CANCELAR", "ELIMINAR"]).subscribe((data) => {
       let confirm = this.alertCtrl.create({
         title: data.ELIMINARLISTA,
         message: data.SEGUROELIMINAR,
@@ -156,7 +167,7 @@ export class MisListasPage {
             }
           },
           {
-            text: data.SI,
+            text: data.ELIMINAR,
             handler: () => {
               this.deleteList(listId);
             }

@@ -30,7 +30,13 @@ export class LoginPage {
   public translate: TranslateService,
   public authService: AuthService,
   public userService:UserService) {
-    this.loader = this.loadingCtrl.create();
+    this.translate.get(["CARGANDO"]).subscribe((data) => {
+      this.loader = this.loadingCtrl.create(
+        {
+          content: data.CARGANDO
+        }
+      );
+    })
   }
   
   public facebookLogin(): void {

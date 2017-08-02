@@ -1,9 +1,9 @@
 
 
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
-import { AlertController, NavParams, ToastController } from "ionic-angular";
+import { AlertController, NavParams, ToastController, Searchbar } from "ionic-angular";
 import { NotificationsService } from "../../providers/notifications-service";
 import { TranslateService } from "@ngx-translate/core";
 import { SocialSharing } from "@ionic-native/social-sharing";
@@ -13,6 +13,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
   templateUrl: 'add-user.html'
 })
 export class AddUserPage {
+	@ViewChild('searchbar') searchBar: Searchbar;
+
 	public allUsers: any[] = [];
 	public showLoader: boolean = false;
 	public offset: number = 10;
@@ -29,8 +31,10 @@ export class AddUserPage {
 			this.currentList = this.navParams.get('currentList');
 	}
 
-	ionViewDidLoad() {
-
+	ionViewDidEnter() {
+		setTimeout(() => {
+		  this.searchBar.setFocus();
+		}, 150);
 	}
 
 	public searchUsers(ev: any) {
@@ -81,7 +85,7 @@ export class AddUserPage {
 					return;
 				}
 			};
-			this.listService.addUser(this.currentList.$key, user.$key).then((data) =>{
+			this.listService.addUser(this.currentList.$key, user.$key).then((data1) =>{
 				this.notificationsService.addUserList(this.currentList, user);
 				this.toastCtrl.create({
 					message: data.ADDUSERCORRECT,

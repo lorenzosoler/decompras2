@@ -18,11 +18,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-list>
     <ion-list-header no-margin>
       Items
     </ion-list-header>
+    <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-item *ngFor="let item of items | orderBy: order : true">
       <ion-badge item-right>${{item.price}}</ion-badge>
       <button (click)="deleteItem(item.$key)" ion-button color="dark" clear icon-only item-right>

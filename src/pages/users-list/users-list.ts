@@ -1,5 +1,5 @@
 import { ViewChild, Component } from "@angular/core";
-import { Content, NavController, NavParams, LoadingController, ModalController, ActionSheetController, ToastController } from "ionic-angular";
+import { Content, NavController, NavParams, ModalController, ActionSheetController, ToastController } from "ionic-angular";
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { AddUserPage } from "../add-user/add-user";
@@ -19,7 +19,6 @@ export class UsersListPage {
   constructor(
   public navCtrl: NavController,
   public navParams: NavParams,
-  public loadingCtrl: LoadingController,
   public actionSheetCtrl: ActionSheetController,
   private translate: TranslateService,
   public toastCtrl: ToastController,
@@ -57,6 +56,7 @@ export class UsersListPage {
             icon:'trash',
             role: 'destructive',
             handler: () => {
+              delete this.currentList.users[user.$key];
               this.listService.deleteUserList(user.$key, this.currentList.$key).then(()=>{
                 this.toastCtrl.create({
                     message: data.USUARIOELIMINADO,

@@ -17,6 +17,7 @@ export class AddItemPage {
     public currentUser: User;
     public listId: string;
     public addItemForm: FormGroup;
+    private loader: any;
 
     constructor(private loadingCtrl: LoadingController,
     public navParams: NavParams,
@@ -26,6 +27,13 @@ export class AddItemPage {
     public formBuilder: FormBuilder,
     public userService: UserService,
     public listService: ListService) {
+        this.translation.get(["CARGANDO"]).subscribe((data) => {
+            this.loader = this.loadingCtrl.create(
+                {
+                content: data.CARGANDO
+                }
+            );
+        })
         this.listId = this.navParams.get('listId');
         this.addItemForm = this.formBuilder.group({
             name: ['', Validators.required]
@@ -38,11 +46,10 @@ export class AddItemPage {
 
     public saveItem(newItem: any) {
         if (newItem.name.trim()) {
-            let loader = this.loadingCtrl.create();
-            loader.present();
+            this.loader.present();
 
             this.listService.addItem(this.listId, newItem).then(data => {
-                loader.dismiss();
+                this.loader.dismiss();
                 this.viewCtrl.dismiss();
             })
         }
