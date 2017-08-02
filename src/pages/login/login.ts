@@ -10,6 +10,7 @@ import { MisListasPage } from "../mis-listas/mis-listas";
 import { UserService } from "../../providers/user-service";
 import { GooglePlus } from "@ionic-native/google-plus";
 import { AuthService } from "../../providers/auth-service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-login',
@@ -26,6 +27,7 @@ export class LoginPage {
   private facebook: Facebook,
   private googlePlus: GooglePlus,
   public alertCtrl: AlertController,
+  public translate: TranslateService,
   public authService: AuthService,
   public userService:UserService) {
     this.loader = this.loadingCtrl.create();
@@ -47,25 +49,27 @@ export class LoginPage {
         .catch((error: any) => {
           // An error happened.
           if (error.code === 'auth/account-exists-with-different-credential') {
-            let prompt = this.alertCtrl.create({
-              title: '',
-              message: "El mail de esta cuenta de Facebook ya se encuentra asociado a un usuario con Google, desea asociar los dos redes a la misma cuenta de usuario?",
-              buttons: [
-                {
-                  text: "Cancelar",
-                  handler: () => {
-                    this.loader.dismiss();
+            this.translate.get(["MAILREPETIDO", "ASOCIAR", "CANCELAR"]).subscribe((data) => {
+              let prompt = this.alertCtrl.create({
+                title: '',
+                message: data.MAILREPETIDO,
+                buttons: [
+                  {
+                    text: data.CANCELAR,
+                    handler: () => {
+                      this.loader.dismiss();
+                    }
+                  },
+                  {
+                    text: data.ASOCIAR,
+                    handler: () => {
+                      this.asociar(error);
+                    }
                   }
-                },
-                {
-                  text: "Asociar",
-                  handler: () => {
-                    this.asociar(error);
-                  }
-                }
-              ]
-            });
-            prompt.present();
+                ]
+              });
+              prompt.present();
+            })
           }
         });
       }).catch((error) => { this.loader.dismiss(); console.log(error); });

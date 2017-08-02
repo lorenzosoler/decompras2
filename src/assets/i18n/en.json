@@ -40,5 +40,7 @@
   "ESPAÑOL": "Spanish",
   "INGLES": "English",
   "ACERCADE": "About",
+  "ASOCIAR": "Associate",
+  "MAILREPETIDO": "The email of this Facebook account is already registered in 'DeCompras', you have to associate it with the Google account to continue with the login",
   "INVITACION": "Download the 'DeCompras' app to manage your purchases in a smart way and share lists with your friends in real time"
 }

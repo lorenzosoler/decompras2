@@ -40,5 +40,7 @@
   "ESPAÑOL": "Español",
   "INGLES": "Ingles",
   "ACERCADE": "Acerca de",
+  "ASOCIAR": "Asociar",
+  "MAILREPETIDO": "El mail de esta cuenta de Facebook ya se encuentra registrado en 'DeCompras', tiene que asociarlo con la cuenta de Google para continuar con el ingreso",
   "INVITACION": "Descargate la app 'DeCompras' para gestionar tus compras de manera inteligente y poder compartir listas con tus amigos en tiempo real"
 }
