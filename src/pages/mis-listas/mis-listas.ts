@@ -65,7 +65,7 @@ export class MisListasPage {
     editListModal.present();
 
     editListModal.onDidDismiss((oldList, newList) => {
-      if (list) {
+      if (oldList && newList) {
         let oldDate = new Date(oldList.date + ' ' + oldList.hour);
         let newDate = new Date(newList.date + ' ' + newList.hour); 
         this.calendar.deleteEvent(oldList.name, '', oldList.detail, oldDate, oldDate).then((isDeleted) => {

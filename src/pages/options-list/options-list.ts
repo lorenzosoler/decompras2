@@ -1,6 +1,7 @@
 import { ViewController, NavController, NavParams } from "ionic-angular";
 import { Component } from "@angular/core";
 import { UsersListPage } from "../users-list/users-list";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'page-options-list',
@@ -16,7 +17,7 @@ import { UsersListPage } from "../users-list/users-list";
 export class OptionsListPage {
   currentList: any;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams) {
       this.currentList = this.navParams.get('currentList');
   }
 
