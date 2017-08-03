@@ -7,9 +7,10 @@ import { TranslateService } from "@ngx-translate/core";
   selector: 'page-options-list',
   template: `
     <ion-list no-lines no-padding no-margin>
-      <button ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>
       <button ion-item (click)="verMiembros()">{{"VERMIEMBROS" | translate}}</button>
       <button ion-item (click)="addUser()">{{"ADDUSER" | translate}}</button>
+      <button ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>
+      <button ion-item (click)="descuento()">{{"APLICAR" | translate}} {{ "DESCUENTO" | translate}}</button>
     </ion-list>
   `
 })
@@ -31,5 +32,9 @@ export class OptionsListPage {
 
   orderByPrice() {
     this.viewCtrl.dismiss("orderByPrice");
+  }
+
+  descuento() {
+    this.viewCtrl.dismiss("descuento")
   }
 }

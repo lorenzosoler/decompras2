@@ -19,6 +19,8 @@ export class ListaPage {
   public items: any[];
   public currentList: any;
   public total: number;
+  public totalDisc: number;
+  public disc: number = null;
   private originalItems: any;
   public showLoader: boolean = false;
   public order: string = '';
@@ -58,13 +60,46 @@ export class ListaPage {
         this.showUsers();
       } else if (action == "addUser") {
         this.addUser();
-      } else {
+      } else if (action == "orderByPrice") {
         this.order = 'price';
+      } else {
+        this.descuento()
       }
     })
 
     popover.present({
       ev: myEvent
+    });
+  }
+
+  private descuento () {
+    this.translate.get(["APLICARDESCUENTO", "DESCUENTO", "APLICAR", "CANCELAR"]).subscribe((data) => {
+      let prompt = this.alertCtrl.create({
+        title: '',
+        message: data.APLICARDESCUENTO,
+        inputs: [
+          {
+            name: 'descuento',
+            placeholder: data.DESCUENTO,
+            type: 'number'
+          },
+        ],
+        buttons: [
+          {
+            text: data.CANCELAR,
+            handler: data => {
+            }
+          },
+          {
+            text: data.APLICAR,
+            handler: data => {
+              this.disc = Number(data.descuento)
+              this.recalcTotal();
+            }
+          }
+        ]
+      });
+      prompt.present();
     });
   }
 
@@ -168,7 +203,11 @@ export class ListaPage {
     this.items.forEach((item) => {
       total = total + item.price;
     })
-    this.total = total;
+    if (this.disc) {
+      total = total - (total*(this.disc/100));
+      this.totalDisc = total;
+    } else {
+      this.total = total;
+    }
   }
-
 }

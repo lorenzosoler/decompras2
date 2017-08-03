@@ -43,6 +43,9 @@
   "ACERCADE": "Acerca de",
   "ASOCIAR": "Asociar",
   "ORDENAR": "Ordenar por precio",
+  "APLICARDESCUENTO": "Ingrese el porcentaje de descuento que desea aplicar al total",
+  "DESCUENTO": "Descuento",
+  "APLICAR": "Aplicar",
   "MAILREPETIDO": "El mail de esta cuenta de Facebook ya se encuentra registrado en 'DeCompras', tiene que asociarlo con la cuenta de Google para continuar con el ingreso",
   "INVITACION": "Descargate la app 'DeCompras' para gestionar tus compras de manera inteligente y poder compartir listas con tus amigos en tiempo real"
 }

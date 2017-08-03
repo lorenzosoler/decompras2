@@ -37,6 +37,8 @@
   <ion-row class="total" padding>
     <ion-col><strong>TOTAL</strong></ion-col>
     <ion-col><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
+    <ion-col *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc}}</ion-badge> </ion-col>
+    <ion-col></ion-col>
   </ion-row>
   <ion-fab right bottom #fab>
     <button type="button" ion-fab color="primary" (click)="addItem();">
