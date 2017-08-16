@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import { UserService } from "./user-service";
 
 import { Observable } from "rxjs/Observable";
-import { FirebaseListObservable, AngularFireDatabase } from "angularfire2";
+import { FirebaseListObservable, AngularFireDatabase } from "angularfire2/database";
 
 /*
   Generated class for the UserService provider.

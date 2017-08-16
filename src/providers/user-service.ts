@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 
 import firebase from 'firebase';
 import { User } from "../models/user";
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2";
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2/database";
 
 /*
   Generated class for the UserService provider.

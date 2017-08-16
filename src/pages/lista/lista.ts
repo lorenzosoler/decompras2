@@ -161,7 +161,7 @@ export class ListaPage {
             {
               text: 'Ok',
               handler: data => {
-                if( data.price > 0) {
+                if( data.price >= 0) {
                   this.listService.setPrice(this.currentList.$key, item, Number(data.price) ).then(() => {
                     this.recalcTotal();
                   });

@@ -5,7 +5,8 @@ import { Facebook } from "@ionic-native/facebook";
 
 import firebase from 'firebase';
 import { User } from "../../models/user";
-import { AngularFire, AuthProviders, AuthMethods } from "angularfire2";
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth, AUTH_PROVIDERS } from "angularfire2/auth";
 import { MisListasPage } from "../mis-listas/mis-listas";
 import { UserService } from "../../providers/user-service";
 import { GooglePlus } from "@ionic-native/google-plus";
@@ -23,7 +24,8 @@ export class LoginPage {
   constructor(private platform:Platform, 
   private navCtrl: NavController,
   public loadingCtrl: LoadingController,
-  private af:AngularFire, 
+  private af:AngularFireDatabase, 
+  private afauth:AngularFireAuth,
   private facebook: Facebook,
   private googlePlus: GooglePlus,
   public alertCtrl: AlertController,
@@ -158,10 +160,7 @@ export class LoginPage {
           this.loader.dismiss();
         });
     } else{
-      this.af.auth.login({
-        provider: AuthProviders.Google,
-        method: AuthMethods.Popup
-      }).then((user) => {
+      this.afauth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((user) => {
         this.userService.saveUser(new User(user.auth)).then(()=> {
           this.loader.dismiss();
           this.navCtrl.setRoot(MisListasPage);

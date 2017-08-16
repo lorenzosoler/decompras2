@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthProviders, FirebaseAuthState, AuthMethods, AngularFire } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Platform } from 'ionic-angular';
 import { Facebook } from "@ionic-native/facebook";
@@ -12,12 +12,12 @@ export class AuthService {
 
   constructor(public platform: Platform, 
   public facebook:Facebook,
-  public af: AngularFire, 
+  public af: AngularFireAuth, 
   private google: GooglePlus) {
    }
 
   logout() {
-    return this.af.auth.logout().then(() => {
+    return this.af.auth.signOut().then(() => {
       if (this.platform.is('cordova')) {
         this.google.logout();
         this.facebook.logout();

@@ -2,6 +2,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { MyApp } from './app.component';
 import { HttpModule, Http, JsonpModule } from '@angular/http';
 
@@ -45,13 +48,22 @@ export function createTranslateLoader(http: Http) {
 }
 
 
-export const firebaseConfig = {
+export const firebaseConfigProd = {
     apiKey: "AIzaSyCApY3KncwgAc-9eHhwdw1_XoBfubdCVWM",
     authDomain: "de-compras-b2bfc.firebaseapp.com",
     databaseURL: "https://de-compras-b2bfc.firebaseio.com",
     projectId: "de-compras-b2bfc",
     storageBucket: "de-compras-b2bfc.appspot.com",
     messagingSenderId: "955671816280"
+  };
+
+export const firebaseConfigDev = {
+    apiKey: "AIzaSyABxQuSHYH_-rXRI6NJw7QM2EULgPOf9sY",
+    authDomain: "decomprasdev.firebaseapp.com",
+    databaseURL: "https://decomprasdev.firebaseio.com",
+    projectId: "decomprasdev",
+    storageBucket: "decomprasdev.appspot.com",
+    messagingSenderId: "610842487922"
   };
 
 @NgModule({
@@ -74,7 +86,9 @@ export const firebaseConfig = {
     HttpModule,
     JsonpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfigProd),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

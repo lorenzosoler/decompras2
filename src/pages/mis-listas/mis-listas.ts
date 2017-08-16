@@ -6,7 +6,7 @@ import { User } from "../../models/user";
 import { UserService } from "../../providers/user-service";
 import { AddListPage } from "../add-list/add-list";
 import { ListService } from "../../providers/list-service";
-import { FirebaseListObservable } from "angularfire2";
+import { FirebaseListObservable } from "angularfire2/databases";
 import { ListaPage } from "../lista/lista";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
