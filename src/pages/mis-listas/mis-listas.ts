@@ -55,7 +55,7 @@ export class MisListasPage {
 
 	public invitPerson () {
 	  this.translate.get(["INVITACION"]).subscribe((data) => {
-		  this.socialSharing.share(data.INVITACION,'',[], 'www.indigodesign.com.ar');
+		  this.socialSharing.share(data.INVITACION,'',[], 'https://play.google.com/store/apps/details?id=ar.com.indigodesign.decompras');
 	  })
 	}
 
