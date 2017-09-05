@@ -32,6 +32,10 @@ export class LoginPage {
   public translate: TranslateService,
   public authService: AuthService,
   public userService:UserService) {
+
+  }
+
+  ionViewDidLoad () {
     this.translate.get(["CARGANDO"]).subscribe((data) => {
       this.loader = this.loadingCtrl.create(
         {
