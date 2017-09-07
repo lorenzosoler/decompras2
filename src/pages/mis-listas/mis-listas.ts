@@ -134,7 +134,7 @@ export class MisListasPage {
   }
 
   public actionSheet (event, list: any) {
-    if (this.currentUser.uid == list.userCreator) {
+    if (this.listService.isAdmin(list, this.currentUser.uid)) {
       this.presentActionSheetUserCreator(event, list);
     } else {
       this.presentActionSheet(event, list);

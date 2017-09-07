@@ -80,6 +80,23 @@ export class ListService {
     return firebase.database().ref().update(updates);
   }
 
+  public setUserAdmin (listId: string, userId: string): firebase.Promise<any> {
+    return this.listsRef.child(listId).child("admins").child(userId).set(true);
+  }
+
+  public isAdmin (list:any, userId: string): Boolean {
+    var isAdmin: Boolean = false;
+    if (list.userCreator == userId) {
+      return true;
+    }
+    for (var key in list.admins) {
+      if (key == userId) {
+        isAdmin = true;
+      }
+    }
+    return isAdmin;
+  }
+
   public deleteUserList(userId: string, listId:string): firebase.Promise<any> {
     var updates = {};
     updates[`lists/${listId}/users/${userId}`] = null;

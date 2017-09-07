@@ -53,7 +53,7 @@ export class ListaPage {
   }
 
   presentOptions(myEvent) {
-    let popover = this.popoverCtrl.create(OptionsListPage, {currentList: this.currentList});
+    let popover = this.popoverCtrl.create(OptionsListPage, {currentList: this.currentList, currentUser: this.userService.getCurrentUser()});
 
     popover.onDidDismiss( (action) => {
       if (action == "showUsers") {

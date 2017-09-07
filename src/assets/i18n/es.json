@@ -27,6 +27,7 @@
   "EDITARLISTA": "Editar lista: ",
   "ADDUSER": "Agregar usuario",
   "USUARIOELIMINADO": "Usuario eliminado correctamente de la lista",
+  "USUARIOADMIN": "El usuario es un administrador ahora",
   "HACERADMIN": "Poner como administrador",
   "TITULO": "Titulo",
   "GUARDAR": "Guardar",

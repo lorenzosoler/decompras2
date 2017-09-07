@@ -86,7 +86,7 @@ export const firebaseConfigDev = {
     HttpModule,
     JsonpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfigProd),
+    AngularFireModule.initializeApp(firebaseConfigDev),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     TranslateModule.forRoot({

@@ -28,6 +28,7 @@
   "ADDUSER": "Add user",
   "VERMIEMBROS": "Show members",
   "USUARIOELIMINADO": "User successfully deleted from list",
+  "USUARIOADMIN": "This user is a admin now",
   "HACERADMIN": "Set as administrator",
   "TITULO": "Title",
   "GUARDAR": "Save",
