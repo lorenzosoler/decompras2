@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-buttons left>
       <button ion-button color="light" menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -33,6 +33,7 @@
       </ion-label>
       <ion-checkbox [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
+    <p padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
   </ion-list>
   <ion-row class="total" padding>
     <ion-col><strong>TOTAL</strong></ion-col>

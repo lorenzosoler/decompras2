@@ -24,14 +24,25 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #7B5798,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  verde:      #24b9a2,
+  violeta:    #765ba7,
+  rojo:       #f0582b,
+  primary:    #f0582b,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  blanco: #ffffff
 );
 
-$decompras: #D8503D;
+.toolbar-background-md {
+  background: transparent !important;
+}
+
+.toolbar-title-md {
+    color: white !important;
+    text-align: center;
+}
+
+$decompras: #f0582b;
 
 
 // App iOS Variables
@@ -70,7 +81,8 @@ $decompras: #D8503D;
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
-@import "ionic.ionicons";
+@import "ionicons";
+@import "../theme/icons";
 
 
 // Fonts
