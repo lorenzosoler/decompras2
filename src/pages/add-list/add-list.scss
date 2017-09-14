@@ -1,0 +1,15 @@
+page-add-list {
+    .background-rojo {
+        background-color: $rojo;
+    }
+
+    form {
+        ion-label {
+            font-family: $decompras-font2-bold;
+        }
+        input {
+            font-family: $decompras-font1;
+            color: black;
+        }
+    }
+}

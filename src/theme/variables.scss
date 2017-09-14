@@ -36,8 +36,16 @@ $colors: (
   blanco: #ffffff
 );
 
-<<<<<<< HEAD
-=======
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner, 
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: white !important;
+  box-shadow: inset 0 -1px 0 0 white !important;
+}
+
+.input-has-focus .label-md[stacked], .input-has-focus .label-md[floating] {
+  color: white !important;
+}
+
 .toolbar-background-md {
   background: transparent !important;
 }
@@ -52,8 +60,9 @@ $colors: (
   font-weight: bold !important;
 }
 
->>>>>>> 63a901c0741e9654a76e98eefefccdb6163cd8b5
-$decompras: #f0582b;
+$rojo: #f0582b;
+$violeta:#765ba7;
+$verde:#24b9a2;
 
 
 // App iOS Variables
