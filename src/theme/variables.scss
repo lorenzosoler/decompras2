@@ -46,6 +46,10 @@ $colors: (
     font-family: $decompras-font2-bold;
 }
 
+.ion-md-menu:before, .ion-md-share:before  {
+  font-weight: bold !important;
+}
+
 $decompras: #f0582b;
 
 
