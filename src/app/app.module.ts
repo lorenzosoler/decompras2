@@ -85,10 +85,15 @@ export const firebaseConfigDev = {
     Ng2OrderModule,
     HttpModule,
     JsonpModule,
+<<<<<<< HEAD
     IonicModule.forRoot(MyApp, {
       backButtonIcon: 'atras'
     }),
     AngularFireModule.initializeApp(firebaseConfigProd),
+=======
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfigDev),
+>>>>>>> 3a52698754cde0d73efc81c7f8692f2c6b2f6d6f
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     TranslateModule.forRoot({

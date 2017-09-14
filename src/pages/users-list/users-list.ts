@@ -40,16 +40,35 @@ export class UsersListPage {
     this.navCtrl.push(AddUserPage, {currentList: this.currentList});
   }
 
+  public isAdmin(): Boolean {
+    return this.listService.isAdmin(this.currentList, this.currentUser.uid);
+  }
+
+  public isUserAdmin(userId: string): Boolean {
+    return this.listService.isAdmin(this.currentList, userId);
+  }
+
+  private setUserAdmin (userId: string, msg: string) {
+    this.listService.setUserAdmin(this.currentList.$key, userId).then((data) => {
+      this.toastCtrl.create({
+          message: msg,
+          duration: 3000
+      }).present()
+    })
+  }
+
   public presentActionSheet(event, user: any) {
     event.stopPropagation();
-    this.translate.get(["ELIMINAR", "CANCELAR", "HACERADMIN", "USUARIOELIMINADO"]).subscribe((data) => {
+    this.translate.get(["ELIMINAR", "CANCELAR", "HACERADMIN", "USUARIOELIMINADO", "USUARIOADMIN"]).subscribe((data) => {
       let actionSheet = this.actionSheetCtrl.create({
         title: '',
         buttons: [
           {
             text: data.HACERADMIN,
             icon: 'contact',
-            handler: () => { }
+            handler: () => {
+              this.setUserAdmin(user.$key, data.USUARIOADMIN);
+            }
           },
           {
             text: data.ELIMINAR,
