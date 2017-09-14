@@ -23,6 +23,15 @@ page-mis-listas {
         background: linear-gradient(60deg, #24b9a2, #765ba7, #f0582b); /* Standard syntax */
     }
 
+    .toolbar-background-md {
+        background: transparent !important;
+    }
+
+    .toolbar-title-md {
+        color: white !important;
+        text-align: center;
+    }
+
     .outer-content{
         background-image: url(../assets/mis-listas/marca-agua.svg);
         background-repeat: no-repeat;
