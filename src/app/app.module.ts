@@ -41,6 +41,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CardListComponent } from "../components/card-list/card-list";
 
 
 export function createTranslateLoader(http: Http) {
@@ -79,6 +80,7 @@ export const firebaseConfigDev = {
     SettingsPage,
     EditListPage,
     OptionsListPage,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +113,8 @@ export const firebaseConfigDev = {
     AddUserPage,
     SettingsPage,
     EditListPage,
-    OptionsListPage
+    OptionsListPage,
+    CardListComponent
   ],
   providers: [
     StatusBar,
