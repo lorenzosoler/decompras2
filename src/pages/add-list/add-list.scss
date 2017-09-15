@@ -3,6 +3,14 @@ page-add-list {
         background-color: $rojo;
     }
 
+    ion-list {
+        margin: 0px 16px !important;
+    }
+
+    ion-toolbar {
+        padding: 4px 20% !important;
+    }
+
     form {
         ion-label {
             font-family: $decompras-font2-bold;
