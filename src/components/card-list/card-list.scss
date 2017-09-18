@@ -1,3 +1,26 @@
 card-list {
-    
+    font-family: $decompras-font1;
+    font-size: 1.2rem !important;
+    ion-card {
+        background-image: url(../assets/lista/lista-naranja.svg);
+    }
+    ion-card-content {
+        padding: 5px !important;
+        ion-row {
+            font-size: 1.2rem !important;
+            margin-top: 15px;
+        }
+    }
+
+    .card-title {
+        font-family: $decompras-font1-bold;
+    }
+
+    .icon-card {
+        margin-top: 15px;
+    }
+
+    ion-icon:before {
+        font-size: 20px !important;
+    }
 }

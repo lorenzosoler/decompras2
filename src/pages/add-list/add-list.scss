@@ -15,6 +15,9 @@ page-add-list {
         ion-label {
             font-family: $decompras-font2-bold;
         }
+        ion-input {
+            height: 30px !important;
+        }
         input {
             font-family: $decompras-font1;
             color: black;

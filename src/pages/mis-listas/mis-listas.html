@@ -12,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" padding>
+<ion-content class="outer-content">
   <ion-avatar style="margin-top: 20px;">
     <img class="foto-perfil" [src]="currentUser?.photo" image-error-fallback/>
   </ion-avatar>
@@ -20,8 +20,8 @@
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let list of myLists" col-4>
-        <card-list></card-list>
+      <ion-col *ngFor="let list of myLists" col-6>
+        <card-list [list]="list"></card-list>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,14 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons left>
-      <button ion-button color="light" menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>{{currentList.name}}</ion-title>
+    <ion-title color="primary">{{currentList.name}}</ion-title>
     <ion-buttons right>
-      <button (click)="presentOptions($event)" class="button-person-add" ion-button>
-        <ion-icon name="more"></ion-icon>
+      <button color="primary" (click)="presentOptions($event)" class="button-person-add" ion-button>
+        <ion-icon color="primary" name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
