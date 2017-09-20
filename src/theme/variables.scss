@@ -51,13 +51,16 @@ $colors: (
 }
 
 .toolbar-title-md {
-    color: white !important;
     text-align: center;
     font-family: $decompras-font2-bold;
 }
 
 .ion-md-menu:before, .ion-md-share:before  {
   font-weight: bold !important;
+}
+
+.popover-md .popover-content {
+  border-radius: 10px !important;
 }
 
 $rojo: #f0582b;

@@ -1,14 +1,27 @@
 card-list {
+    p {
+        line-height: 0;
+    }
     font-family: $decompras-font1;
     font-size: 1.2rem !important;
-    ion-card {
-        background-image: url(../assets/lista/lista-naranja.svg);
+    .wrap-card {
+        position: relative;
+        z-index: 100;
     }
-    ion-card-content {
+    .image-list {
+        width:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .card-content {
         padding: 5px !important;
+        position: relative;
+        z-index: 100;
+        left: 15%;
+        top: 30px;
         ion-row {
             font-size: 1.2rem !important;
-            margin-top: 15px;
         }
     }
 
@@ -17,7 +30,10 @@ card-list {
     }
 
     .icon-card {
-        margin-top: 15px;
+        position: relative;
+        z-index: 100;
+        left: 18%;
+        top: 30px;
     }
 
     ion-icon:before {

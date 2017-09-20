@@ -16,6 +16,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Globalization } from "@ionic-native/globalization";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EditListPage } from "../edit-list/edit-list";
+import { StatusBar } from "@ionic-native/status-bar";
 
 @Component({
   selector: 'page-mis-listas',
@@ -28,21 +29,22 @@ export class MisListasPage {
   public showLoader: boolean = false;
 
   constructor(
-  private platform: Platform,
-  private translate: TranslateService,
-  private globalization: Globalization,
-  private socialSharing: SocialSharing,
-  public navCtrl: NavController,
-  public modalCtrl: ModalController,
-  public alertCtrl: AlertController,
-  private localNotifications: LocalNotifications,
-  private calendar: Calendar,
-  private oneSignal: OneSignal,
-  public actionSheetCtrl: ActionSheetController,
-  public toastCtrl: ToastController,
-  public listService: ListService,
-  public userService: UserService) {
-    this.currentUser = this.userService.getCurrentUser();
+    private platform: Platform,
+    private translate: TranslateService,
+    private globalization: Globalization,
+    private socialSharing: SocialSharing,
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    private localNotifications: LocalNotifications,
+    private calendar: Calendar,
+    private oneSignal: OneSignal,
+    public actionSheetCtrl: ActionSheetController,
+    public toastCtrl: ToastController,
+    public listService: ListService,
+    private statusBar: StatusBar,
+    public userService: UserService) {
+      this.currentUser = this.userService.getCurrentUser();
   }
 
   ionViewDidLoad() {
@@ -51,6 +53,7 @@ export class MisListasPage {
        this.myLists = lists;
        this.showLoader = false;
     });
+    this.statusBar.backgroundColorByHexString('c8c7cc');
   }
 
 	public invitPerson () {

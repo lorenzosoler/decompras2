@@ -3,6 +3,13 @@ page-lista {
         font-size:22px;
     }
 
+    ion-content {
+        background-image: url(../assets/mis-listas/marca-agua.svg);
+        background-repeat: no-repeat;
+        background-position: center 60%;
+        background-size: 70%;
+    }
+
     .total {
         width: 100%;
         position: fixed;
@@ -10,7 +17,11 @@ page-lista {
         background: white;
     }
 
+    .toolbar-title-md {
+        color: $verde !important;
+    }
+
     ion-navbar {
-        background: #c8c7cc;
+        background: #dedede;
     }
 }

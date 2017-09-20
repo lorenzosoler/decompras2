@@ -1,14 +1,16 @@
-<ion-card>
-	<ion-card-content (click)="openList(list)">
+
+<div class="wrap-card">
+	<div class="card-content" (click)="openList(list)">
 		<p class="card-title">{{list.name}}</p>
 		<p class="card-detail">{{list.detail}}</p>
-		<ion-row *ngIf="list.date && list.hour">
-			<p>{{list.date}}</p>
-			<p>{{list.hour}} hs.</p>
-		</ion-row>
-	</ion-card-content>
+		<br>
+		<p>{{list.date}}</p>
+		<p>{{list.hour}} hs.</p>
+
+	</div>
 	<div class="icon-card">
 		<ion-icon (click)="editList(list)" name='editar'></ion-icon>
-		<ion-icon style="float: right;" (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
+		<ion-icon (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
 	</div>
-</ion-card>
+	<img src="../assets/lista/lista-naranja.svg" class="image-list" />
+</div>
