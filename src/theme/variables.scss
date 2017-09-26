@@ -36,6 +36,11 @@ $colors: (
   blanco: #ffffff
 );
 
+
+$rojo: #f0582b;
+$violeta:#765ba7;
+$verde:#24b9a2;
+
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner, 
 .item-md.item-input.input-has-focus .item-inner {
   border-bottom-color: white !important;
@@ -63,9 +68,20 @@ $colors: (
   border-radius: 10px !important;
 }
 
-$rojo: #f0582b;
-$violeta:#765ba7;
-$verde:#24b9a2;
+.alert-md .alert-wrapper {
+  height: auto;
+}
+
+.alert-md .alert-head, .alert-md .alert-message, .alert-md .alert-input-group {
+  padding: 16px !important;
+  color: $verde !important;
+  font-family: $decompras-font2-bold;
+}
+
+.alert-md .alert-head {
+  padding: 0 !important;
+}
+
 
 
 // App iOS Variables

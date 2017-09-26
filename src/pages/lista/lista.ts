@@ -65,7 +65,7 @@ export class ListaPage {
         this.addUser();
       } else if (action == "orderByPrice") {
         this.order = 'price';
-      } else {
+      } else if (action == "descuento") {
         this.descuento()
       }
     })
