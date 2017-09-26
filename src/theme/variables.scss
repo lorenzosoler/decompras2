@@ -36,6 +36,13 @@ $colors: (
   blanco: #ffffff
 );
 
+$rojo: #f0582b;
+$rojoopa: rgba(240, 88, 43, 0.7);
+$violeta:#765ba7;
+$violetaopa: rgba(118, 91, 167, 0.7);
+$verde:#24b9a2;
+$verdeopa: rgba(36, 185, 162, 0.7);
+
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner, 
 .item-md.item-input.input-has-focus .item-inner {
   border-bottom-color: white !important;
@@ -63,9 +70,11 @@ $colors: (
   border-radius: 10px !important;
 }
 
-$rojo: #f0582b;
-$violeta:#765ba7;
-$verde:#24b9a2;
+.back-button-md {
+  margin: 0 !important; 
+  font-size:22px !important; 
+  font-weight: bold !important;
+}
 
 
 // App iOS Variables

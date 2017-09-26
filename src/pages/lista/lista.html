@@ -2,8 +2,8 @@
   <ion-navbar>
     <ion-title>{{currentList.name}}</ion-title>
     <ion-buttons right>
-      <button color="primary" (click)="presentOptions($event)" class="button-person-add" ion-button>
-        <ion-icon color="primary" name="more"></ion-icon>
+      <button color="primary" (click)="presentOptions($event)" class="back-button-md" ion-button>
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,9 +14,6 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header no-margin>
-      Items
-    </ion-list-header>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-item *ngFor="let item of items | orderBy: order : true">
       <ion-badge item-right>${{item.price}}</ion-badge>
@@ -30,12 +27,11 @@
     </ion-item>
     <p padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
   </ion-list>
-  <ion-row class="total" padding>
-    <ion-col><strong>TOTAL</strong></ion-col>
-    <ion-col><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
-    <ion-col *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc}}</ion-badge> </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
+  <ion-list-header>
+    <ion-col col-4><strong>TOTAL</strong></ion-col>
+    <ion-col col-4><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
+    <ion-col col-4 *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc}}</ion-badge> </ion-col>
+  </ion-list-header>
   <ion-fab right bottom #fab>
     <button type="button" ion-fab color="primary" (click)="addItem();">
       <ion-icon name="add"></ion-icon>

@@ -4,37 +4,7 @@ card-list {
     }
     font-family: $decompras-font1;
     font-size: 1.2rem !important;
-    .wrap-card {
-        position: relative;
-        z-index: 100;
-    }
-    .image-list {
-        width:100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .card-content {
-        padding: 5px !important;
-        position: relative;
-        z-index: 100;
-        left: 15%;
-        top: 30px;
-        ion-row {
-            font-size: 1.2rem !important;
-        }
-    }
-
-    .card-title {
-        font-family: $decompras-font1-bold;
-    }
-
-    .icon-card {
-        position: relative;
-        z-index: 100;
-        left: 18%;
-        top: 30px;
-    }
+    color: black;
 
     ion-icon:before {
         font-size: 20px !important;
