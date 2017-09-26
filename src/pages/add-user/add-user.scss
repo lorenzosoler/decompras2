@@ -5,6 +5,9 @@ page-add-user {
         background-repeat: no-repeat;
         background-position: center 60%;
         background-size: 70%;
+        ion-item {
+            background: transparent !important;
+        }
     }
 
     .toolbar-title-md {

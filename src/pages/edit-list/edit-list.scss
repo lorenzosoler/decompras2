@@ -1,0 +1,30 @@
+page-edit-list {
+    .background-rojo, ion-item {
+        background-color: $rojo !important;
+    }
+
+    .toolbar-title-md, .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: white !important;
+    }
+
+    ion-list {
+        margin: 0px 16px !important;
+    }
+
+    ion-toolbar {
+        padding: 4px 20% !important;
+    }
+
+    form {
+        ion-label {
+            font-family: $decompras-font2-bold;
+        }
+        ion-input {
+            height: 30px !important;
+        }
+        input {
+            font-family: $decompras-font1;
+            color: black;
+        }
+    }
+}

@@ -5,6 +5,10 @@ page-lista {
         font-size:22px;
     }
 
+    ion-searchbar {
+         font-family: $decompras-font2 !important;
+    }
+
     ion-content {
         background-image: url(../assets/lista/imagen-tilde-mancha-de-agua-para-fondo-de-lista.png);
         background-repeat: no-repeat;
@@ -23,6 +27,7 @@ page-lista {
 
     ion-list-header {
         background-color: $violeta !important;
+        border: none !important;
         position: fixed !important;
         bottom: 0;
         margin: 0 !important;

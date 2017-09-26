@@ -8,9 +8,9 @@
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-list>
         <ion-item *ngFor="let user of users | orderBy: 'fullname'">
-            <ion-thumbnail item-left>
+            <ion-avatar item-left>
                 <img [src]="user.photo">
-            </ion-thumbnail>
+            </ion-avatar>
             <h2>{{user.fullname}}</h2>
             <p>{{user.email}}</p>
             <ion-note color="primary" *ngIf="user.uid == currentList.userCreator" item-end>Creador</ion-note>

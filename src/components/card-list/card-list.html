@@ -1,14 +1,15 @@
-<div class="card-content" (click)="openList(list)">
+<div class="card-content back-violeta" (click)="openList(list)">
 	<div class="title-detail">
 		<p class="card-title">{{list.name}}</p>
 		<p class="card-detail">{{list.detail}}</p>
 	</div>
 	<div class="date-hour">
-		<p class="date" *ngIf="list.date">{{list.date}}</p>
-		<p class="hour" *ngIf="list.hour">{{list.hour}} hs.</p>
+		<p class="date" [hidden]="!list.date">{{list.date}}</p>
+		<p class="hour" [hidden]="!list.hour">{{list.hour}} hs.</p>
 	</div>
 </div>
-<div class="icon-card">
+<div class="icon-card back-violeta">
 	<ion-icon (click)="editList(list)" name='editar'></ion-icon>
-	<ion-icon (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
+	<ion-icon style="float: right;" (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
 </div>
+
