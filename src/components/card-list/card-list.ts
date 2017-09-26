@@ -40,9 +40,8 @@ export class CardListComponent {
   }
 
   private showConfirmDelete(listId: string) {
-    this.translate.get(["ELIMINARLISTA", "SEGUROELIMINAR", "CANCELAR", "ELIMINAR"]).subscribe((data) => {
+    this.translate.get([ "SEGUROELIMINAR", "CANCELAR", "ELIMINAR"]).subscribe((data) => {
       let confirm = this.alertCtrl.create({
-        title: data.ELIMINARLISTA,
         message: data.SEGUROELIMINAR,
         buttons: [
           {

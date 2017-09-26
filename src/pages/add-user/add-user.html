@@ -11,9 +11,9 @@
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-list>
         <ion-item (click)="addUser(user)" *ngFor="let user of allUsers">
-            <ion-thumbnail item-left>
+            <ion-avatar item-left>
                 <img [src]="user.photo">
-            </ion-thumbnail>
+            </ion-avatar>
             <h2>{{user.fullname}}</h2>
             <p>{{user.email}}</p>
         </ion-item>

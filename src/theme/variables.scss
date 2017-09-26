@@ -76,6 +76,21 @@ $verdeopa: rgba(36, 185, 162, 0.7);
   font-weight: bold !important;
 }
 
+.alert-md .alert-wrapper {
+  height: auto;
+}
+
+.alert-md .alert-head, .alert-md .alert-message, .alert-md .alert-input-group {
+  padding: 16px !important;
+  color: $verde !important;
+  font-family: $decompras-font2-bold;
+}
+
+.alert-md .alert-head {
+  padding: 0 !important;
+}
+
+
 
 // App iOS Variables
 // --------------------------------------------------
