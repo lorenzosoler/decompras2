@@ -39,6 +39,7 @@
 @include makeIcon(mas, '\e90b', #fff);
 @include makeIcon(campo-precios, '\e900', #fff);
 @include makeIcon(eliminar-item, '\e909', #fff);
+@include makeIcon(eliminar-item-negro, '\e909', black);
 @include makeIcon(atras, '\e90d', #f1592b);
 @include makeIcon(cancelar, '\e90e', #fff);
 @include makeIcon(cancelar-naranja, '\e90f', #f1592b);
