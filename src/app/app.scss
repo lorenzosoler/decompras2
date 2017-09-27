@@ -22,7 +22,7 @@
 
  // Menu Lateral
 
- .md .menu-inner, ion-content {
+ .md .menu-inner {
    box-shadow: none !important;
    background: transparent !important;
  }
@@ -33,7 +33,7 @@
  }
 
 .sidemenu {
-
+  background: transparent !important;
   .profile-item {
     padding-left: 0;
     border-top-right-radius: 10px !important;
