@@ -1,0 +1,40 @@
+page-add-item {
+    ion-content {
+        background: $violeta !important;
+        ion-title {
+            font-family: $decompras-font2-bold;
+        }
+        .toolbar-title-md, .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+            color: white !important;
+        }
+        ion-list {
+            margin: 0px 16px !important;
+        }
+
+        ion-toolbar {
+            padding: 4px 20% !important;
+        }
+        form {
+            ion-icon {
+                font-size: 26px;
+                color: white;
+                position: absolute;
+                right: 40px;
+                top: 85px;
+            }
+            ion-item {
+                background: $violeta !important;
+            }
+            ion-label {
+                font-family: $decompras-font2-bold;
+            }
+            ion-input {
+                height: 30px !important;
+            }
+            input {
+                font-family: $decompras-font1;
+                color: black;
+            }
+        }   
+    }
+}

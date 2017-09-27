@@ -1,3 +1,30 @@
-page-contact {
+page-login {
+    .login {
+        background-image: url('../assets/login/fondo.png');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .logo {
+        margin: auto;
+        padding: 27% 0;
+    }
+
+    .button-face {
+        margin: auto;
+    }
+
+    button.button-login {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        height: 30px;
+        width: 200px;
+        left: 50%;
+        top: 50%;
+        margin-top: -15px;   /* = -height / 2   */
+        margin-left: -100px; /* = -width / 2    */
+        position: fixed;     /* Fixed is better */
+    }
 
 }

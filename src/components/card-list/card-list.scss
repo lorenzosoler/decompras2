@@ -1,0 +1,37 @@
+card-list {
+    font-family: $decompras-font1;
+    font-size: 1.2rem !important;
+    color: black;
+
+    .back-violeta {
+        background: $violeta;
+    }
+
+    .back-rojo {
+        background: $rojo;
+    }
+
+    .card-content {
+        height: 155px;
+    }
+
+    .title-detail, .date-hour {
+        padding: 5px;
+        line-height: 5px;
+    }
+
+    .card-title {
+        font-weight: bold !important;
+        font-size: 15px;
+    }
+
+    .icon-card {
+        position: absolute;
+        bottom: 10px;
+        width: 94%
+    }
+
+    ion-icon:before {
+        font-size: 20px !important;
+    }
+}

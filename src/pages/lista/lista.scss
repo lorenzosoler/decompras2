@@ -1,0 +1,72 @@
+page-lista {
+    font-family: $decompras-font1;
+
+    .button-person-add {
+        font-size:22px;
+    }
+
+    ion-searchbar {
+         font-family: $decompras-font2 !important;
+    }
+
+    ion-content {
+        background-image: url(../assets/lista/imagen-tilde-mancha-de-agua-para-fondo-de-lista.png);
+        background-repeat: no-repeat;
+        background-position: center 60%;
+        background-size: 70%;
+    }
+
+    .back-violeta {
+        background-color: $violeta !important;
+    }
+
+    .back-rojo {
+        background-color: $rojo !important;
+    }
+
+    .back-violetaopa {
+        background-color: $violetaopa !important;
+    }
+
+    .back-rojoopa {
+        background-color: $rojoopa !important;
+    }
+
+    ion-badge {
+        color: black !important;
+        min-width: 65px !important;
+        border-bottom-right-radius: 100% !important;
+        border-top-right-radius: 100% !important;
+        background-color: white !important;
+        padding-right: 22px !important;
+        margin-right: 30px !important;
+    }
+
+    ion-list {
+        margin-bottom: 60px !important;
+    }
+
+    ion-item {
+        background: transparent !important;
+    }
+
+    ion-list-header {
+        border: none !important;
+        position: fixed !important;
+        bottom: 0;
+        margin: 0 !important;
+        color: black !important;
+    }
+
+    .toolbar-title-md {
+        color: $verde !important;
+    }
+
+    ion-checkbox {
+        margin-right: 16px !important;
+    }
+
+    ion-navbar {
+        background: #dedede;
+    }
+}

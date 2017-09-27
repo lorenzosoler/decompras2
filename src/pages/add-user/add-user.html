@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{"ADDUSER" | translate}}</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar #searchbar autofocus (ionInput)="searchUsers($event)" type="search" placeholder="{{ 'BUSCARUSUARIO' | translate }}" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
+    <ion-list>
+        <ion-item (click)="addUser(user)" *ngFor="let user of allUsers">
+            <ion-avatar item-left>
+                <img [src]="user.photo">
+            </ion-avatar>
+            <h2>{{user.fullname}}</h2>
+            <p>{{user.email}}</p>
+        </ion-item>
+    </ion-list>
+    <button style="position: absolute;bottom: 0;" (click)="invitPerson()" ion-button full color="primary"><ion-icon name="share" style="margin-right: 10px;"></ion-icon> Invitar personas</button>
+</ion-content>

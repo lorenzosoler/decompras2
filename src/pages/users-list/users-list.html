@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{"MIEMBROSDE" | translate}}: {{currentList.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
+    <ion-list>
+        <ion-item *ngFor="let user of users | orderBy: 'fullname'">
+            <ion-avatar item-left>
+                <img [src]="user.photo">
+            </ion-avatar>
+            <h2>{{user.fullname}}</h2>
+            <p>{{user.email}}</p>
+            <ion-note color="primary" *ngIf="user.uid == currentList.userCreator" item-end>Creador</ion-note>
+            <button type="button" ion-button icon-only clear small color="gray" class="more-options" (click)="presentActionSheet($event, user);" *ngIf="isAdmin() && user.uid != currentUser.uid">
+                <ion-icon name="ios-arrow-down"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+    <ion-fab *ngIf="isAdmin()" right bottom #fab>
+        <button type="button" ion-fab color="primary" (click)="addUser();">
+            <ion-icon name="person-add"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

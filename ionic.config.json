@@ -1,6 +1,8 @@
 {
-  "name": "decompras-mobile",
-  "app_id": "",
-  "v2": true,
-  "typescript": true
+  "name": "DeCompras",
+  "app_id": "6f518697",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

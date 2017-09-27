@@ -1,0 +1,21 @@
+page-options-list {
+    font-family: $decompras-font2;
+    ion-list button {
+        color: white !important;
+    }
+    #uno {
+        background: $rojo;
+    }
+
+    #dos {
+        background: $violeta;
+    }
+
+    #tres {
+        background: $verde;
+    }
+
+    #cuatro {
+        background: $rojo;
+    }
+}

@@ -1,3 +1,40 @@
-page-home {
+page-mis-listas {
+    .more-options {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+    .foto-perfil {
+        border: 8px solid transparent;
+        background-image: url(../assets/mis-listas/marco-foto.png);
+        background-position: center;
+        width: 80px;
+        position: relative;
+        border-radius: 100%;
+        margin: auto;
+    }
+
+    .toolbar-background-decompras {
+        background: #f0582b; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(60deg, #24b9a2, #765ba7, #f0582b); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(60deg, #24b9a2, #765ba7, #f0582b); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(60deg, #24b9a2, #765ba7, #f0582b); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(60deg, #24b9a2, #765ba7, #f0582b); /* Standard syntax */
+    }
+
+    .toolbar-background-md {
+        background: transparent !important;
+    }
+
+    .toolbar-title-md {
+        color: white !important;
+    }
+
+    .outer-content{
+        background-image: url(../assets/mis-listas/marca-agua.svg);
+        background-repeat: no-repeat;
+        background-position: center 85%;
+    }
 
 }

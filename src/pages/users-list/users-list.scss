@@ -1,0 +1,32 @@
+page-users-list {
+    .more-options {
+        position: absolute;
+        top: 15px;
+        right: 0px;
+    }
+
+    ion-note {
+        position: absolute;
+        right: 20px;
+        top: 30px;
+    }
+
+    font-family: $decompras-font2;
+    ion-content {
+        background-image: url(../assets/mis-listas/marca-agua.svg);
+        background-repeat: no-repeat;
+        background-position: center 60%;
+        background-size: 70%;
+        ion-item {
+            background: transparent !important;
+        }
+    }
+
+    .toolbar-title-md {
+        color: $verde !important;
+    }
+
+    ion-navbar {
+        background: #dedede;
+    }
+}

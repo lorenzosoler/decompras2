@@ -1,0 +1,15 @@
+<div class="card-content" [ngClass]="{'back-violeta' : isPar(), 'back-rojo': !isPar()}" (click)="openList(list)">
+	<div class="title-detail">
+		<p class="card-title">{{list.name}}</p>
+		<p class="card-detail">{{list.detail}}</p>
+	</div>
+	<div class="date-hour">
+		<p class="date" [hidden]="!list.date">{{list.date}}</p>
+		<p class="hour" [hidden]="!list.hour">{{list.hour}} hs.</p>
+	</div>
+</div>
+<div class="icon-card" [ngClass]="{'back-violeta' : isPar(), 'back-rojo': !isPar()}">
+	<ion-icon (click)="editList(list)" name='editar'></ion-icon>
+	<ion-icon style="float: right;" (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
+</div>
+

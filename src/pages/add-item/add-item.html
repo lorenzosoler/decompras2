@@ -1,0 +1,25 @@
+<ion-content #content>
+  <ion-title padding-top>{{ "NUEVOITEM" | translate}}</ion-title>
+  <ion-list>
+    <form [formGroup]="addItemForm" padding>
+      <ion-item no-padding no-margin class="no-input-border">
+        <ion-label floating>{{ "TITULO" | translate }}</ion-label>
+        <ion-input formControlName="name" [(ngModel)]="addItemForm.value.name" autofocus></ion-input>     
+      </ion-item>
+      <ion-icon class="mic" (click)="speech(addItemForm.value)" name="mic"></ion-icon> 
+    </form>
+  </ion-list>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss();">
+        <ion-icon name="cancelar"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button (click)="saveItem(addItemForm.value)">
+        <ion-icon name="guardar"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-content>
