@@ -1,4 +1,8 @@
 page-options-list {
+    font-family: $decompras-font2;
+    ion-list button {
+        color: white !important;
+    }
     #uno {
         background: $rojo;
     }

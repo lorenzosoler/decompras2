@@ -8,7 +8,7 @@ import { User } from "../../models/user";
 @Component({
   selector: 'page-options-list',
   template: `
-    <ion-list no-lines no-padding no-margin>
+    <ion-list no-lines padding-top padding-bottom no-margin>
       <button id="uno" ion-item (click)="verMiembros()">{{"VERMIEMBROS" | translate}}</button>
       <button id="dos" ion-item *ngIf="isAdmin()" (click)="addUser()">{{"ADDUSER" | translate}}</button>
       <button id="tres" ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>

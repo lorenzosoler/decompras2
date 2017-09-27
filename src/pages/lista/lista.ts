@@ -42,7 +42,7 @@ export class ListaPage {
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
       this.searchControl = new FormControl();
-      this.statusBar.backgroundColorByHexString('24b9a2');
+      this.statusBar.backgroundColorByHexString('765ba7');
   }
 
   ionViewDidLoad() {
@@ -128,10 +128,6 @@ export class ListaPage {
             text: data.ELIMINAR,
             handler: () => {
               this.listService.deleteItem(this.currentList.$key, itemId).then(()=>{
-                this.toastCtrl.create({
-                  message: data.ITEMELIMINADO,
-                  duration: 3000
-                }).present()
               });
             }
           }

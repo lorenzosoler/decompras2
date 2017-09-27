@@ -17,6 +17,16 @@ page-lista {
         background-color: $violetaopa !important;
     }
 
+    ion-badge {
+        color: black !important;
+        min-width: 65px !important;
+        border-bottom-right-radius: 100% !important;
+        border-top-right-radius: 100% !important;
+        background-color: white !important;
+        padding-right: 22px !important;
+        margin-right: 30px !important;
+    }
+
     ion-list {
         margin-bottom: 60px !important;
     }
@@ -36,6 +46,10 @@ page-lista {
 
     .toolbar-title-md {
         color: $verde !important;
+    }
+
+    ion-checkbox {
+        margin-right: 16px !important;
     }
 
     ion-navbar {

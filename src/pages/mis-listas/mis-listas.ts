@@ -45,6 +45,7 @@ export class MisListasPage {
     private statusBar: StatusBar,
     public userService: UserService) {
       this.currentUser = this.userService.getCurrentUser();
+      this.statusBar.backgroundColorByHexString('dedede');
   }
 
   ionViewDidLoad() {
@@ -53,7 +54,6 @@ export class MisListasPage {
        this.myLists = lists;
        this.showLoader = false;
     });
-    this.statusBar.backgroundColorByHexString('c8c7cc');
   }
 
 	public invitPerson () {

@@ -67,7 +67,9 @@ $verdeopa: rgba(36, 185, 162, 0.7);
 }
 
 .popover-md .popover-content {
-  border-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
 }
 
 .back-button-md {
