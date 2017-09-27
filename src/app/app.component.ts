@@ -77,6 +77,7 @@ export class MyApp {
         this.oneSignal.handleNotificationOpened().subscribe((data) => {
           let list = data.notification.payload.additionalData.list;
           this.isNotif = true;
+          this.nav.setRoot(MisListasPage);
           this.nav.push(ListaPage, {currentList: list});
         });
 
@@ -91,6 +92,10 @@ export class MyApp {
       splashScreen.hide();
 
     });
+  }
+
+  public isPar(i: number): boolean {
+    return (i % 2 == 0);
   }
 
   public checkAuthUser() {

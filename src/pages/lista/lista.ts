@@ -25,6 +25,7 @@ export class ListaPage {
   private originalItems: any;
   public showLoader: boolean = false;
   public order: string = '';
+  public index: number;
 
   searchTerm: string = '';
   searchControl: FormControl;
@@ -41,6 +42,7 @@ export class ListaPage {
   private statusBar: StatusBar,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
+      this.index = this.navParams.get('index');
       this.searchControl = new FormControl();
       this.statusBar.backgroundColorByHexString('765ba7');
   }
@@ -53,6 +55,10 @@ export class ListaPage {
         this.recalcTotal();
         this.showLoader = false;
     })
+  }
+
+  public isPar (): boolean {
+     return (this.index % 2 == 0); 
   }
 
   presentOptions(myEvent) {

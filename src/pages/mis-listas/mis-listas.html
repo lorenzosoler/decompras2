@@ -20,8 +20,8 @@
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-grid>
     <ion-row>
-      <ion-col class="back-list" *ngFor="let list of myLists" col-6>
-        <card-list [list]="list"></card-list>
+      <ion-col class="back-list" *ngFor="let list of myLists; let i = index" col-6>
+        <card-list [index]="i" [list]="list"></card-list>
       </ion-col>
     </ion-row>
   </ion-grid>

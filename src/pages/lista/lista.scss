@@ -14,7 +14,22 @@ page-lista {
         background-repeat: no-repeat;
         background-position: center 60%;
         background-size: 70%;
+    }
+
+    .back-violeta {
+        background-color: $violeta !important;
+    }
+
+    .back-rojo {
+        background-color: $rojo !important;
+    }
+
+    .back-violetaopa {
         background-color: $violetaopa !important;
+    }
+
+    .back-rojoopa {
+        background-color: $rojoopa !important;
     }
 
     ion-badge {
@@ -36,7 +51,6 @@ page-lista {
     }
 
     ion-list-header {
-        background-color: $violeta !important;
         border: none !important;
         position: fixed !important;
         bottom: 0;
