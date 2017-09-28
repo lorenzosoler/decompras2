@@ -16,7 +16,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { Globalization } from "@ionic-native/globalization";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EditListPage } from "../edit-list/edit-list";
-import { StatusBar } from "@ionic-native/status-bar";
 
 @Component({
   selector: 'page-mis-listas',
@@ -42,10 +41,8 @@ export class MisListasPage {
     public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController,
     public listService: ListService,
-    private statusBar: StatusBar,
     public userService: UserService) {
       this.currentUser = this.userService.getCurrentUser();
-      this.statusBar.backgroundColorByHexString('dedede');
   }
 
   ionViewDidLoad() {

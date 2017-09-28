@@ -10,7 +10,6 @@ import { UsersListPage } from "../users-list/users-list";
 import { TranslateService } from "@ngx-translate/core";
 import { PopoverController } from 'ionic-angular';
 import { AddUserPage } from "../add-user/add-user";
-import { StatusBar } from "@ionic-native/status-bar";
 
 @Component({
   selector: 'page-lista',
@@ -38,11 +37,9 @@ export class ListaPage {
   public listService: ListService,
   public popoverCtrl: PopoverController,
   private translate: TranslateService,
-  private statusBar: StatusBar,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
       this.searchControl = new FormControl();
-      this.statusBar.backgroundColorByHexString('765ba7');
   }
 
   ionViewDidLoad() {

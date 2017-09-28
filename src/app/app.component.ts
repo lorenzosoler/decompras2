@@ -84,7 +84,7 @@ export class MyApp {
 
       }
 
-      this.statusBar.backgroundColorByHexString('c8c7cc');
+      this.statusBar.backgroundColorByHexString('dedede');
 
       this.networkService.watchConnectivity();
       
