@@ -90,7 +90,7 @@ export class MisListasPage {
             ]
           });
           prompt.present();
-          this.openList(list);
+          this.openList(list, this.myLists.length + 1);
         }
       })
     });
@@ -98,8 +98,8 @@ export class MisListasPage {
     addListModal.present();
   }
 
-  public openList(list: any) {
-    this.navCtrl.push(ListaPage, {currentList: list});
+  public openList(list: any, index: number) {
+    this.navCtrl.push(ListaPage, {currentList: list, index: index});
   }
 
 }

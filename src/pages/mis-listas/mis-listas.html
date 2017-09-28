@@ -3,7 +3,7 @@
     <button class="back-button-md" color="blanco" menuToggle ion-button>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="font-weight: bold;">{{ "Mis Listas" | translate }}</ion-title>
+    <ion-title text-left style="font-weight: bold;">{{ "Mis Listas" | translate }}</ion-title>
     <ion-buttons right>
       <button color="blanco" (click)="invitPerson()" class="back-button-md"  ion-button>
         <ion-icon name="share"></ion-icon>
@@ -20,8 +20,8 @@
   <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
   <ion-grid>
     <ion-row>
-      <ion-col class="back-list" *ngFor="let list of myLists" col-6>
-        <card-list [list]="list"></card-list>
+      <ion-col class="back-list" *ngFor="let list of myLists; let i = index" col-6>
+        <card-list [index]="i" [list]="list"></card-list>
       </ion-col>
     </ion-row>
   </ion-grid>

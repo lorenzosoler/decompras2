@@ -1,28 +1,28 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar class="toolbar-background-decompras" >
     <ion-avatar ion-button menuToggle>
       <img [src]="currentUser?.photo" [alt]="currentUser?.fullname" class="img-menu" image-error-fallback/>
     </ion-avatar>
-    <ion-title>{{"Ajustes" | translate}}</ion-title>
+    <ion-title text-left>{{"Ajustes" | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list radio-group [(ngModel)]="idioma" (ionChange)="changeIdioma()">
+  <ion-list no-lines radio-group [(ngModel)]="idioma" (ionChange)="changeIdioma()">
     <ion-list-header>{{"IDIOMA" | translate}}</ion-list-header>
-    <ion-item>
-        <ion-label>{{"ESPAÑOL" | translate}}</ion-label>
-        <ion-radio value="es"></ion-radio>
+    <ion-item color="rojo">
+        <ion-label color="blanco">{{"ESPAÑOL" | translate}}</ion-label>
+        <ion-radio color="blanco" value="es"></ion-radio>
     </ion-item>
-    <ion-item>
-        <ion-label>{{"INGLES" | translate}}</ion-label>
-        <ion-radio value="en"></ion-radio>
+    <ion-item color="violeta">
+        <ion-label color="blanco">{{"INGLES" | translate}}</ion-label>
+        <ion-radio color="blanco" value="en"></ion-radio>
     </ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list no-lines>
     <ion-list-header>Info</ion-list-header>
-    <button ion-item>
+    <button color="verde" ion-item>
       {{"ACERCADE" |translate}} DeCompras
     </button>
   </ion-list>

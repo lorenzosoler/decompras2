@@ -58,7 +58,7 @@ $verdeopa: rgba(36, 185, 162, 0.7);
 }
 
 .toolbar-title-md {
-    text-align: center;
+    text-align: left !important;
     font-family: $decompras-font2-bold;
 }
 
@@ -91,6 +91,21 @@ $verdeopa: rgba(36, 185, 162, 0.7);
 
 .alert-md .alert-head {
   padding: 0 !important;
+}
+
+ion-action-sheet .admin-action-sheet {
+    background: $rojo !important;
+    color: white !important;
+}
+
+ion-action-sheet .eliminar-action-sheet {
+    background: $violeta !important;
+    color: white !important;
+}
+
+ion-action-sheet .cancelar-action-sheet {
+    background: $verde !important;
+    color: white !important;
 }
 
 

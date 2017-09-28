@@ -14,6 +14,7 @@ import { ListaPage } from "../../pages/lista/lista";
 export class CardListComponent {
 
   @Input() list: any;
+  @Input() index: number;
 
   constructor(
     private translate: TranslateService,
@@ -24,6 +25,10 @@ export class CardListComponent {
     public toastCtrl: ToastController,
     public listService: ListService,
     public userService: UserService) {
+  }
+
+  public isPar (): boolean {
+     return (this.index % 2 == 0); 
   }
 
   private deleteList (listId: string) {
@@ -98,7 +103,7 @@ export class CardListComponent {
   }
 
   public openList(list: any) {
-    this.navCtrl.push(ListaPage, {currentList: list});
+    this.navCtrl.push(ListaPage, {currentList: list, index: this.index});
   }
 
 }

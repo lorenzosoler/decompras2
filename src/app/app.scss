@@ -22,29 +22,33 @@
 
  // Menu Lateral
 
-.sidemenu {
+ .md .menu-inner {
+   box-shadow: none !important;
+   background: transparent !important;
+ }
 
+ #salir {
+   border-bottom-right-radius: 10px !important;
+   border-bottom-left-radius: 10px !important;
+ }
+
+.sidemenu {
+  background: transparent !important;
   .profile-item {
     padding-left: 0;
-
-    ion-thumbnail {
-      margin-top: 0;
-      margin-bottom: 0;
-      min-width: 8rem;
-      min-height: 8rem;
+    border-top-right-radius: 10px !important;
+    ion-avatar {
+      margin: 8px 16px 8px 16px !important;
 
       img {
-        max-width: 8rem;
-        max-height: 8rem;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
       }
     }
   }
 
   ion-list {
-    margin-top: 30px;
-
+    margin: 0 !important;
     .item {
       padding-left: 1rem;
 

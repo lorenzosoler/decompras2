@@ -66,13 +66,15 @@ export class UsersListPage {
           {
             text: data.HACERADMIN,
             icon: 'contact',
+            cssClass: 'admin-action-sheet',
             handler: () => {
               this.setUserAdmin(user.$key, data.USUARIOADMIN);
             }
           },
           {
             text: data.ELIMINAR,
-            icon:'trash',
+            icon:'eliminar-item',
+            cssClass: 'eliminar-action-sheet',
             role: 'destructive',
             handler: () => {
               delete this.currentList.users[user.$key];
@@ -87,6 +89,7 @@ export class UsersListPage {
           {
             text: data.CANCELAR,
             icon: 'close',
+            cssClass: 'cancelar-action-sheet',
             role: 'cancel',
             handler: () => { }
           }
