@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [ngClass]="{'back-violetaopa' : isPar(), 'back-rojoopa': !isPar()}">
+<ion-content [ngClass]="{'back-violetaopa' : isViolet(), 'back-rojoopa': isRed(), 'back-verdeopa': isGreen()}">
   <ion-list>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-item *ngFor="let item of items | orderBy: order : true">
@@ -23,17 +23,17 @@
       <ion-label>
         {{item.name}}
       </ion-label>
-      <ion-checkbox [color]="isPar() ? 'primary' : 'violeta'" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
+      <ion-checkbox color="dark" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
     <p padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
   </ion-list>
-  <ion-list-header [ngClass]="{'back-violeta' : isPar(), 'back-rojo': !isPar()}">
+  <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">
     <ion-col col-4><strong>TOTAL</strong></ion-col>
     <ion-col col-4><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
     <ion-col col-4 *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc}}</ion-badge> </ion-col>
   </ion-list-header>
   <ion-fab right bottom #fab>
-    <button type="button" ion-fab [ngClass]="{'back-rojo' : isPar(), 'back-violeta': !isPar()}" (click)="addItem();">
+    <button type="button" ion-fab [ngClass]="{'back-rojo' : isViolet(), 'back-verde': isRed(), 'back-violeta': isGreen()}" (click)="addItem();">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

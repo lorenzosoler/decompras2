@@ -54,8 +54,16 @@ export class ListaPage {
     })
   }
 
-  public isPar (): boolean {
-     return (this.index % 2 == 0); 
+  public isViolet (): boolean {
+     return (this.index % 3 == 0 || this.index % 3 == 3); 
+  }
+
+  public isRed(): boolean {
+    return (this.index % 3 == 1);
+  }
+
+  public isGreen(): boolean {
+    return (this.index % 3 == 2);
   }
 
   presentOptions(myEvent) {
