@@ -13,8 +13,11 @@ page-add-item {
 
         ion-toolbar {
             padding: 4px 20% !important;
+            position: fixed;
+            bottom: 0;
         }
         form {
+            padding: 16px 0 !important;
             ion-icon {
                 font-size: 26px;
                 color: white;
@@ -29,11 +32,14 @@ page-add-item {
                 font-family: $decompras-font2-bold;
             }
             ion-input {
-                height: 30px !important;
+                height: 40px !important;
             }
             input {
                 font-family: $decompras-font1;
                 color: black;
+                font-size: 22px;
+                height: 30px;
+                line-height: 23px;
             }
         }   
     }

@@ -52,6 +52,11 @@ page-lista {
 
     ion-list {
         margin-bottom: 60px !important;
+        ion-label {
+            font-size: 22px;
+            line-height: 23px;
+            height: 30px;
+        }
     }
 
     ion-item {
