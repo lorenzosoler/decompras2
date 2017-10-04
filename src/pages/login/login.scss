@@ -21,6 +21,8 @@ page-login {
     .button-face {
         margin: auto;
         width: 65%;
+        position: relative;
+        z-index: 1000;
     }
 
     #marca-agua {

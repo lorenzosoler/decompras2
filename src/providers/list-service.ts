@@ -84,6 +84,10 @@ export class ListService {
     return this.listsRef.child(listId).child("admins").child(userId).set(true);
   }
 
+  public deleteUserAdmin (listId: string, userId: string): firebase.Promise<any> {
+    return this.listsRef.child(listId).child("admins").child(userId).set(null);
+  }
+
   public isAdmin (list:any, userId: string): Boolean {
     var isAdmin: Boolean = false;
     if (list.userCreator == userId) {
