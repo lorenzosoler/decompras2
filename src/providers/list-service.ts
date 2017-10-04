@@ -21,19 +21,15 @@ export class ListService {
   constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
 
-  public saveList(list: any): any {
-    var currentUser = this.userService.getCurrentUser();
-    list.userCreator = currentUser.uid;
-    list.created = firebase.database.ServerValue.TIMESTAMP;
-    list.users = {};
-    list.users[currentUser.uid] = true;
+  public saveList(list: any): firebase.Promise<any> {
     let listId = this.listsRef.push(list).key;
-    list.$key = listId;
-    this.userService.addList(currentUser.uid, listId);
-    return list;
+    let updates = {};
+    updates['/lists/' + listId] = list;
+    updates['/users/' + this.userService.getCurrentUser().uid + '/lists/' + listId] = true;
+    return firebase.database().ref().update(updates);
   }
 
-  public editList(key:string, editList: any): any {
+  public editList(key:string, editList: any): firebase.Promise<any> {
     return this.listsRef.child(key).update(editList);
   }
 
