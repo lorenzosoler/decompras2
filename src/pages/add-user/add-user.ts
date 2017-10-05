@@ -7,6 +7,7 @@ import { AlertController, NavParams, ToastController, Searchbar } from "ionic-an
 import { NotificationsService } from "../../providers/notifications-service";
 import { TranslateService } from "@ngx-translate/core";
 import { SocialSharing } from "@ionic-native/social-sharing";
+import { NetworkService } from "../../providers/network-service";
 
 @Component({
   selector: 'page-add-user',
@@ -27,6 +28,7 @@ export class AddUserPage {
 				private socialSharing: SocialSharing,
 				private translate: TranslateService,
 				public listService: ListService,
+				public networkService: NetworkService,
 				public notificationsService: NotificationsService) {
 			this.currentList = this.navParams.get('currentList');
 	}
@@ -91,6 +93,8 @@ export class AddUserPage {
 					message: data.ADDUSERCORRECT,
 					duration: 3000
 				}).present();
+			}).catch(error => {
+				this.networkService.
 			});
 		});
 	}

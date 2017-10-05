@@ -34,6 +34,11 @@
 
 .sidemenu {
   background: transparent !important;
+  font-family: $decompras-font2;
+  h2 {
+    color: black;
+    font-weight: bold;
+  }
   .profile-item {
     padding-left: 0;
     border-top-right-radius: 10px !important;

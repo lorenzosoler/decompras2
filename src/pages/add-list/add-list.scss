@@ -20,11 +20,14 @@ page-add-list {
             font-family: $decompras-font2-bold;
         }
         ion-input {
-            height: 32px !important;
+            height: 40px !important;
         }
         input {
             font-family: $decompras-font1;
             color: black;
+            font-size: 22px;
+            line-height: 23px;
+            height: 30px;
         }
     }
 }

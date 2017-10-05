@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { TranslateService } from "@ngx-translate/core";
+import { NetworkService } from "../../providers/network-service";
 
 
 @Component({
@@ -23,6 +24,7 @@ export class AddListPage {
     public formBuilder: FormBuilder,
     public translate: TranslateService,
     public userService: UserService,
+    public networkService: NetworkService,
     public listService: ListService) {
         this.translate.get(["CARGANDO"]).subscribe((data) => {
             this.loader = this.loadingCtrl.create(
@@ -48,9 +50,22 @@ export class AddListPage {
         if (newList.name.trim()) {
             this.loader.present();
 
-            let list = this.listService.saveList(newList);
-            this.loader.dismiss();
-            this.viewCtrl.dismiss(list);
+            var currentUser = this.userService.getCurrentUser();
+            newList.userCreator = currentUser.uid;
+            newList.created = firebase.database.ServerValue.TIMESTAMP;
+            newList.users = {};
+            newList.users[currentUser.uid] = true;
+
+            this.listService.saveList(newList)
+            .then(data => {
+                this.loader.dismiss();
+                this.viewCtrl.dismiss(newList);
+            })
+            .catch(error => {
+                this.loader.dismiss();
+                this.viewCtrl.dismiss();
+                this.networkService.showErrorMessage();
+            });
         }
     }
 

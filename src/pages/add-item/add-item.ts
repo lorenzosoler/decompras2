@@ -7,6 +7,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TranslateService } from "@ngx-translate/core";
+import { NetworkService } from "../../providers/network-service";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class AddItemPage {
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
     public userService: UserService,
+    public networkService: NetworkService,
     public listService: ListService) {
         this.translation.get(["CARGANDO"]).subscribe((data) => {
             this.loader = this.loadingCtrl.create(
@@ -48,9 +50,15 @@ export class AddItemPage {
         if (newItem.name.trim()) {
             this.loader.present();
 
-            this.listService.addItem(this.listId, newItem).then(data => {
+            this.listService.addItem(this.listId, newItem)
+            .then (data => {
                 this.loader.dismiss();
                 this.viewCtrl.dismiss();
+            })
+            .catch(error => {
+                this.loader.dismiss();
+                this.viewCtrl.dismiss();
+                this.networkService.showErrorMessage();
             })
         }
     }
