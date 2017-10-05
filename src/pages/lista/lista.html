@@ -7,7 +7,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar>
+  <ion-toolbar  [hidden]="items?.length == 0" >
     <ion-searchbar (ionInput)="getItems($event)" type="search" placeholder="{{ 'buscarItem' | translate }}" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-item *ngFor="let item of items | orderBy: order : true">
       <ion-badge item-right>${{item.price}}</ion-badge>
-      <button (click)="deleteItem(item.$key)" ion-button color="dark" clear icon-only item-right>
+      <button (click)="deleteItem(item.$key)"no ion-button color="dark" clear icon-only item-right>
         <ion-icon name="eliminar-item"></ion-icon>
       </button>
       <ion-label>
