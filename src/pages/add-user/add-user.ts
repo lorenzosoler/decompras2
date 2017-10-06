@@ -94,7 +94,7 @@ export class AddUserPage {
 					duration: 3000
 				}).present();
 			}).catch(error => {
-				this.networkService.
+				this.networkService.showErrorMessage();
 			});
 		});
 	}
