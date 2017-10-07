@@ -10,9 +10,8 @@ import { User } from "../../models/user";
   template: `
     <ion-list no-lines padding-top padding-bottom no-margin>
       <button id="uno" ion-item (click)="verMiembros()">{{"VERMIEMBROS" | translate}}</button>
-      <button id="dos" ion-item *ngIf="isAdmin()" (click)="addUser()">{{"ADDUSER" | translate}}</button>
-      <button id="tres" ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>
-      <button id="cuatro" ion-item (click)="descuento()">{{"APLICAR" | translate}} {{ "DESCUENTO" | translate}}</button>
+      <button id="dos" ion-item (click)="orderByPrice()">{{"ORDENAR" | translate}}</button>
+      <button id="tres" ion-item (click)="descuento()">{{"APLICAR" | translate}} {{ "DESCUENTO" | translate}}</button>
     </ion-list>
   `
 })
@@ -30,16 +29,8 @@ export class OptionsListPage {
       this.currentUser = this.navParams.get('currentUser');
   }
 
-  public isAdmin() {
-    return this.listService.isAdmin(this.currentList, this.currentUser.uid);
-  }
-
   verMiembros() {
     this.viewCtrl.dismiss('showUsers');
-  }
-
-  addUser() {
-    this.viewCtrl.dismiss('addUser');
   }
 
   orderByPrice() {

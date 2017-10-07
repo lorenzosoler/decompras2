@@ -2,6 +2,9 @@
   <ion-navbar>
     <ion-title>{{currentList.name}}</ion-title>
     <ion-buttons right>
+      <button color="primary" *ngIf="isAdmin()" (click)="addUser()" class="back-button-md" ion-button>
+        <ion-icon name="person-add"></ion-icon>
+      </button>
       <button color="primary" (click)="presentOptions($event)" class="back-button-md" ion-button>
         <ion-icon name="more"></ion-icon>
       </button>
@@ -25,7 +28,7 @@
       </ion-label>
       <ion-checkbox color="dark" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
-    <p padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
+    <p style="font-size: 18px;" padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
   </ion-list>
   <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">
     <ion-col col-4><strong>TOTAL</strong></ion-col>

@@ -66,6 +66,10 @@ export class ListaPage {
     return (this.index % 3 == 2);
   }
 
+  public isAdmin(): Boolean {
+    return this.listService.isAdmin(this.currentList, this.userService.getCurrentUser().uid);
+  }
+
   presentOptions(myEvent) {
     let popover = this.popoverCtrl.create(OptionsListPage, {currentList: this.currentList, currentUser: this.userService.getCurrentUser()});
 
