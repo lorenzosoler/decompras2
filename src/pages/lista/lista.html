@@ -10,12 +10,12 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar  [hidden]="items?.length == 0" >
-    <ion-searchbar (ionInput)="getItems($event)" type="search" placeholder="{{ 'buscarItem' | translate }}" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [ngClass]="{'back-violetaopa' : isViolet(), 'back-rojoopa': isRed(), 'back-verdeopa': isGreen()}">
+  <ion-toolbar *ngIf="items?.length != 0" >
+    <ion-searchbar (ionInput)="getItems($event)" type="search" placeholder="{{ 'buscarItem' | translate }}" showCancelButton="true" cancelButtonText="Cancelar" animated="true"></ion-searchbar>
+  </ion-toolbar>
   <ion-list>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-item *ngFor="let item of items | orderBy: order : true">
