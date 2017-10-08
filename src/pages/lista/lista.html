@@ -32,8 +32,8 @@
   </ion-list>
   <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">
     <ion-col col-4><strong>TOTAL</strong></ion-col>
-    <ion-col col-4><ion-badge color="danger">$ {{total}}</ion-badge></ion-col>
-    <ion-col col-4 *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc}}</ion-badge> </ion-col>
+    <ion-col col-4><ion-badge color="danger">$ {{total | number : '1.2-2'}}</ion-badge></ion-col>
+    <ion-col col-4 *ngIf="disc"> - % {{disc}} <ion-badge color="secondary"> $ {{totalDisc | number : '1.2-2'}}</ion-badge> </ion-col>
   </ion-list-header>
   <ion-fab right bottom #fab>
     <button type="button" ion-fab [ngClass]="{'back-rojo' : isViolet(), 'back-verde': isRed(), 'back-violeta': isGreen()}" (click)="addItem();">
