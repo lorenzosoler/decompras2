@@ -21,8 +21,7 @@ export class ListService {
   constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
 
-  public saveList(list: any): firebase.Promise<any> {
-    let listId = this.listsRef.push(list).key;
+  public saveList(list: any, listId: any): firebase.Promise<any> {
     let updates = {};
     updates['/lists/' + listId] = list;
     updates['/users/' + this.userService.getCurrentUser().uid + '/lists/' + listId] = true;

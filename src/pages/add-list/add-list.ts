@@ -7,6 +7,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { TranslateService } from "@ngx-translate/core";
 import { NetworkService } from "../../providers/network-service";
+import firebase from 'firebase';
 
 
 @Component({
@@ -56,9 +57,12 @@ export class AddListPage {
             newList.users = {};
             newList.users[currentUser.uid] = true;
 
-            this.listService.saveList(newList)
+            let listId = firebase.database().ref('lists').push(newList).key;
+            
+            this.listService.saveList(newList, listId)
             .then(data => {
                 this.loader.dismiss();
+                newList['$key'] = listId;
                 this.viewCtrl.dismiss(newList);
             })
             .catch(error => {
