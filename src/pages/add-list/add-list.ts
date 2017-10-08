@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LoadingController, ViewController } from "ionic-angular";
 
 import { ListService } from "../../providers/list-service";
@@ -7,6 +7,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { TranslateService } from "@ngx-translate/core";
 import { NetworkService } from "../../providers/network-service";
+import firebase from 'firebase';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { NetworkService } from "../../providers/network-service";
 export class AddListPage {
     public currentUser: User;
     public addListForm: FormGroup;
-    public nowData: Date;
+    public nowData: String;
     private loader: any;
 
     constructor(private loadingCtrl: LoadingController,
@@ -33,7 +34,7 @@ export class AddListPage {
                 }
             );
         })
-        this.nowData = new Date();
+        this.nowData = new Date().toISOString().replace('/','-');
         this.addListForm = this.formBuilder.group({
             name: ['', Validators.required],
             detail: [''],
@@ -46,6 +47,18 @@ export class AddListPage {
         this.currentUser = this.userService.getCurrentUser();
     }
 
+    public showDate () {
+        let date = document.getElementById("date");
+        date.focus();
+        date.click();
+    }
+
+    public showHour () {
+        let hour = document.getElementById("hour");
+        hour.focus();
+        hour.click();
+    }
+
     public saveList(newList: any) {
         if (newList.name.trim()) {
             this.loader.present();
@@ -56,9 +69,12 @@ export class AddListPage {
             newList.users = {};
             newList.users[currentUser.uid] = true;
 
-            this.listService.saveList(newList)
+            let listId = firebase.database().ref('lists').push(newList).key;
+            
+            this.listService.saveList(newList, listId)
             .then(data => {
                 this.loader.dismiss();
+                newList['$key'] = listId;
                 this.viewCtrl.dismiss(newList);
             })
             .catch(error => {
