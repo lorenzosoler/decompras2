@@ -7,6 +7,22 @@ page-add-list {
         color: white !important;
     }
 
+    .datetime-text {
+        color: black;
+        font-family: $decompras-font1;
+        font-size: 20px;
+        line-height: 23px;
+        height: 30px;
+    }
+
+    .datetime-md {
+        padding: 5px 0 !important;
+    }
+
+    .item-md {
+        padding-left: 0 !important;
+    }
+
     ion-list {
         margin: 0px 16px !important;
     }

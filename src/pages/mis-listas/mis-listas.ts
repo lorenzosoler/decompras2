@@ -90,7 +90,7 @@ export class MisListasPage {
             ]
           });
           prompt.present();
-          this.openList(list, this.myLists.length + 1);
+          this.openList(list, this.myLists.length - 1);
         }
       })
     });

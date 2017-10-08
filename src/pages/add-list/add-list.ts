@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LoadingController, ViewController } from "ionic-angular";
 
 import { ListService } from "../../providers/list-service";
@@ -17,7 +17,7 @@ import firebase from 'firebase';
 export class AddListPage {
     public currentUser: User;
     public addListForm: FormGroup;
-    public nowData: Date;
+    public nowData: String;
     private loader: any;
 
     constructor(private loadingCtrl: LoadingController,
@@ -34,7 +34,7 @@ export class AddListPage {
                 }
             );
         })
-        this.nowData = new Date();
+        this.nowData = new Date().toISOString().replace('/','-');
         this.addListForm = this.formBuilder.group({
             name: ['', Validators.required],
             detail: [''],
@@ -45,6 +45,18 @@ export class AddListPage {
 
     ionViewWillEnter() {
         this.currentUser = this.userService.getCurrentUser();
+    }
+
+    public showDate () {
+        let date = document.getElementById("date");
+        date.focus();
+        date.click();
+    }
+
+    public showHour () {
+        let hour = document.getElementById("hour");
+        hour.focus();
+        hour.click();
     }
 
     public saveList(newList: any) {
