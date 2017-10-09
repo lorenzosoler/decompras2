@@ -10,6 +10,8 @@ import { UsersListPage } from "../users-list/users-list";
 import { TranslateService } from "@ngx-translate/core";
 import { PopoverController } from 'ionic-angular';
 import { AddUserPage } from "../add-user/add-user";
+import { DecimalPipe } from '@angular/common'; // Se agrega el paquete necesario para truncar 
+
 
 @Component({
   selector: 'page-lista',
