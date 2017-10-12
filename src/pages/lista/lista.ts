@@ -11,6 +11,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { PopoverController } from 'ionic-angular';
 import { AddUserPage } from "../add-user/add-user";
 import { DecimalPipe } from '@angular/common'; // Se agrega el paquete necesario para truncar 
+import { StatusBar } from "@ionic-native/status-bar";
 
 
 @Component({
@@ -39,6 +40,7 @@ export class ListaPage {
   public toastCtrl: ToastController,
   public listService: ListService,
   public popoverCtrl: PopoverController,
+  private statusBar: StatusBar,
   private translate: TranslateService,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
@@ -66,6 +68,16 @@ export class ListaPage {
 
   public isGreen(): boolean {
     return (this.index % 3 == 2);
+  }
+
+  ionViewWillEnter () {
+    if (this.isViolet()) {
+      this.statusBar.backgroundColorByHexString("765ba7");
+    } else if (this.isRed()) {
+      this.statusBar.backgroundColorByHexString("f0582b");
+    } else if (this.isGreen()) {
+      this.statusBar.backgroundColorByHexString("24b9a2");
+    }
   }
 
   public isAdmin(): Boolean {
