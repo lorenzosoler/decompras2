@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
 declare var Connection: any;
@@ -11,6 +11,7 @@ export class NetworkService {
 
   constructor(
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     private network: Network) {
   }
 
@@ -34,5 +35,14 @@ export class NetworkService {
     });
 
     toast.present();
+  }
+
+  public showErrorMessage() {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Error. No tenes conexion a internet.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

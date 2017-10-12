@@ -1,6 +1,5 @@
 page-add-item {
     ion-content {
-        background: $violeta !important;
         ion-title {
             font-family: $decompras-font2-bold;
         }
@@ -13,8 +12,11 @@ page-add-item {
 
         ion-toolbar {
             padding: 4px 20% !important;
+            position: fixed;
+            bottom: 0;
         }
         form {
+            padding: 16px 0 !important;
             ion-icon {
                 font-size: 26px;
                 color: white;
@@ -22,19 +24,30 @@ page-add-item {
                 right: 40px;
                 top: 85px;
             }
-            ion-item {
-                background: $violeta !important;
-            }
             ion-label {
                 font-family: $decompras-font2-bold;
             }
             ion-input {
-                height: 30px !important;
+                height: 40px !important;
             }
             input {
                 font-family: $decompras-font1;
                 color: black;
+                font-size: 22px;
+                height: 30px;
+                line-height: 23px;
             }
         }   
+    }
+    .background-rojo {
+        background-color: $rojo !important;
+    }
+
+    .background-violeta {
+        background-color: $violeta !important;
+    }
+
+    .background-verde {
+        background-color: $verde !important;
     }
 }

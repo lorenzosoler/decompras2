@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { UserService } from "../../providers/user-service";
 import { TranslateService } from "@ngx-translate/core";
+import { NetworkService } from "../../providers/network-service";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class EditListPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public userService: UserService,
+    public networkService: NetworkService,
     public listService: ListService) {
         this.currentList = this.navParams.get('currentList');
         this.nowData = new Date();
@@ -52,9 +54,17 @@ export class EditListPage {
         if (newList.name.trim()) {
             this.loader.present();
 
-            this.listService.editList(this.currentList.$key, newList);
-            this.loader.dismiss();
-            this.viewCtrl.dismiss(this.currentList, newList);
+            this.listService.editList(this.currentList.$key, newList)
+            .then((data) => {
+                this.loader.dismiss();
+                this.viewCtrl.dismiss(this.currentList, newList);
+            })
+            .catch((e:Error) => {
+                this.networkService.showErrorMessage();
+                this.loader.dismiss();
+                this.viewCtrl.dismiss();
+            });
+            
         }
     }
 

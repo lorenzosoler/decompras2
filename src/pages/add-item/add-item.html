@@ -1,8 +1,8 @@
-<ion-content #content>
+<ion-content [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" #content>
   <ion-title padding-top>{{ "NUEVOITEM" | translate}}</ion-title>
   <ion-list>
     <form [formGroup]="addItemForm" padding>
-      <ion-item no-padding no-margin class="no-input-border">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" no-padding no-margin class="no-input-border">
         <ion-label floating>{{ "TITULO" | translate }}</ion-label>
         <ion-input formControlName="name" [(ngModel)]="addItemForm.value.name" autofocus></ion-input>     
       </ion-item>

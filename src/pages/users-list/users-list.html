@@ -14,6 +14,7 @@
             <h2>{{user.fullname}}</h2>
             <p>{{user.email}}</p>
             <ion-note color="primary" *ngIf="user.uid == currentList.userCreator" item-end>Creador</ion-note>
+            <ion-note color="primary" *ngIf="user.uid != currentList.userCreator && isUserAdmin(user.uid)" item-end>Admin</ion-note>
             <button type="button" ion-button icon-only clear small color="gray" class="more-options" (click)="presentActionSheet($event, user);" *ngIf="isAdmin() && user.uid != currentUser.uid">
                 <ion-icon name="ios-arrow-down"></ion-icon>
             </button>

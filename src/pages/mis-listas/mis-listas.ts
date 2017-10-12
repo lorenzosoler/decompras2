@@ -42,10 +42,9 @@ export class MisListasPage {
     public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController,
     public listService: ListService,
-    private statusBar: StatusBar,
+    private statusBar: StatusBar, 
     public userService: UserService) {
       this.currentUser = this.userService.getCurrentUser();
-      this.statusBar.backgroundColorByHexString('dedede');
   }
 
   ionViewDidLoad() {
@@ -56,6 +55,10 @@ export class MisListasPage {
     });
   }
 
+  ionViewWillEnter () {
+    this.statusBar.backgroundColorByName("darkGray");
+  }
+
 	public invitPerson () {
 	  this.translate.get(["INVITACION"]).subscribe((data) => {
 		  this.socialSharing.share(data.INVITACION,'',[], 'https://play.google.com/store/apps/details?id=ar.com.indigodesign.decompras');
@@ -64,7 +67,8 @@ export class MisListasPage {
 
   public addList() {
     let that = this;
-    let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
+    let i = this.myLists.length;
+    let addListModal = this.modalCtrl.create(AddListPage, {index: i}, { enableBackdropDismiss: false });
 
     addListModal.onDidDismiss(list => {
       this.translate.get(["RECORDARCALENDARIO", "RECORDATORIOAGREGADO", "SI"]).subscribe((data) => {
@@ -93,7 +97,7 @@ export class MisListasPage {
             ]
           });
           prompt.present();
-          this.openList(list, this.myLists.length + 1);
+          this.openList(list, this.myLists.length - 1);
         }
       })
     });

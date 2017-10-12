@@ -3,8 +3,32 @@ page-add-list {
         background-color: $rojo;
     }
 
+    .background-violeta {
+        background-color: $violeta;
+    }
+
+    .background-verde {
+        background-color: $verde;
+    }
+
     .toolbar-title-md {
         color: white !important;
+    }
+
+    .datetime-text {
+        color: black;
+        font-family: $decompras-font1;
+        font-size: 20px;
+        line-height: 23px;
+        height: 30px;
+    }
+
+    .datetime-md {
+        padding: 5px 0 !important;
+    }
+
+    .item-md {
+        padding-left: 0 !important;
     }
 
     ion-list {
@@ -20,11 +44,14 @@ page-add-list {
             font-family: $decompras-font2-bold;
         }
         ion-input {
-            height: 32px !important;
+            height: 40px !important;
         }
         input {
             font-family: $decompras-font1;
             color: black;
+            font-size: 22px;
+            line-height: 23px;
+            height: 30px;
         }
     }
 }

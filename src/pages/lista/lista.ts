@@ -10,7 +10,9 @@ import { UsersListPage } from "../users-list/users-list";
 import { TranslateService } from "@ngx-translate/core";
 import { PopoverController } from 'ionic-angular';
 import { AddUserPage } from "../add-user/add-user";
+import { DecimalPipe } from '@angular/common'; // Se agrega el paquete necesario para truncar 
 import { StatusBar } from "@ionic-native/status-bar";
+
 
 @Component({
   selector: 'page-lista',
@@ -38,13 +40,12 @@ export class ListaPage {
   public toastCtrl: ToastController,
   public listService: ListService,
   public popoverCtrl: PopoverController,
-  private translate: TranslateService,
   private statusBar: StatusBar,
+  private translate: TranslateService,
   public userService: UserService) {
       this.currentList = this.navParams.get('currentList');
       this.index = this.navParams.get('index');
       this.searchControl = new FormControl();
-      this.statusBar.backgroundColorByHexString('765ba7');
   }
 
   ionViewDidLoad() {
@@ -57,8 +58,31 @@ export class ListaPage {
     })
   }
 
-  public isPar (): boolean {
-     return (this.index % 2 == 0); 
+  public isViolet (): boolean {
+     return (this.index % 3 == 0 || this.index % 3 == 3); 
+  }
+
+  public isRed(): boolean {
+    return (this.index % 3 == 1);
+  }
+
+  public isGreen(): boolean {
+    return (this.index % 3 == 2);
+  }
+
+  ionViewWillEnter () {
+    this.order = 'name';
+    if (this.isViolet()) {
+      this.statusBar.backgroundColorByHexString("765ba7");
+    } else if (this.isRed()) {
+      this.statusBar.backgroundColorByHexString("f0582b");
+    } else if (this.isGreen()) {
+      this.statusBar.backgroundColorByHexString("24b9a2");
+    }
+  }
+
+  public isAdmin(): Boolean {
+    return this.listService.isAdmin(this.currentList, this.userService.getCurrentUser().uid);
   }
 
   presentOptions(myEvent) {
@@ -114,7 +138,7 @@ export class ListaPage {
 
   public addItem() {
     let that = this;
-    let addListModal = this.modalCtrl.create(AddItemPage, {listId: this.currentList.$key}, { enableBackdropDismiss: false });
+    let addListModal = this.modalCtrl.create(AddItemPage, {listId: this.currentList.$key, index: this.index}, { enableBackdropDismiss: false });
 
     addListModal.present();
   }

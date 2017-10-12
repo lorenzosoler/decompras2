@@ -50,6 +50,17 @@ export class UsersListPage {
 
   private setUserAdmin (userId: string, msg: string) {
     this.listService.setUserAdmin(this.currentList.$key, userId).then((data) => {
+      this.currentList.admins[userId] = true;
+      this.toastCtrl.create({
+          message: msg,
+          duration: 3000
+      }).present()
+    })
+  }
+
+  private deleteUserAdmin (userId: string, msg: string) {
+    this.listService.deleteUserAdmin(this.currentList.$key, userId).then((data) => {
+      delete this.currentList.admins[userId];
       this.toastCtrl.create({
           message: msg,
           duration: 3000
@@ -64,11 +75,15 @@ export class UsersListPage {
         title: '',
         buttons: [
           {
-            text: data.HACERADMIN,
+            text: this.isUserAdmin(user.uid) ? 'Deshacer como admin' : data.HACERADMIN,
             icon: 'contact',
             cssClass: 'admin-action-sheet',
             handler: () => {
-              this.setUserAdmin(user.$key, data.USUARIOADMIN);
+              if (!this.isUserAdmin(user.uid)) {
+                this.setUserAdmin(user.$key, data.USUARIOADMIN);
+              } else {
+                this.deleteUserAdmin(user.$key, "El usuario dejo de ser Admin de esta lista")
+              }
             }
           },
           {

@@ -1,6 +1,12 @@
 page-lista {
     font-family: $decompras-font1;
 
+    #badge-disc {
+        height: 18px !important;
+        margin-left: 18px;
+        margin-top: 5px;
+    }
+
     .button-person-add {
         font-size:22px;
     }
@@ -24,12 +30,20 @@ page-lista {
         background-color: $rojo !important;
     }
 
+    .back-verde {
+        background-color: $verde !important;
+    }
+
     .back-violetaopa {
         background-color: $violetaopa !important;
     }
 
     .back-rojoopa {
         background-color: $rojoopa !important;
+    }
+
+    .back-verdeopa {
+        background-color: $verdeopa !important;
     }
 
     ion-badge {
@@ -44,6 +58,11 @@ page-lista {
 
     ion-list {
         margin-bottom: 60px !important;
+        ion-label {
+            font-size: 22px;
+            line-height: 23px;
+            height: 30px;
+        }
     }
 
     ion-item {

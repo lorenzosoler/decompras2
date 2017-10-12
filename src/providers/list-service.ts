@@ -21,19 +21,14 @@ export class ListService {
   constructor(public userService: UserService, public db: AngularFireDatabase) {
   }
 
-  public saveList(list: any): any {
-    var currentUser = this.userService.getCurrentUser();
-    list.userCreator = currentUser.uid;
-    list.created = firebase.database.ServerValue.TIMESTAMP;
-    list.users = {};
-    list.users[currentUser.uid] = true;
-    let listId = this.listsRef.push(list).key;
-    list.$key = listId;
-    this.userService.addList(currentUser.uid, listId);
-    return list;
+  public saveList(list: any, listId: any): firebase.Promise<any> {
+    let updates = {};
+    updates['/lists/' + listId] = list;
+    updates['/users/' + this.userService.getCurrentUser().uid + '/lists/' + listId] = true;
+    return firebase.database().ref().update(updates);
   }
 
-  public editList(key:string, editList: any): any {
+  public editList(key:string, editList: any): firebase.Promise<any> {
     return this.listsRef.child(key).update(editList);
   }
 
@@ -82,6 +77,10 @@ export class ListService {
 
   public setUserAdmin (listId: string, userId: string): firebase.Promise<any> {
     return this.listsRef.child(listId).child("admins").child(userId).set(true);
+  }
+
+  public deleteUserAdmin (listId: string, userId: string): firebase.Promise<any> {
+    return this.listsRef.child(listId).child("admins").child(userId).set(null);
   }
 
   public isAdmin (list:any, userId: string): Boolean {
