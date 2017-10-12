@@ -1,20 +1,20 @@
-<ion-content class="background-rojo" #content>
+<ion-content [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" #content>
   <ion-title padding-top>{{"NUEVALISTA" | translate}}</ion-title>
   <ion-list inset color="rojo">
-    <form color="rojo" [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)">
-      <ion-item color="rojo">
+    <form [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{ "TITULO" | translate}}</ion-label>
         <ion-input color="light" formControlName="name" autofocus></ion-input>
       </ion-item>
-      <ion-item color="rojo">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"DETALLE" | translate}}</ion-label>
         <ion-input color="light" formControlName="detail"></ion-input>
       </ion-item>
-      <ion-item color="rojo">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"FECHA" | translate}}</ion-label>
         <ion-datetime [doneText]="'OK'" displayFormat="DD/MM/YYYY" [min]="nowData" formControlName="date"></ion-datetime>
       </ion-item>
-      <ion-item color="rojo">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"HORA" | translate}}</ion-label>
         <ion-datetime [doneText]="'OK'" displayFormat="HH:mm" pickerFormat="HH mm" formControlName="hour"></ion-datetime>
       </ion-item>

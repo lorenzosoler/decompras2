@@ -20,6 +20,8 @@ export class AddItemPage {
     public addItemForm: FormGroup;
     private loader: any;
 
+    private index: number;
+
     constructor(private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private speechRecognition: SpeechRecognition,
@@ -40,10 +42,23 @@ export class AddItemPage {
         this.addItemForm = this.formBuilder.group({
             name: ['', Validators.required]
         });
+        this.index = this.navParams.get("index");
     }
 
     ionViewWillEnter() {
         this.currentUser = this.userService.getCurrentUser();
+    }
+
+    public isViolet (): boolean {
+        return (this.index % 3 == 0 || this.index % 3 == 3); 
+    }
+
+    public isRed(): boolean {
+        return (this.index % 3 == 1);
+    }
+
+    public isGreen(): boolean {
+        return (this.index % 3 == 2);
     }
 
     public saveItem(newItem: any) {

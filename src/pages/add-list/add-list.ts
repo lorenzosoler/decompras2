@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { LoadingController, ViewController } from "ionic-angular";
+import { LoadingController, ViewController, NavParams } from "ionic-angular";
 
 import { ListService } from "../../providers/list-service";
 import { User } from "../../models/user";
@@ -20,10 +20,13 @@ export class AddListPage {
     public nowData: String;
     private loader: any;
 
+    private index: number;
+
     constructor(private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
     public translate: TranslateService,
+    public params: NavParams,
     public userService: UserService,
     public networkService: NetworkService,
     public listService: ListService) {
@@ -41,6 +44,19 @@ export class AddListPage {
             date: [''],
             hour: ['']
         });
+        this.index = params.get('index');
+    }
+
+    public isViolet (): boolean {
+        return (this.index % 3 == 0 || this.index % 3 == 3); 
+    }
+
+    public isRed(): boolean {
+        return (this.index % 3 == 1);
+    }
+
+    public isGreen(): boolean {
+        return (this.index % 3 == 2);
     }
 
     ionViewWillEnter() {

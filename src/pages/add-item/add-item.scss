@@ -1,6 +1,5 @@
 page-add-item {
     ion-content {
-        background: $violeta !important;
         ion-title {
             font-family: $decompras-font2-bold;
         }
@@ -25,9 +24,6 @@ page-add-item {
                 right: 40px;
                 top: 85px;
             }
-            ion-item {
-                background: $violeta !important;
-            }
             ion-label {
                 font-family: $decompras-font2-bold;
             }
@@ -42,5 +38,16 @@ page-add-item {
                 line-height: 23px;
             }
         }   
+    }
+    .background-rojo {
+        background-color: $rojo !important;
+    }
+
+    .background-violeta {
+        background-color: $violeta !important;
+    }
+
+    .background-verde {
+        background-color: $verde !important;
     }
 }

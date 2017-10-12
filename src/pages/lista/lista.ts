@@ -125,7 +125,7 @@ export class ListaPage {
 
   public addItem() {
     let that = this;
-    let addListModal = this.modalCtrl.create(AddItemPage, {listId: this.currentList.$key}, { enableBackdropDismiss: false });
+    let addListModal = this.modalCtrl.create(AddItemPage, {listId: this.currentList.$key, index: this.index}, { enableBackdropDismiss: false });
 
     addListModal.present();
   }

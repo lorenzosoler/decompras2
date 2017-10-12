@@ -61,7 +61,8 @@ export class MisListasPage {
 
   public addList() {
     let that = this;
-    let addListModal = this.modalCtrl.create(AddListPage, {}, { enableBackdropDismiss: false });
+    let i = this.myLists.length;
+    let addListModal = this.modalCtrl.create(AddListPage, {index: i}, { enableBackdropDismiss: false });
 
     addListModal.onDidDismiss(list => {
       this.translate.get(["RECORDARCALENDARIO", "RECORDATORIOAGREGADO", "SI"]).subscribe((data) => {

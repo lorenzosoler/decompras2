@@ -1,6 +1,12 @@
 page-lista {
     font-family: $decompras-font1;
 
+    #badge-disc {
+        height: 18px !important;
+        margin-left: 18px;
+        margin-top: 5px;
+    }
+
     .button-person-add {
         font-size:22px;
     }
