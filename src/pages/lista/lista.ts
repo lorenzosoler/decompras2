@@ -71,6 +71,7 @@ export class ListaPage {
   }
 
   ionViewWillEnter () {
+    this.order = 'name';
     if (this.isViolet()) {
       this.statusBar.backgroundColorByHexString("765ba7");
     } else if (this.isRed()) {

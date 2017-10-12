@@ -18,7 +18,7 @@
   </ion-toolbar>
   <ion-list>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-    <ion-item *ngFor="let item of items | orderBy: order : true">
+    <ion-item *ngFor="let item of items | orderBy: order : reverse">
       <ion-badge item-right>${{item.price}}</ion-badge>
       <button (click)="deleteItem(item.$key)"no ion-button color="dark" clear icon-only item-right>
         <ion-icon name="eliminar-item"></ion-icon>
