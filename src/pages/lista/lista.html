@@ -18,7 +18,7 @@
   </ion-toolbar>
   <ion-list>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
-    <ion-item *ngFor="let item of items | orderBy: order : reverse">
+    <ion-item *ngFor="let item of searchedItems | orderBy: order : reverse">
       <ion-badge item-right>${{item.price}}</ion-badge>
       <button (click)="deleteItem(item.$key)"no ion-button color="dark" clear icon-only item-right>
         <ion-icon name="eliminar-item"></ion-icon>
@@ -29,6 +29,8 @@
       <ion-checkbox color="dark" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
     <p style="font-size: 18px;" padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
+    <p style="font-size: 18px;" padding text-center *ngIf="searchedItems?.length == 0 && items?.length !=0">No se encontraron items que coincidan con su búsqueda</p>
+
   </ion-list>
   <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">
     <ion-col col-4><strong>TOTAL</strong></ion-col>

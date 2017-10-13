@@ -20,6 +20,7 @@ import { StatusBar } from "@ionic-native/status-bar";
 })
 export class ListaPage {
   public items: any[];
+  public searchedItems: any;
   public currentList: any;
   public total: number;
   public totalDisc: number;
@@ -52,6 +53,7 @@ export class ListaPage {
     this.showLoader = true;
     this.listService.getItems(this.currentList.$key).subscribe(items => {
         this.items = items;
+        this.searchedItems = items;
         this.originalItems = items;
         this.recalcTotal();
         this.showLoader = false;
@@ -208,12 +210,13 @@ export class ListaPage {
 
   public getItems (ev: any) {
     this.items = this.originalItems;
+    this.searchedItems = this.items;
     // set val to the value of the searchbar
     let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
+      this.searchedItems = this.items.filter((item) => {
         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
