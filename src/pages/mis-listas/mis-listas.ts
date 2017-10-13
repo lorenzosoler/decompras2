@@ -27,12 +27,14 @@ export class MisListasPage {
   private currentUser: User;
   private myLists: any[] = [];
   public showLoader: boolean = false;
+  private listNotif: any;
 
   constructor(
     private platform: Platform,
     private translate: TranslateService,
     private globalization: Globalization,
     private socialSharing: SocialSharing,
+    public navParams: NavParams,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
@@ -44,6 +46,7 @@ export class MisListasPage {
     public listService: ListService,
     private statusBar: StatusBar, 
     public userService: UserService) {
+      this.listNotif = this.navParams.get("listNotif");
       this.currentUser = this.userService.getCurrentUser();
   }
 
@@ -51,6 +54,9 @@ export class MisListasPage {
     this.showLoader = true;
     this.listService.getLists().subscribe(lists => {
        this.myLists = lists;
+       if (this.listNotif) {
+         this.openList(this.listNotif, this.myLists.length - 1);
+       }
        this.showLoader = false;
     });
   }
