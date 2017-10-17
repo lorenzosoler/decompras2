@@ -28,6 +28,7 @@ export class MyApp {
   rootPage: any;
   currentUser: User;
   isNotif: boolean = false;
+  listNotif: any;
 
   pages: PageObj[] = [
     { title: 'Mis Listas', component: MisListasPage, icon: 'clipboard' },
@@ -49,7 +50,6 @@ export class MyApp {
     this.translate.setDefaultLang('en');
 
     platform.ready().then(() => {
-      this.checkAuthUser();
 
       if(platform.is('cordova')) {
 
@@ -75,15 +75,15 @@ export class MyApp {
         });
 
         this.oneSignal.handleNotificationOpened().subscribe((data) => {
-          let list = data.notification.payload.additionalData.list;
+          this.listNotif = data.notification.payload.additionalData.list;
           this.isNotif = true;
-          this.nav.setRoot(MisListasPage);
-          this.nav.push(ListaPage, {currentList: list});
         });
 
         this.oneSignal.endInit();
 
       }
+
+      this.checkAuthUser();
 
       this.statusBar.backgroundColorByName('darkGray');
 
@@ -105,7 +105,9 @@ export class MyApp {
         this.oneSignal.sendTag('userId', currentUser.uid);
         this.userService.serCurrentUser(currentUser);
         this.currentUser = currentUser;
-        if (!this.isNotif) {
+        if (this.isNotif) {
+          this.nav.setRoot(MisListasPage, {listNotif: this.listNotif});
+        } else {
           this.nav.setRoot(MisListasPage);
         }
       } else {

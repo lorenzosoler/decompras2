@@ -50,6 +50,9 @@ export class UsersListPage {
 
   private setUserAdmin (userId: string, msg: string) {
     this.listService.setUserAdmin(this.currentList.$key, userId).then((data) => {
+      if (this.currentList.admins == undefined) {
+        this.currentList.admins = {};
+      }
       this.currentList.admins[userId] = true;
       this.toastCtrl.create({
           message: msg,
