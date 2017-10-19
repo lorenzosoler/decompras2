@@ -114,6 +114,10 @@ export class CardListComponent {
     this.navCtrl.push(ListaPage, {currentList: list, index: this.index});
   }
 
+  public isCreator(): Boolean{
+    return this.listService.isCreator(this.list, this.userService.getCurrentUser().uid)
+  }
+
   public isAdmin(): Boolean {
     return this.listService.isAdmin(this.list, this.userService.getCurrentUser().uid);
   }

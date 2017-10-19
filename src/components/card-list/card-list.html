@@ -11,5 +11,6 @@
 <div class="icon-card" [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">
 	<ion-icon *ngIf="isAdmin()" (click)="editList(list)" name='editar'></ion-icon>
 	<ion-icon *ngIf="isAdmin()" style="float: right;" (click)="showConfirmDelete(list.$key)" name='eliminar-lista'></ion-icon>
+	<ion-icon *ngIf="isCreator()"></ion-icon>
 </div>
 

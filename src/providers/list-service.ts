@@ -83,6 +83,12 @@ export class ListService {
     return this.listsRef.child(listId).child("admins").child(userId).set(null);
   }
 
+  public isCreator (list:any, creatorId:string ): Boolean{
+    if (list.userCreator == creatorId) {
+      return true;
+    }
+  }
+
   public isAdmin (list:any, userId: string): Boolean {
     var isAdmin: Boolean = false;
     if (list.userCreator == userId) {
