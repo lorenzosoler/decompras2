@@ -41,7 +41,7 @@ export class CardListComponent {
   }
 
   
-  private showConfirmExit(listId: string, userId:string){
+  private showConfirmExit(listId: string){
     this.translate.get([ "SEGUROSALIR", "CANCELAR", "SALIR"]).subscribe((data) => {
       let confirm = this.alertCtrl.create({
         message: data.SEGUROSALIR,
@@ -55,7 +55,7 @@ export class CardListComponent {
           {
             text: data.SALIR,
             handler: () => {
-              this.exitList(listId, userId);
+              this.exitList(listId);
             }
           }
         ]
@@ -63,7 +63,7 @@ export class CardListComponent {
       confirm.present();
     });
   }
-  private exitList (listId: string, userId: string) {
+  private exitList (listId: string) {
       let uid = this.userService.getCurrentUser().uid;
       this.listService.deleteUserList(uid, listId).then(() => {
         this.translate.get(["SALISTE"]).subscribe((data) => {
