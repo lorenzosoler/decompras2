@@ -102,13 +102,7 @@ export class ListService {
     return isAdmin;
   }
 
-  public deleteUserList(userId: string, listId:string): firebase.Promise<any> {
-    var updates = {};
-    updates[`lists/${listId}/users/${userId}`] = null;
-    updates[`users/${userId}/lists/${listId}`] = null;
-    return firebase.database().ref().update(updates);
-  }
-
+   
   public deleteList(listId:string, users: any[]): firebase.Promise<any>{
     var updates = {};
     updates[`lists/${listId}`] = null;
@@ -116,6 +110,13 @@ export class ListService {
     users.forEach((user) => {
       updates[`users/${user.$key}/lists/${listId}`] = null;
     });
+    return firebase.database().ref().update(updates);
+  };
+
+  public deleteUserList(userId: string, listId:string): firebase.Promise<any> {
+    var updates = {};
+    updates[`lists/${listId}/users/${userId}`] = null;
+    updates[`users/${userId}/lists/${listId}`] = null;
     return firebase.database().ref().update(updates);
   }
 

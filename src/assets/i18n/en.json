@@ -19,6 +19,7 @@
   "ITEMELIMINADO": "Item successfully deleted",
   "PRECIOITEM": "Enter the price of this item",
   "SEGUROELIMINAR": "Are you sure to delete this list?",
+  "SEGUROSALIR": "Are you sure you want to exit this list?",
   "LISTAPROGRAMADA": "It was scheduled to perform at this time",
   "RECORDARCALENDARIO": "Add reminder to the calendar?",
   "RECORDATORIOAGREGADO": "The reminder was successfully added to the calendar",
