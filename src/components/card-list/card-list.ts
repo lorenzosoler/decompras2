@@ -7,6 +7,7 @@ import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { ListaPage } from "../../pages/lista/lista";
 
+
 @Component({
   selector: 'card-list',
   templateUrl: 'card-list.html'
@@ -38,6 +39,42 @@ export class CardListComponent {
   public isGreen(): boolean {
     return (this.index % 3 == 2);
   }
+
+  
+  private showConfirmExit(listId: string){
+    this.translate.get([ "SEGUROSALIR", "CANCELAR", "SALIR"]).subscribe((data) => {
+      let confirm = this.alertCtrl.create({
+        message: data.SEGUROSALIR,
+        buttons:[
+          {
+            text: data.CANCELAR,
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          },
+          {
+            text: data.SALIR,
+            handler: () => {
+              this.exitList(listId);
+            }
+          }
+        ]
+      });
+      confirm.present();
+    });
+  }
+  private exitList (listId: string) {
+      let uid = this.userService.getCurrentUser().uid;
+      this.listService.deleteUserList(uid, listId).then(() => {
+        this.translate.get(["SALISTE"]).subscribe((data) => {
+          this.toastCtrl.create({
+            message: data.SALISTE,
+            duration: 3000
+          }).present()
+        })
+      })
+  };
+  
 
   private deleteList (listId: string) {
     this.userService.getUsersByListId(listId).subscribe((users) => {
@@ -112,6 +149,10 @@ export class CardListComponent {
 
   public openList(list: any) {
     this.navCtrl.push(ListaPage, {currentList: list, index: this.index});
+  }
+
+  public isCreator(): Boolean{
+    return this.listService.isCreator(this.list, this.userService.getCurrentUser().uid)
   }
 
   public isAdmin(): Boolean {

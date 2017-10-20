@@ -83,6 +83,12 @@ export class ListService {
     return this.listsRef.child(listId).child("admins").child(userId).set(null);
   }
 
+  public isCreator (list:any, creatorId:string ): Boolean{
+    if (list.userCreator == creatorId) {
+      return true;
+    }
+  }
+
   public isAdmin (list:any, userId: string): Boolean {
     var isAdmin: Boolean = false;
     if (list.userCreator == userId) {
@@ -96,13 +102,7 @@ export class ListService {
     return isAdmin;
   }
 
-  public deleteUserList(userId: string, listId:string): firebase.Promise<any> {
-    var updates = {};
-    updates[`lists/${listId}/users/${userId}`] = null;
-    updates[`users/${userId}/lists/${listId}`] = null;
-    return firebase.database().ref().update(updates);
-  }
-
+   
   public deleteList(listId:string, users: any[]): firebase.Promise<any>{
     var updates = {};
     updates[`lists/${listId}`] = null;
@@ -110,6 +110,13 @@ export class ListService {
     users.forEach((user) => {
       updates[`users/${user.$key}/lists/${listId}`] = null;
     });
+    return firebase.database().ref().update(updates);
+  };
+
+  public deleteUserList(userId: string, listId:string): firebase.Promise<any> {
+    var updates = {};
+    updates[`lists/${listId}/users/${userId}`] = null;
+    updates[`users/${userId}/lists/${listId}`] = null;
     return firebase.database().ref().update(updates);
   }
 
