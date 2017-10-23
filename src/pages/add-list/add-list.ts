@@ -8,6 +8,7 @@ import { UserService } from "../../providers/user-service";
 import { TranslateService } from "@ngx-translate/core";
 import { NetworkService } from "../../providers/network-service";
 import firebase from 'firebase';
+import { DatePicker } from "@ionic-native/date-picker";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class AddListPage {
     public formBuilder: FormBuilder,
     public translate: TranslateService,
     public params: NavParams,
+    private datePicker: DatePicker,
     public userService: UserService,
     public networkService: NetworkService,
     public listService: ListService) {
@@ -47,6 +49,28 @@ export class AddListPage {
         this.index = params.get('index');
     }
 
+    public showDate() {
+        this.datePicker.show({
+            date: new Date(),
+            mode: 'date',
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+            }).then(
+            date => this.addListForm.patchValue({"date": date}),
+            err => console.log('Error occurred while getting date: ', err)
+        );
+    }
+
+    public showHour() {
+        this.datePicker.show({
+            date: new Date(),
+            mode: 'time',
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+            }).then(
+            time => this.addListForm.patchValue({"hour": time}),
+            err => console.log('Error occurred while getting date: ', err)
+        );
+    }
+
     public isViolet (): boolean {
         return (this.index % 3 == 0 || this.index % 3 == 3); 
     }
@@ -61,18 +85,6 @@ export class AddListPage {
 
     ionViewWillEnter() {
         this.currentUser = this.userService.getCurrentUser();
-    }
-
-    public showDate () {
-        let date = document.getElementById("date");
-        date.focus();
-        date.click();
-    }
-
-    public showHour () {
-        let hour = document.getElementById("hour");
-        hour.focus();
-        hour.click();
     }
 
     public saveList(newList: any) {

@@ -12,11 +12,11 @@
       </ion-item>
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"FECHA" | translate}}</ion-label>
-        <ion-datetime [doneText]="'OK'" displayFormat="DD/MM/YYYY" [min]="nowData" formControlName="date"></ion-datetime>
+        <ion-input (focus)="showDate()" formControlName="date"></ion-input>
       </ion-item>
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"HORA" | translate}}</ion-label>
-        <ion-datetime [doneText]="'OK'" displayFormat="HH:mm" pickerFormat="HH mm" formControlName="hour"></ion-datetime>
+        <ion-input (focus)="showHour()" formControlName="hour"></ion-input>
       </ion-item>
     </form>
   </ion-list>

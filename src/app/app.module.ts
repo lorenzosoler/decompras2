@@ -35,6 +35,7 @@ import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
+import { DatePicker } from '@ionic-native/date-picker';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Globalization } from '@ionic-native/globalization';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -129,6 +130,7 @@ export const firebaseConfigDev = {
     LocalNotifications,
     OneSignal,
     Calendar,
+    DatePicker,
     SpeechRecognition,
 	  Globalization,
     SocialSharing,

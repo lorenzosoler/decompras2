@@ -21,6 +21,7 @@
     "@ionic-native/android-full-screen": "^4.0.0",
     "@ionic-native/calendar": "^3.12.1",
     "@ionic-native/core": "^3.6.1",
+    "@ionic-native/date-picker": "^4.3.2",
     "@ionic-native/facebook": "^3.4.4",
     "@ionic-native/globalization": "^4.0.0",
     "@ionic-native/google-plus": "^4.1.0",
