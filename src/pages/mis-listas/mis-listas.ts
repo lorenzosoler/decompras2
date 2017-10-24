@@ -79,7 +79,14 @@ export class MisListasPage {
     addListModal.onDidDismiss(list => {
       this.translate.get(["RECORDARCALENDARIO", "RECORDATORIOAGREGADO", "SI"]).subscribe((data) => {
         if (list) {
-          let date = new Date(list.date + ' ' + list.hour);
+          var fec:String = list.date.split('/');
+          let year = Number(fec[2]);
+          let day = Number(fec[0]);
+          let month = Number(fec[1]) - 1;
+          var hour:String = list.hour.split(':');
+          let hs = Number(hour[0]);
+          let minutes = Number(hour[1]);
+          let date = new Date(year, month, day, hs, minutes);
           let prompt = this.alertCtrl.create({
             title: '',
             message: data.RECORDARCALENDARIO,
