@@ -55,7 +55,14 @@ export class AddListPage {
             mode: 'date',
             androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
             }).then(
-            date => this.addListForm.patchValue({"date": date}),
+            (date:Date) => {
+                this.addListForm.reset({
+                    "name": this.addListForm.get("name").value,
+                    "detail": this.addListForm.get("detail").value,
+                    "date": date.toLocaleDateString(),
+                    "hour": this.addListForm.get("hour").value
+                })
+            },
             err => console.log('Error occurred while getting date: ', err)
         );
     }
@@ -66,7 +73,14 @@ export class AddListPage {
             mode: 'time',
             androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
             }).then(
-            time => this.addListForm.patchValue({"hour": time}),
+            (time:Date) => {
+                this.addListForm.reset({
+                    "name": this.addListForm.get("name").value,
+                    "detail": this.addListForm.get("detail").value,
+                    "date": this.addListForm.get("date").value,
+                    "hour": time.toLocaleTimeString()
+                });
+            },
             err => console.log('Error occurred while getting date: ', err)
         );
     }
