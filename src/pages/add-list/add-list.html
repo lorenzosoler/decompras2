@@ -4,11 +4,11 @@
     <form [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)">
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{ "TITULO" | translate}}</ion-label>
-        <ion-input color="light" formControlName="name" autofocus></ion-input>
+        <ion-input maxlength="30" color="light" formControlName="name" autofocus></ion-input>
       </ion-item>
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"DETALLE" | translate}}</ion-label>
-        <ion-input color="light" formControlName="detail"></ion-input>
+        <ion-input maxlength="30" color="light" formControlName="detail"></ion-input>
       </ion-item>
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"FECHA" | translate}}</ion-label>

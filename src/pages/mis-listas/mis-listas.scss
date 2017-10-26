@@ -6,7 +6,9 @@ page-mis-listas {
     }
 
     #no-lists {
-        font-family: $decompras-font1-bold;
+        font-family: $decompras-font2-bold;
+        color: $violeta;
+        font-size: 13px;
     }
 
     .foto-perfil {
@@ -39,6 +41,7 @@ page-mis-listas {
         background-image: url(../assets/mis-listas/marca-agua.svg);
         background-repeat: no-repeat;
         background-position: center 85%;
+        background-size: 90%;
     }
 
     ion-grid {

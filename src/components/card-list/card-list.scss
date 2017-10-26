@@ -3,6 +3,10 @@ card-list {
     font-size: 1.2rem !important;
     color: black;
 
+    .date {
+        margin-top: 0;
+    }
+
     .back-violeta {
         background: $violeta;
     }
@@ -16,7 +20,7 @@ card-list {
     }
 
     .card-content {
-        height: 155px;
+        height: 180px;
     }
 
     .title-detail, .date-hour {
@@ -27,12 +31,23 @@ card-list {
     .card-title {
         font-weight: bold !important;
         font-size: 15px;
+        line-height: 16px;
+    }
+
+    .card-detail {
+        line-height: 16px;
     }
 
     .icon-card {
         position: absolute;
         bottom: 10px;
         width: 94%
+    }
+
+    .exiticon {
+        position: relative;
+        left: 45%;
+        color: white;
     }
 
     ion-icon:before {

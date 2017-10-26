@@ -1,6 +1,12 @@
 page-lista {
     font-family: $decompras-font1;
 
+    .info {
+        font-family: $decompras-font2-bold;
+        color: white;
+        font-size: 15px;
+    }
+
     #badge-disc {
         height: 18px !important;
         margin-left: 18px;

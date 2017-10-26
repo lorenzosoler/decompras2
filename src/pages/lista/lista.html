@@ -3,7 +3,7 @@
     <ion-title>{{currentList.name}}</ion-title>
     <ion-buttons right>
       <button color="primary" *ngIf="isAdmin()" (click)="addUser()" class="back-button-md" ion-button>
-        <ion-icon name="person-add"></ion-icon>
+        <img src="assets/add-person.png" alt="">
       </button>
       <button color="primary" (click)="presentOptions($event)" class="back-button-md" ion-button>
         <ion-icon name="more"></ion-icon>
@@ -28,8 +28,8 @@
       </ion-label>
       <ion-checkbox color="dark" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
-    <p style="font-size: 18px;" padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
-    <p style="font-size: 18px;" padding text-center *ngIf="searchedItems?.length == 0 && items?.length !=0">No se encontraron items que coincidan con su búsqueda</p>
+    <p class="info" padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
+    <p class="info" padding text-center *ngIf="searchedItems?.length == 0 && items?.length !=0">No se encontraron items que coincidan con su búsqueda</p>
 
   </ion-list>
   <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">

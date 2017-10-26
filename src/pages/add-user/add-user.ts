@@ -3,11 +3,13 @@
 import { Component, ViewChild } from "@angular/core";
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
-import { AlertController, NavParams, ToastController, Searchbar } from "ionic-angular";
+import { AlertController, NavParams, ToastController, Searchbar, NavController } from "ionic-angular";
 import { NotificationsService } from "../../providers/notifications-service";
 import { TranslateService } from "@ngx-translate/core";
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { NetworkService } from "../../providers/network-service";
+import { UsersListPage } from "../users-list/users-list";
+import { ListaPage } from "../lista/lista";
 
 @Component({
   selector: 'page-add-user',
@@ -25,6 +27,7 @@ export class AddUserPage {
 				public alertCtrl: AlertController,
 				public navParams: NavParams,
 				public toastCtrl: ToastController,
+				public navCtrl: NavController,
 				private socialSharing: SocialSharing,
 				private translate: TranslateService,
 				public listService: ListService,
@@ -93,6 +96,11 @@ export class AddUserPage {
 					message: data.ADDUSERCORRECT,
 					duration: 3000
 				}).present();
+				if (this.navCtrl.getPrevious().name == "ListaPage") {
+					this.navCtrl.push(UsersListPage, {currentList: this.currentList});
+				} else {
+					this.navCtrl.pop();
+				}
 			}).catch(error => {
 				this.networkService.showErrorMessage();
 			});
