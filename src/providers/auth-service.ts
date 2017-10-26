@@ -22,7 +22,7 @@ export class AuthService {
         this.google.logout();
         this.facebook.logout();
       }
-    });
+    }).catch(e => console.log(e));
   }
 
 }

@@ -22,16 +22,16 @@ export class LoginPage {
   loader: any;
 
   constructor(private platform:Platform, 
-  private navCtrl: NavController,
-  public loadingCtrl: LoadingController,
-  private af:AngularFireDatabase, 
-  private afauth:AngularFireAuth,
-  private facebook: Facebook,
-  private googlePlus: GooglePlus,
-  public alertCtrl: AlertController,
-  public translate: TranslateService,
-  public authService: AuthService,
-  public userService:UserService) {
+    private navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+    private af:AngularFireDatabase, 
+    private afauth:AngularFireAuth,
+    private facebook: Facebook,
+    private googlePlus: GooglePlus,
+    public alertCtrl: AlertController,
+    public translate: TranslateService,
+    public authService: AuthService,
+    public userService:UserService) {
 
   }
 
@@ -56,6 +56,9 @@ export class LoginPage {
           this.userService.saveUser(new User(success)).then(()=> {
             this.loader.dismiss();
             this.navCtrl.setRoot(MisListasPage);
+          }).catch((e) => {
+            this.loader.dismiss();
+            console.log(e);
           });
         })
         .catch((error: any) => {

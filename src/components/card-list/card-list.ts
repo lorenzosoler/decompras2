@@ -73,6 +73,7 @@ export class CardListComponent {
           }).present()
         })
       })
+      .catch(e => console.log(e) );
   };
   
 
@@ -85,7 +86,7 @@ export class CardListComponent {
               duration: 3000
           }).present()
         })
-      })
+      }).catch(e => console.log(e));
     });
   }
 
@@ -140,7 +141,7 @@ export class CardListComponent {
                 message: "Se edito el evento en el calendario para esta lista" + ': ' + msg,
                 duration: 3000
             }).present();
-          })
+          }).catch((e) => { console.log(e) });
         }
       }
     });

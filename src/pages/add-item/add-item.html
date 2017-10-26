@@ -4,7 +4,7 @@
     <form [formGroup]="addItemForm" padding>
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" no-padding no-margin class="no-input-border">
         <ion-label floating>{{ "TITULO" | translate }}</ion-label>
-        <ion-input formControlName="name" [(ngModel)]="addItemForm.value.name" autofocus></ion-input>     
+        <ion-input maxlength="20" formControlName="name" [(ngModel)]="addItemForm.value.name" autofocus></ion-input>     
       </ion-item>
       <ion-icon class="mic" (click)="speech(addItemForm.value)" name="mic"></ion-icon> 
     </form>

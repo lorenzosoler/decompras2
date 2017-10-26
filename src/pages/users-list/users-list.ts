@@ -58,7 +58,7 @@ export class UsersListPage {
           message: msg,
           duration: 3000
       }).present()
-    })
+    }).catch(e => console.log(e))
   }
 
   private deleteUserAdmin (userId: string, msg: string) {
@@ -68,7 +68,7 @@ export class UsersListPage {
           message: msg,
           duration: 3000
       }).present()
-    })
+    }).catch(e => console.log(e));
   }
 
   public presentActionSheet(event, user: any) {
@@ -101,7 +101,7 @@ export class UsersListPage {
                     message: data.USUARIOELIMINADO,
                     duration: 3000
                 }).present()
-              });
+              }).catch(e => console.log(e));
             }
           },
           {

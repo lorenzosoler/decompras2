@@ -109,7 +109,7 @@ export class AddItemPage {
                     )
                 }).catch((err) => { console.log(err) });
             }
-        })
+        }).catch(e => console.log(e));
     }
 
     public dismiss() {

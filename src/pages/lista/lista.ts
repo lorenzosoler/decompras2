@@ -160,7 +160,7 @@ export class ListaPage {
             text: data.ELIMINAR,
             handler: () => {
               this.listService.deleteItem(this.currentList.$key, itemId).then(()=>{
-              });
+              }).catch(e => console.log(e));
             }
           }
         ]
@@ -195,7 +195,7 @@ export class ListaPage {
                 if( data.price >= 0) {
                   this.listService.setPrice(this.currentList.$key, item, Number(data.price) ).then(() => {
                     this.recalcTotal();
-                  });
+                  }).catch(e => console.log(e));
                 }
               }
             }
