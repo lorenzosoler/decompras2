@@ -12,6 +12,7 @@ import { UserService } from "../../providers/user-service";
 import { GooglePlus } from "@ionic-native/google-plus";
 import { AuthService } from "../../providers/auth-service";
 import { TranslateService } from "@ngx-translate/core";
+import { AndroidFullScreen } from "@ionic-native/android-full-screen";
 
 @Component({
   selector: 'page-login',
@@ -31,6 +32,7 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public translate: TranslateService,
     public authService: AuthService,
+    private androidFullScreen: AndroidFullScreen,
     public userService:UserService) {
 
   }
@@ -43,6 +45,14 @@ export class LoginPage {
         }
       );
     })
+  }
+
+  ionViewWillEnter () {
+    this.androidFullScreen.immersiveMode();
+  }
+
+  ionViewWillLeave () {
+    this.androidFullScreen.showSystemUI();
   }
   
   public facebookLogin(): void {

@@ -33,6 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from "@ionic-native/facebook";
 import { Network } from "@ionic-native/network";
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { OneSignal } from "@ionic-native/onesignal";
 import { Calendar } from '@ionic-native/calendar';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -128,6 +129,7 @@ export const firebaseConfigDev = {
     NetworkService,
     NotificationsService,
     LocalNotifications,
+    AndroidFullScreen,
     OneSignal,
     Calendar,
     DatePicker,
