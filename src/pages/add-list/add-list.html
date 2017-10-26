@@ -1,6 +1,6 @@
 <ion-content [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" #content>
   <ion-title padding-top>{{"NUEVALISTA" | translate}}</ion-title>
-  <ion-list inset color="rojo">
+  <ion-list inset>
     <form [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" [formGroup]="addListForm" (ngSubmit)="saveList(addListForm.value)">
       <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{ "TITULO" | translate}}</ion-label>

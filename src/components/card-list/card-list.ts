@@ -113,7 +113,7 @@ export class CardListComponent {
   }
 
   public editList (list: any) {
-    let editListModal = this.modalCtrl.create(EditListPage, {currentList: list}, { enableBackdropDismiss: false });
+    let editListModal = this.modalCtrl.create(EditListPage, {currentList: list, index: this.index}, { enableBackdropDismiss: false });
 
     editListModal.present();
 

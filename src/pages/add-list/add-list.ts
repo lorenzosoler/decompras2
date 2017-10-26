@@ -53,7 +53,7 @@ export class AddListPage {
         this.datePicker.show({
             date: new Date(),
             mode: 'date',
-            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
             }).then(
             (date:Date) => {
                 this.addListForm.reset({
@@ -71,7 +71,7 @@ export class AddListPage {
         this.datePicker.show({
             date: new Date(),
             mode: 'time',
-            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
             }).then(
             (time:Date) => {
                 this.addListForm.reset({

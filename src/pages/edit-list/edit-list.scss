@@ -1,6 +1,14 @@
 page-edit-list {
-    .background-rojo, ion-item {
-        background-color: $rojo !important;
+    .background-rojo {
+        background-color: $rojo;
+    }
+
+    .background-violeta {
+        background-color: $violeta;
+    }
+
+    .background-verde {
+        background-color: $verde;
     }
 
     .toolbar-title-md, .item-input .label-md, .item-select .label-md, .item-datetime .label-md {

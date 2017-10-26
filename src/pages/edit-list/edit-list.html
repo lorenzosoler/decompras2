@@ -1,22 +1,22 @@
-<ion-content class="background-rojo" #content>
+<ion-content [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" #content>
   <ion-title padding-top>{{"EDITARLISTA" | translate}} {{currentList.name}}</ion-title>
   <ion-list inset>
-    <form [formGroup]="editListForm" (ngSubmit)="saveList(editListForm.value)">
-      <ion-item>
+    <form [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}" [formGroup]="editListForm" (ngSubmit)="saveList(editListForm.value)">
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{ "TITULO" | translate}}</ion-label>
         <ion-input color="light" formControlName="name" autofocus></ion-input>
       </ion-item>
-      <ion-item >
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"DETALLE" | translate}}</ion-label>
         <ion-input color="light" formControlName="detail"></ion-input>
       </ion-item>
-      <ion-item >
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"FECHA" | translate}}</ion-label>
-        <ion-input color="light" type="date" formControlName="date" min="nowDate"></ion-input>
+        <ion-input (focus)="showDate()" color="light" formControlName="date" min="nowDate"></ion-input>
       </ion-item>
-      <ion-item >
+      <ion-item [ngClass]="{'background-violeta' : isViolet(), 'background-rojo': isRed(), 'background-verde': isGreen()}">
         <ion-label color="light" stacked>{{"HORA" | translate}}</ion-label>
-        <ion-input color="light" type="time" formControlName="hour"></ion-input>
+        <ion-input (focus)="showHour()" color="light" formControlName="hour"></ion-input>
       </ion-item>
     </form>
   </ion-list>
