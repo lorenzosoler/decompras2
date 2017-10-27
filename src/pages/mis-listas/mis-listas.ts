@@ -55,7 +55,14 @@ export class MisListasPage {
     this.listService.getLists().subscribe(lists => {
        this.myLists = lists;
        if (this.listNotif) {
-         this.openList(this.listNotif, this.myLists.length - 1);
+         if (this.userService.isMember(this.currentUser, this.listNotif)) {
+          this.openList(this.listNotif, this.myLists.length - 1);
+         } else {
+          this.alertCtrl.create({
+            message: "Ya no perteneces a la lista",
+            buttons: ['OK']
+          })
+         }
        }
        this.showLoader = false;
     });

@@ -22,6 +22,7 @@ export class AddUserPage {
 	public showLoader: boolean = false;
 	public offset: number = 10;
 	public currentList: any;
+	public isSearch: boolean = false;
 
 	constructor(public userService: UserService,
 				public alertCtrl: AlertController,
@@ -44,15 +45,18 @@ export class AddUserPage {
 
 	public searchUsers(ev: any) {
 		let val: string = ev.target.value;
-		if (val.trim() === '') {
+		if (val == undefined || val.trim() === '') {
 			this.allUsers = [];
+			this.isSearch = false;
 			return;
+		} else {
+			this.showLoader = true;
+			this.isSearch = true;
+			this.userService.searchUsers(val).subscribe((users) => {
+				this.allUsers = users;
+				this.showLoader = false;
+			})
 		}
-		this.showLoader = true;
-		this.userService.searchUsers(val).subscribe((users) => {
-			this.allUsers = users;
-			this.showLoader = false;
-		})
 	}
 
 	public addUser (user) {
@@ -80,30 +84,29 @@ export class AddUserPage {
 
 	private confirmAddUser(user: any) {
 		this.translate.get(["REPETIRUSER", "ADDUSERCORRECT" ]).subscribe((data) => {
-			for(let key in this.currentList.users) {
-				if (key === user.$key) {
-					let alert = this.alertCtrl.create({
-						message: data.REPETIRUSER,
-						buttons: ['OK']
-					});
-					alert.present();
-					return;
-				}
-			};
-			this.listService.addUser(this.currentList.$key, user.$key).then((data1) =>{
-				this.notificationsService.addUserList(this.currentList, user);
-				this.toastCtrl.create({
-					message: data.ADDUSERCORRECT,
-					duration: 3000
-				}).present();
-				if (this.navCtrl.getPrevious().name == "ListaPage") {
-					this.navCtrl.push(UsersListPage, {currentList: this.currentList});
-				} else {
-					this.navCtrl.pop();
-				}
-			}).catch(error => {
-				this.networkService.showErrorMessage();
-			});
+			if (this.userService.isMember(user, this.currentList)) {
+				let alert = this.alertCtrl.create({
+					message: data.REPETIRUSER,
+					buttons: ['OK']
+				});
+				alert.present();
+			} else {
+				this.listService.addUser(this.currentList.$key, user.$key).then((data1) =>{
+					this.currentList.users[user.$key] = true;
+					this.notificationsService.addUserList(this.currentList, user);
+					this.toastCtrl.create({
+						message: data.ADDUSERCORRECT,
+						duration: 3000
+					}).present();
+					if (this.navCtrl.getPrevious().name == "ListaPage") {
+						this.navCtrl.push(UsersListPage, {currentList: this.currentList});
+					} else {
+						this.navCtrl.pop();
+					}
+				}).catch(error => {
+					this.networkService.showErrorMessage();
+				});
+			}
 		});
 	}
 
