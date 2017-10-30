@@ -2,9 +2,13 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 admin.initializeApp(functions.config().firebase);
 import * as express from 'express'
+import { UserService } from "./Services/UserService";
+import { User } from "./Models/User";
 const cookieParser = require('cookie-parser')();
 const cors = require('cors')({origin: true});
 const app = express();
+
+const userService: UserService = new UserService();
 
 // Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
 // The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
@@ -46,11 +50,16 @@ const validateFirebaseIdToken = (req, res, next) => {
 app.use(cors);
 app.use(cookieParser);
 app.use(validateFirebaseIdToken);
-app.get('/hello', (req:any, res) => {
-  res.send(`Hello ${req.user.name}`);
+
+app.get('/search-user', (req, res) => {
+  console.log("arranca", req.query.valor);
+  let valor = req.query.valor;
+  admin.database().ref('/users').orderByChild("searchname").startAt(valor).endAt(`${valor}\uf8ff`).once("value", function(snap) {
+      res.json(snap.val());
+  }) 
 });
 
 // This HTTPS endpoint can only be accessed by your Firebase Users.
 // Requests need to be authorized by providing an `Authorization` HTTP header
 // with value `Bearer <Firebase ID Token>`.
-exports.app = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);

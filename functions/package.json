@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "deploy": "tsc && firebase deploy --only functions"
+    "deploy": "tsc && firebase deploy --only functions",
+    "test": "tsc && firebase serve --only functions"
   },
   "main": "build/index.js",
   "private": true
