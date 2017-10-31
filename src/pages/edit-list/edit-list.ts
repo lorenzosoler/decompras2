@@ -68,45 +68,81 @@ export class EditListPage {
 
     public showDate() {
         var fec:String = this.editListForm.get("date").value.split('/');
-        let year = Number(fec[2]);
-        let day = Number(fec[0]);
-        let month = Number(fec[1]) - 1;
-        this.datePicker.show({
-            date: new Date(year, month, day),
-            mode: 'date',
-            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-            }).then(
-            (date:Date) => {
-                this.editListForm.reset({
-                    "name": this.editListForm.get("name").value,
-                    "detail": this.editListForm.get("detail").value,
-                    "date": date.toLocaleDateString(),
-                    "hour": this.editListForm.get("hour").value
-                })
-            },
-            err => console.log('Error occurred while getting date: ', err)
-        );
+        if (fec == "") {
+            this.datePicker.show({
+                date: new Date(),
+                mode: 'date',
+                androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+                }).then(
+                (date:Date) => {
+                    this.editListForm.reset({
+                        "name": this.editListForm.get("name").value,
+                        "detail": this.editListForm.get("detail").value,
+                        "date": date.toLocaleDateString(),
+                        "hour": this.editListForm.get("hour").value
+                    })
+                },
+                err => console.log('Error occurred while getting date: ', err)
+            );
+        } else {
+            let year = Number(fec[2]);
+            let day = Number(fec[0]);
+            let month = Number(fec[1]) - 1;
+            this.datePicker.show({
+                date: new Date(year, month, day),
+                mode: 'date',
+                androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+                }).then(
+                (date:Date) => {
+                    this.editListForm.reset({
+                        "name": this.editListForm.get("name").value,
+                        "detail": this.editListForm.get("detail").value,
+                        "date": date.toLocaleDateString(),
+                        "hour": this.editListForm.get("hour").value
+                    })
+                },
+                err => console.log('Error occurred while getting date: ', err)
+            );
+        }
     }
 
     public showHour() {
         var hour:String = this.editListForm.get("hour").value.split(':');
-        let hs = Number(hour[0]);
-        let minutes = Number(hour[1]);
-        this.datePicker.show({
-            date: new Date(0, 0, 0, hs, minutes, 0),
-            mode: 'time',
-            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-            }).then(
-            (time:Date) => {
-                this.editListForm.reset({
-                    "name": this.editListForm.get("name").value,
-                    "detail": this.editListForm.get("detail").value,
-                    "date": this.editListForm.get("date").value,
-                    "hour": time.toLocaleTimeString()
-                });
-            },
-            err => console.log('Error occurred while getting date: ', err)
-        );
+        if (hour == "") {
+            this.datePicker.show({
+                date: new Date(),
+                mode: 'time',
+                androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+                }).then(
+                (time:Date) => {
+                    this.editListForm.reset({
+                        "name": this.editListForm.get("name").value,
+                        "detail": this.editListForm.get("detail").value,
+                        "date": this.editListForm.get("date").value,
+                        "hour": time.toLocaleTimeString()
+                    });
+                },
+                err => console.log('Error occurred while getting date: ', err)
+            );
+        } else {
+            let hs = Number(hour[0]);
+            let minutes = Number(hour[1]);
+            this.datePicker.show({
+                date: new Date(0, 0, 0, hs, minutes, 0),
+                mode: 'time',
+                androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+                }).then(
+                (time:Date) => {
+                    this.editListForm.reset({
+                        "name": this.editListForm.get("name").value,
+                        "detail": this.editListForm.get("detail").value,
+                        "date": this.editListForm.get("date").value,
+                        "hour": time.toLocaleTimeString()
+                    });
+                },
+                err => console.log('Error occurred while getting date: ', err)
+            );
+        }
     }
 
     public editList(newList: any) {
