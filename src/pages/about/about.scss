@@ -11,18 +11,36 @@ page-about {
         background: #dedede;
     }
 
-    img {
-        width: 100%;
-    }
-
     .logo {
         max-width: 250px !important;
         margin: auto;
+        width: 100%;
     }
 
     .toolbar-title-md {
         color: $verde !important;
         font-family: $decompras-font2-bold !important;
+    }
+
+    .imagen {
+        position: relative;
+        margin: auto;
+    }
+
+    .icono {
+        float: left;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        bottom: -140px;
+    }
+
+    .icono-indigo {
+        float: right;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        bottom: -140px;
     }
 
     .texto {
