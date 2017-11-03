@@ -1,7 +1,9 @@
+import {NavController} from 'ionic-angular';
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../providers/user-service";
 import { User } from "../../models/user";
+import { AboutPage } from "../about/about";
 
 @Component({
   selector: 'page-settings',
@@ -12,6 +14,7 @@ export class SettingsPage {
   public idioma: string;
 
   constructor(private translate: TranslateService,
+              public navCtrl: NavController,
               private userService: UserService) {
 
     this.currentUser = this.userService.getCurrentUser();
@@ -20,6 +23,10 @@ export class SettingsPage {
 
   public changeIdioma () {
       this.translate.use(this.idioma);
+  }
+
+  public goAboutPage() {
+    this.navCtrl.push(AboutPage);
   }
 
 }

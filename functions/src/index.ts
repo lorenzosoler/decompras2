@@ -5,12 +5,10 @@ import * as express from 'express'
 import { UserService } from "./Services/UserService";
 import { User } from "./Models/User";
 const cookieParser = require('cookie-parser')();
-const mongoose = require('mongoose');
 const cors = require('cors')({origin: true});
 const app = express();
 
 const userService: UserService = new UserService();
-const db = mongoose.connect('mongodb://lorenzosoler33:Ls333333.@ds243345.mlab.com:43345/decompras')
 
 // Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
 // The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
@@ -60,10 +58,6 @@ app.get('/search-user', (req, res) => {
       res.json(snap.val());
   }) 
 });
-
-app.post('/prueba-mongo', (req, res) => {
-
-})
 
 // This HTTPS endpoint can only be accessed by your Firebase Users.
 // Requests need to be authorized by providing an `Authorization` HTTP header

@@ -44,6 +44,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CardListComponent } from "../components/card-list/card-list";
+import { AboutPage } from "../pages/about/about";
 
 
 export function createTranslateLoader(http: Http) {
@@ -82,6 +83,7 @@ export const firebaseConfigDev = {
     SettingsPage,
     EditListPage,
     OptionsListPage,
+    AboutPage,
     CardListComponent
   ],
   imports: [
@@ -116,6 +118,7 @@ export const firebaseConfigDev = {
     SettingsPage,
     EditListPage,
     OptionsListPage,
+    AboutPage,
     CardListComponent
   ],
   providers: [

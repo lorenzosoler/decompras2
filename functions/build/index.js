@@ -6,9 +6,21 @@ admin.initializeApp(functions.config().firebase);
 const express = require("express");
 const UserService_1 = require("./Services/UserService");
 const cookieParser = require('cookie-parser')();
+const mongoose = require('mongoose');
 const cors = require('cors')({ origin: true });
 const app = express();
 const userService = new UserService_1.UserService();
+mongoose.connect('mongodb://lorenzosoler33:Ls333333.@ds243345.mlab.com:43345/decompras');
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log("conectado correctamente a la base de datos");
+});
+var kittySchema = mongoose.Schema({
+    name: String
+});
+var Kitten = mongoose.model('Kitten', kittySchema);
+var silence = new Kitten({ name: 'Silence' });
 // Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
 // The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
 // `Authorization: Bearer <Firebase ID Token>`.
@@ -49,6 +61,14 @@ app.get('/search-user', (req, res) => {
     let valor = req.query.valor;
     admin.database().ref('/users').orderByChild("searchname").startAt(valor).endAt(`${valor}\uf8ff`).once("value", function (snap) {
         res.json(snap.val());
+    });
+});
+app.post('/prueba-mongo', (req, res) => {
+    var fluffy = new Kitten({ name: 'fluffy' });
+    fluffy.save(function (err, fluffy) {
+        if (err)
+            return console.error(err);
+        res.json(fluffy);
     });
 });
 // This HTTPS endpoint can only be accessed by your Firebase Users.
