@@ -4,6 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../providers/user-service";
 import { User } from "../../models/user";
 import { AboutPage } from "../about/about";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-settings',
@@ -15,6 +16,7 @@ export class SettingsPage {
 
   constructor(private translate: TranslateService,
               public navCtrl: NavController,
+              private storage: Storage,
               private userService: UserService) {
 
     this.currentUser = this.userService.getCurrentUser();
@@ -22,6 +24,7 @@ export class SettingsPage {
   }
 
   public changeIdioma () {
+      this.storage.set("lang", this.idioma);
       this.translate.use(this.idioma);
   }
 

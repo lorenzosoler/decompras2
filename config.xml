@@ -76,4 +76,5 @@
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3" />
     <allow-navigation href="http://10.200.4.70:8100" />
     <allow-navigation href="http://192.168.0.5:8100" />
+    <plugin name="cordova-sqlite-storage" spec="~2.0.4" />
 </widget>

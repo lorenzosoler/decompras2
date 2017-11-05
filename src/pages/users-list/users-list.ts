@@ -73,19 +73,19 @@ export class UsersListPage {
 
   public presentActionSheet(event, user: any) {
     event.stopPropagation();
-    this.translate.get(["ELIMINAR", "CANCELAR", "HACERADMIN", "USUARIOELIMINADO", "USUARIOADMIN"]).subscribe((data) => {
+    this.translate.get(["ELIMINAR", "CANCELAR", "HACERADMIN", "NOTADMIN", "DEJOADMIN", "USUARIOELIMINADO", "USUARIOADMIN"]).subscribe((data) => {
       let actionSheet = this.actionSheetCtrl.create({
         title: '',
         buttons: [
           {
-            text: this.isUserAdmin(user.uid) ? 'Deshacer como admin' : data.HACERADMIN,
+            text: this.isUserAdmin(user.uid) ? data.NOTADMIN : data.HACERADMIN,
             icon: 'contact',
             cssClass: 'admin-action-sheet',
             handler: () => {
               if (!this.isUserAdmin(user.uid)) {
                 this.setUserAdmin(user.$key, data.USUARIOADMIN);
               } else {
-                this.deleteUserAdmin(user.$key, "El usuario dejo de ser Admin de esta lista")
+                this.deleteUserAdmin(user.$key, data.DEJOADMIN);
               }
             }
           },

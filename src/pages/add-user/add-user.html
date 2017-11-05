@@ -10,7 +10,7 @@
 <ion-content>
     <ion-spinner *ngIf="showLoader" text-center margin-top style="width: 100%;"></ion-spinner>
     <ion-list>
-        <p class="info" padding text-center *ngIf="allUsers?.length == 0 && isSearch && !showLoader">No se encontro al usuario. <br> Invitalo a que se descargue la app!</p>
+        <p class="info" padding text-center *ngIf="allUsers?.length == 0 && isSearch && !showLoader">{{"NOTUSER" | translate}} <br> {{"INVITACIONUSER" | translate}} </p>
         <ion-item (click)="addUser(user)" *ngFor="let user of allUsers | orderBy: 'fullname' : reverse">
             <ion-avatar item-left>
                 <img [src]="user.photo">
@@ -19,5 +19,5 @@
             <p>{{user.email}}</p>
         </ion-item>
     </ion-list>
-    <button style="position: absolute;bottom: 0;" (click)="invitPerson()" ion-button full color="primary"><ion-icon name="share" style="margin-right: 10px;"></ion-icon> Invitar personas</button>
+    <button style="position: absolute;bottom: 0; font-weight: bold;" (click)="invitPerson()" ion-button full color="primary"><ion-icon name="share" style="margin-right: 10px;"></ion-icon> {{"INVITARPERSONAS" | translate}}</button>
 </ion-content>

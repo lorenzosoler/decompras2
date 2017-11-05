@@ -41,6 +41,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Globalization } from '@ionic-native/globalization';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { IonicStorageModule } from '@ionic/storage';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CardListComponent } from "../components/card-list/card-list";
@@ -94,6 +95,7 @@ export const firebaseConfigDev = {
     IonicModule.forRoot(MyApp, {
       backButtonIcon: 'atras'
     }),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfigProd),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
