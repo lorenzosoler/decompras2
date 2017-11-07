@@ -48,6 +48,16 @@
   "APLICARDESCUENTO": "Enter the discount percentage to be applied to the total",
   "DESCUENTO": "Discount",
   "APLICAR": "Apply",
+  "NOTUSER": "The user was not found.",
+  "INVITACIONUSER": "Invite you to download the app",
+  "INVITARPERSONAS": "Invite people",
+  "AGREGARITEM": "Add an item with the button",
+  "NOTITEM": "No items matching your search were found",
+  "NOTLIST": "You do not have lists yet",
+  "AGREGARLISTA": "To create a new list press the button",
+  "CREADOR": "Creator",
+  "NOTADMIN": "Undo as admin",
+  "DEJOADMIN": "The user stopped being Admin of this list",
   "MAILREPETIDO": "The email of this Facebook account is already registered in 'DeCompras', you have to associate it with the Google account to continue with the login",
   "INVITACION": "Download the 'DeCompras' app to manage your purchases in a smart way and share lists with your friends in real time"
 }

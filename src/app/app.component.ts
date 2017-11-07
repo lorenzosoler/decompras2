@@ -17,6 +17,7 @@ import { LocalNotifications } from "@ionic-native/local-notifications";
 import { ListaPage } from "../pages/lista/lista";
 import { Globalization } from '@ionic-native/globalization';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 import { SettingsPage } from "../pages/Settings/settings";
 
 @Component({
@@ -45,6 +46,7 @@ export class MyApp {
   private menuCtrl: MenuController,
   private authService:AuthService,
   public userService: UserService,
+  private storage: Storage,
   public networkService: NetworkService) {
     //se setea el lenguaje de la app
     this.translate.setDefaultLang('en');
@@ -53,16 +55,26 @@ export class MyApp {
 
       if(platform.is('cordova')) {
 
-        // Se obtiene el lenguaje del telefono
-        this.globalization.getPreferredLanguage()
-        .then((res) => {
-          let lang = res.value.substr(0,2);
-          // Se setea el lenguaje de la app con el lenguaje que tiene configurado el celular
-          this.translate.use(lang);
-        })
-        .catch(e => console.log(e));
+        this.storage.get('lang').then((val) => {
+          if (val) {
+            if (val == 'en') {
+              this.translate.use("en");
+            } else {
+              this.translate.use("es");
+            }
+          } else {
+              // Se obtiene el lenguaje del telefono
+              this.globalization.getPreferredLanguage()
+              .then((res) => {
+                let lang = res.value.substr(0,2);
+                // Se setea el lenguaje de la app con el lenguaje que tiene configurado el celular
+                this.translate.use(lang);
+              })
+              .catch(e => console.log(e));
+          }
+        }) 
 
-          // Okay, so the platform is ready and our plugins are available.
+        // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.oneSignal.startInit('8e4f03e5-8ffb-4fb8-9dd8-7136c5156202', '955671816280');
 

@@ -28,8 +28,8 @@
       </ion-label>
       <ion-checkbox color="dark" [(ngModel)]="item.done" (ionChange)="updatePrice(item)"></ion-checkbox>
     </ion-item>
-    <p class="info" padding text-center *ngIf="items?.length == 0">Agregue un item con el boton +</p>
-    <p class="info" padding text-center *ngIf="searchedItems?.length == 0 && items?.length !=0">No se encontraron items que coincidan con su búsqueda</p>
+    <p class="info" padding text-center *ngIf="items?.length == 0">{{"AGREGARITEM" | translate}} +</p>
+    <p class="info" padding text-center *ngIf="searchedItems?.length == 0 && items?.length !=0">{{"NOTITEM" | translate}}</p>
 
   </ion-list>
   <ion-list-header [ngClass]="{'back-violeta' : isViolet(), 'back-rojo': isRed(), 'back-verde': isGreen()}">

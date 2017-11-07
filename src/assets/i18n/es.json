@@ -48,6 +48,16 @@
   "APLICARDESCUENTO": "Ingrese el porcentaje de descuento que desea aplicar al total",
   "DESCUENTO": "Descuento",
   "APLICAR": "Aplicar",
+  "NOTUSER": "No se encontro al usuario.",
+  "INVITACIONUSER": "Invitalo a que se descargue la app!",
+  "INVITARPERSONAS": "Invitar personas",
+  "AGREGARITEM": "Agregue un item con el boton",
+  "NOTITEM":"No se encontraron items que coincidan con su búsqueda",
+  "NOTLIST": "Aun no tienes listas.",
+  "AGREGARLISTA": "Para crear una nueva lista presiona el boton",
+  "CREADOR": "Creador",
+  "NOTADMIN": "Deshacer como admin",
+  "DEJOADMIN": "El usuario dejo de ser Admin de esta lista",
   "MAILREPETIDO": "El mail de esta cuenta de Facebook ya se encuentra registrado en 'DeCompras', tiene que asociarlo con la cuenta de Google para continuar con el ingreso",
   "INVITACION": "Descargate la app 'DeCompras' para gestionar tus compras de manera inteligente y poder compartir listas con tus amigos en tiempo real"
 }
