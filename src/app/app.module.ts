@@ -40,6 +40,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Globalization } from '@ionic-native/globalization';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AppVersion } from '@ionic-native/app-version';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -141,6 +142,7 @@ export const firebaseConfigDev = {
     SpeechRecognition,
 	  Globalization,
     SocialSharing,
+    AppVersion,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
