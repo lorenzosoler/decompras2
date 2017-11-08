@@ -58,6 +58,8 @@
   "CREADOR": "Creador",
   "NOTADMIN": "Deshacer como admin",
   "DEJOADMIN": "El usuario dejo de ser Admin de esta lista",
+  "ABOUT": "Creá, gestioná y compartí tus listas de compras, de una manera mas inteligente y facil",
+  "CONTACT": "Contacto y sugerencias",
   "MAILREPETIDO": "El mail de esta cuenta de Facebook ya se encuentra registrado en 'DeCompras', tiene que asociarlo con la cuenta de Google para continuar con el ingreso",
   "INVITACION": "Descargate la app 'DeCompras' para gestionar tus compras de manera inteligente y poder compartir listas con tus amigos en tiempo real"
 }

@@ -58,6 +58,8 @@
   "CREADOR": "Creator",
   "NOTADMIN": "Undo as admin",
   "DEJOADMIN": "The user stopped being Admin of this list",
+  "ABOUT": "Create, manage and share your shopping lists, in a smarter and easier way",
+  "CONTACT": "Contact and suggestions",
   "MAILREPETIDO": "The email of this Facebook account is already registered in 'DeCompras', you have to associate it with the Google account to continue with the login",
   "INVITACION": "Download the 'DeCompras' app to manage your purchases in a smart way and share lists with your friends in real time"
 }
