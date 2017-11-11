@@ -58,7 +58,7 @@ export class UserService {
   public isMember(user: any, list: any): Boolean {
     let result = false;
     for(let key in list.users) {
-      if (key === user.$key) {
+      if (key === user.uid) {
         result = true;
       }
     };

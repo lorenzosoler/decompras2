@@ -55,15 +55,18 @@ export class MisListasPage {
     this.listService.getLists().subscribe(lists => {
        this.myLists = lists;
        if (this.listNotif) {
-         if (this.userService.isMember(this.currentUser, this.listNotif)) {
-          this.openList(this.listNotif, this.myLists.length - 1);
-         } else {
-          this.alertCtrl.create({
-            message: "Ya no perteneces a la lista",
-            buttons: ['OK']
-          })
-         }
+         this.listService.getList(this.listNotif).then((list) => {
+          if (this.userService.isMember(this.currentUser, list.val())) {
+            this.openList(list.val(), this.myLists.length - 1);
+          } else {
+            this.alertCtrl.create({
+              message: "Ya no perteneces a la lista",
+              buttons: ['OK']
+            }).present();
+          }
+         })
        }
+       this.listNotif = undefined;
        this.showLoader = false;
     });
   }

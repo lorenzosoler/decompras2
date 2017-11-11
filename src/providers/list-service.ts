@@ -28,6 +28,12 @@ export class ListService {
     return firebase.database().ref().update(updates);
   }
 
+  public getList (listId) {
+    return this.listsRef.child(listId).once("value", (snap)=> {
+      return snap.val();
+    });
+  }
+
   public editList(key:string, editList: any): firebase.Promise<any> {
     return this.listsRef.child(key).update(editList);
   }

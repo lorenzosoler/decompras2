@@ -87,7 +87,7 @@ export class MyApp {
         });
 
         this.oneSignal.handleNotificationOpened().subscribe((data) => {
-          this.listNotif = data.notification.payload.additionalData.list;
+          this.listNotif = data.notification.payload.additionalData.list.id;
           this.isNotif = true;
         });
 

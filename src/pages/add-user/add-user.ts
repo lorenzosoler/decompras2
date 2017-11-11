@@ -84,29 +84,31 @@ export class AddUserPage {
 
 	private confirmAddUser(user: any) {
 		this.translate.get(["REPETIRUSER", "ADDUSERCORRECT" ]).subscribe((data) => {
-			if (this.userService.isMember(user, this.currentList)) {
-				let alert = this.alertCtrl.create({
-					message: data.REPETIRUSER,
-					buttons: ['OK']
-				});
-				alert.present();
-			} else {
-				this.listService.addUser(this.currentList.$key, user.$key).then((data1) =>{
-					this.currentList.users[user.$key] = true;
-					this.notificationsService.addUserList(this.currentList, user);
-					this.toastCtrl.create({
-						message: data.ADDUSERCORRECT,
-						duration: 3000
-					}).present();
-					if (this.navCtrl.getPrevious().name == "ListaPage") {
-						this.navCtrl.push(UsersListPage, {currentList: this.currentList});
-					} else {
-						this.navCtrl.pop();
-					}
-				}).catch(error => {
-					this.networkService.showErrorMessage();
-				});
-			}
+			this.listService.getList(this.currentList.$key).then((list) => {
+				if (this.userService.isMember(user, list.val())) {
+					let alert = this.alertCtrl.create({
+						message: data.REPETIRUSER,
+						buttons: ['OK']
+					});
+					alert.present();
+				} else {
+					this.listService.addUser(this.currentList.$key, user.$key).then((data1) =>{
+						this.currentList.users[user.$key] = true;
+						this.notificationsService.addUserList(this.currentList, user);
+						this.toastCtrl.create({
+							message: data.ADDUSERCORRECT,
+							duration: 3000
+						}).present();
+						if (this.navCtrl.getPrevious().name == "ListaPage") {
+							this.navCtrl.push(UsersListPage, {currentList: this.currentList});
+						} else {
+							this.navCtrl.pop();
+						}
+					}).catch(error => {
+						this.networkService.showErrorMessage();
+					});
+				}
+			})
 		});
 	}
 

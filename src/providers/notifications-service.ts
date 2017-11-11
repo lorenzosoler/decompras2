@@ -12,6 +12,7 @@ export class NotificationsService {
   }
 
   public addUserList(list: any, user: any) {
+    list["id"] = list.$key;
     let body = {
         app_id: "8e4f03e5-8ffb-4fb8-9dd8-7136c5156202",
         filters: [
