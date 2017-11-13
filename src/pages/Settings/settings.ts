@@ -1,4 +1,4 @@
-import { NavController, Platform } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../providers/user-service";
@@ -18,20 +18,10 @@ export class SettingsPage {
   constructor(private translate: TranslateService,
               public navCtrl: NavController,
               private storage: Storage,
-              private platform: Platform,
               private userService: UserService) {
 
     this.currentUser = this.userService.getCurrentUser();
     this.idioma = this.translate.currentLang;
-    this.platform.registerBackButtonAction(() => {
-      if (this.navCtrl.getActive().name == 'SettingsPage'){
-        this.navCtrl.setRoot(MisListasPage);
-      } else if (this.navCtrl.getActive().name == 'MisListasPage') {
-        this.platform.exitApp();
-      } else {
-        this.navCtrl.pop();
-      }
-    })
   }
 
   public changeIdioma () {
