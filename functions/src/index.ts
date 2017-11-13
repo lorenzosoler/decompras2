@@ -51,12 +51,25 @@ app.use(cors);
 app.use(cookieParser);
 app.use(validateFirebaseIdToken);
 
-app.get('/search-user', (req, res) => {
-  console.log("arranca", req.query.valor);
-  let valor = req.query.valor;
-  admin.database().ref('/users').orderByChild("searchname").startAt(valor).endAt(`${valor}\uf8ff`).once("value", function(snap) {
-      res.json(snap.val());
-  }) 
+app.post('/setprice', (req, res) => {
+  console.log("arranca", req.body);
+  let itemId = req.body.itemId;
+  let listId = req.body.listId;
+  let updateItem = req.body.updateItem;
+  console.log(updateItem);
+  admin.database().ref('/itemsLists').child(`/${listId}/${itemId}`).update(updateItem).then(() => {
+    admin.database().ref('/itemsLists').child(listId).once("value", (snap) => {
+      let items: Array<any> = snap.val();
+      console.log(items);
+      var total = 0;
+      items.forEach((item) => {
+        total = total + item.price;
+      });
+      admin.database().ref('/lists').child(listId).child('total').set(total).then(() => {
+            res.status(200);
+      }).catch(() => res.sendStatus(500))
+    }).catch(() => res.sendStatus(500))
+  }).catch(() => res.sendStatus(500))
 });
 
 // This HTTPS endpoint can only be accessed by your Firebase Users.
