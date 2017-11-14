@@ -70,6 +70,10 @@ export class ListService {
     return this.itemsListsRef.child(`${listId}/${item.$key}`).update(updateItem);
   }
 
+  public setDisc(disc, listId): firebase.Promise<any> {
+    return this.listsRef.child(listId).child("disc").set(disc);
+  }
+
   public deleteItem(listId: string, itemId: string): firebase.Promise<any> {
     return this.itemsListsRef.child(`${listId}/${itemId}`).remove();
   }

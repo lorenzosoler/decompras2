@@ -110,6 +110,7 @@ export class AddListPage {
             newList.created = firebase.database.ServerValue.TIMESTAMP;
             newList.users = {};
             newList.users[currentUser.uid] = true;
+            newList.disc = 0;
 
             let listId = firebase.database().ref('lists').push(newList).key;
             
