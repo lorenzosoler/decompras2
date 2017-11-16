@@ -13,6 +13,8 @@ import { AddUserPage } from "../add-user/add-user";
 import { DecimalPipe } from '@angular/common'; // Se agrega el paquete necesario para truncar 
 import { StatusBar } from "@ionic-native/status-bar";
 
+import firebase from 'firebase';
+
 
 @Component({
   selector: 'page-lista',
@@ -57,6 +59,10 @@ export class ListaPage {
         this.originalItems = items;
         this.recalcTotal();
         this.showLoader = false;
+        firebase.database().ref('lists').child(this.currentList.$key).child('disc').on("value", (snap) => {
+          this.currentList.disc = snap.val();
+          this.recalcTotal();
+        })
     })
   }
 
@@ -128,8 +134,9 @@ export class ListaPage {
           {
             text: data.APLICAR,
             handler: data => {
-              this.disc = Number(data.descuento)
-              this.recalcTotal();
+              this.listService.setDisc(Number(data.descuento), this.currentList.$key).then(()=> {
+                this.recalcTotal()
+              })
             }
           }
         ]
@@ -235,8 +242,8 @@ export class ListaPage {
     this.items.forEach((item) => {
       total = total + item.price;
     })
-    if (this.disc) {
-      total = total - (total*(this.disc/100));
+    if (this.currentList.disc) {
+      total = total - (total*(this.currentList.disc/100));
       this.totalDisc = total;
     } else {
       this.total = total;
