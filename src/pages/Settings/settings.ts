@@ -23,15 +23,6 @@ export class SettingsPage {
 
     this.currentUser = this.userService.getCurrentUser();
     this.idioma = this.translate.currentLang;
-    this.platform.registerBackButtonAction(() => {
-      if (this.navCtrl.getActive().name == 'SettingsPage'){
-        this.navCtrl.setRoot(MisListasPage);
-      } else if (this.navCtrl.getActive().name == 'MisListasPage') {
-        this.platform.exitApp();
-      } else {
-        this.navCtrl.pop();
-      }
-    })
   }
 
   public changeIdioma () {
