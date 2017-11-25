@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController, AlertController, Platform } from 'ionic-angular';
+import { NavController, NavParams, Content, FabContainer, ModalController, ActionSheetController, ToastController, AlertController, Platform, MenuController } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { LoginPage } from "../login/login";
 import { User } from "../../models/user";
@@ -45,6 +45,7 @@ export class MisListasPage {
     public toastCtrl: ToastController,
     public listService: ListService,
     private statusBar: StatusBar, 
+    private menuCtrl: MenuController,
     public userService: UserService) {
       this.listNotif = this.navParams.get("listNotif");
       this.currentUser = this.userService.getCurrentUser();
@@ -73,6 +74,7 @@ export class MisListasPage {
 
   ionViewWillEnter () {
     this.statusBar.backgroundColorByName("darkGray");
+    this.menuCtrl.enable(true);
   }
 
 	public invitPerson () {

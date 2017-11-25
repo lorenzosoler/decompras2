@@ -14,6 +14,8 @@ import { DecimalPipe } from '@angular/common'; // Se agrega el paquete necesario
 import { StatusBar } from "@ionic-native/status-bar";
 
 import firebase from 'firebase';
+import { Subscription } from "rxjs/Subscription";
+import { MisListasPage } from "../mis-listas/mis-listas";
 
 
 @Component({
@@ -64,6 +66,20 @@ export class ListaPage {
           this.recalcTotal();
         })
     })
+    this.listService.isMember(this.currentList.$key, this.userService.getCurrentUser().uid).subscribe((user) => {
+      if (!user.$value) {
+        this.alertCtrl.create({
+          title: '',
+          message: 'Has sido eliminado de esta lista: ' + this.currentList.name,
+          buttons: [{
+            text: 'ACEPTAR',
+            handler: data => {
+              this.navCtrl.setRoot(MisListasPage);
+            }
+          }]
+        }).present();
+      }
+    });
   }
 
   public isViolet (): boolean {

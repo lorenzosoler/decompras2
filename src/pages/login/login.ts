@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, Platform, LoadingController, AlertController, MenuController } from 'ionic-angular';
 
 import { Facebook } from "@ionic-native/facebook";
 
@@ -24,6 +24,7 @@ export class LoginPage {
 
   constructor(private platform:Platform, 
     private navCtrl: NavController,
+    public menuCtrl: MenuController,
     public loadingCtrl: LoadingController,
     private af:AngularFireDatabase, 
     private afauth:AngularFireAuth,
@@ -34,7 +35,7 @@ export class LoginPage {
     public authService: AuthService,
     private androidFullScreen: AndroidFullScreen,
     public userService:UserService) {
-
+      this.menuCtrl.enable(false);
   }
 
   ionViewDidLoad () {

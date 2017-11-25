@@ -5,7 +5,8 @@ import firebase from 'firebase';
 import { UserService } from "./user-service";
 
 import { Observable } from "rxjs/Observable";
-import { FirebaseListObservable, AngularFireDatabase } from "angularfire2/database";
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database";
+import { Subscription } from "rxjs/Subscription";
 
 /*
   Generated class for the UserService provider.
@@ -112,6 +113,9 @@ export class ListService {
     return isAdmin;
   }
 
+  public isMember (listId: string, userId:string): FirebaseObjectObservable<any> {
+    return this.db.object(`lists/${listId}/users/${userId}`);
+  }
    
   public deleteList(listId:string, users: any[]): firebase.Promise<any>{
     var updates = {};
