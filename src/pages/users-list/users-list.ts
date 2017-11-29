@@ -1,9 +1,11 @@
 import { ViewChild, Component } from "@angular/core";
-import { Content, NavController, NavParams, ModalController, ActionSheetController, ToastController } from "ionic-angular";
+import { Content, NavController, NavParams, ModalController, ActionSheetController, ToastController, AlertController } from "ionic-angular";
 import { ListService } from "../../providers/list-service";
 import { UserService } from "../../providers/user-service";
 import { AddUserPage } from "../add-user/add-user";
 import { TranslateService } from "@ngx-translate/core";
+import { MisListasPage } from "../mis-listas/mis-listas";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'page-users-list',
@@ -16,12 +18,15 @@ export class UsersListPage {
   public users: any[] = [];
   public showLoader: boolean = false;
 
+  private subscribeIsMember: Subscription;
+
   constructor(
   public navCtrl: NavController,
   public navParams: NavParams,
   public actionSheetCtrl: ActionSheetController,
   private translate: TranslateService,
   public toastCtrl: ToastController,
+  public alertCtrl: AlertController,
   public listService: ListService,
   public userService: UserService) {
     this.currentList = this.navParams.get('currentList');
@@ -34,6 +39,27 @@ export class UsersListPage {
         this.users = users;
         this.showLoader = false;
     });
+  }
+
+  ionViewWillEnter () {
+    this.subscribeIsMember = this.listService.isMember(this.currentList.$key, this.userService.getCurrentUser().uid).subscribe((user) => {
+      if (!user.$value) {
+        this.alertCtrl.create({
+          title: '',
+          message: 'Has sido eliminado de esta lista: ' + this.currentList.name,
+          buttons: [{
+            text: 'ACEPTAR',
+            handler: data => {
+              this.navCtrl.setRoot(MisListasPage);
+            }
+          }]
+        }).present();
+      }
+    });
+  }
+
+  ionViewDidLeave() {
+    this.subscribeIsMember.unsubscribe();
   }
 
   public addUser() {

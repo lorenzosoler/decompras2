@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, ViewController, NavParams } from "ionic-angular";
+import { LoadingController, ViewController, NavParams, AlertController, NavController } from "ionic-angular";
 
 import { ListService } from "../../providers/list-service";
 import { User } from "../../models/user";
@@ -8,6 +8,8 @@ import { UserService } from "../../providers/user-service";
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TranslateService } from "@ngx-translate/core";
 import { NetworkService } from "../../providers/network-service";
+import { Subscription } from "rxjs/Subscription";
+import { MisListasPage } from "../mis-listas/mis-listas";
 
 
 @Component({
@@ -21,6 +23,7 @@ export class AddItemPage {
     private loader: any;
 
     private index: number;
+    private subscribeIsMember: Subscription;
 
     constructor(private loadingCtrl: LoadingController,
     public navParams: NavParams,
@@ -28,6 +31,8 @@ export class AddItemPage {
     private translation: TranslateService,
     private viewCtrl: ViewController,
     public formBuilder: FormBuilder,
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
     public userService: UserService,
     public networkService: NetworkService,
     public listService: ListService) {
@@ -45,8 +50,26 @@ export class AddItemPage {
         this.index = this.navParams.get("index");
     }
 
-    ionViewWillEnter() {
+    ionViewWillEnter () {
         this.currentUser = this.userService.getCurrentUser();
+        this.subscribeIsMember = this.listService.isMember(this.listId, this.userService.getCurrentUser().uid).subscribe((user) => {
+        if (!user.$value) {
+            this.alertCtrl.create({
+            title: '',
+            message: 'Has sido eliminado de esta lista',
+            buttons: [{
+                text: 'ACEPTAR',
+                handler: data => {
+                this.navCtrl.setRoot(MisListasPage);
+                }
+            }]
+            }).present();
+        }
+        });
+    }
+
+    ionViewDidLeave() {
+        this.subscribeIsMember.unsubscribe();
     }
 
     public isViolet (): boolean {

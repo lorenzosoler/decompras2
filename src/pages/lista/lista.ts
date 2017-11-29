@@ -34,6 +34,8 @@ export class ListaPage {
   public order: string = '';
   public index: number;
 
+  private subscribeIsMember: Subscription;
+
   searchTerm: string = '';
   searchControl: FormControl;
 
@@ -66,20 +68,6 @@ export class ListaPage {
           this.recalcTotal();
         })
     })
-    this.listService.isMember(this.currentList.$key, this.userService.getCurrentUser().uid).subscribe((user) => {
-      if (!user.$value) {
-        this.alertCtrl.create({
-          title: '',
-          message: 'Has sido eliminado de esta lista: ' + this.currentList.name,
-          buttons: [{
-            text: 'ACEPTAR',
-            handler: data => {
-              this.navCtrl.setRoot(MisListasPage);
-            }
-          }]
-        }).present();
-      }
-    });
   }
 
   public isViolet (): boolean {
@@ -95,6 +83,20 @@ export class ListaPage {
   }
 
   ionViewWillEnter () {
+    this.subscribeIsMember = this.listService.isMember(this.currentList.$key, this.userService.getCurrentUser().uid).subscribe((user) => {
+      if (!user.$value) {
+        this.alertCtrl.create({
+          title: '',
+          message: 'Has sido eliminado de esta lista: ' + this.currentList.name,
+          buttons: [{
+            text: 'ACEPTAR',
+            handler: data => {
+              this.navCtrl.setRoot(MisListasPage);
+            }
+          }]
+        }).present();
+      }
+    });
     this.order = 'name';
     if (this.isViolet()) {
       this.statusBar.backgroundColorByHexString("765ba7");
@@ -103,6 +105,10 @@ export class ListaPage {
     } else if (this.isGreen()) {
       this.statusBar.backgroundColorByHexString("24b9a2");
     }
+  }
+
+  ionViewDidLeave() {
+    this.subscribeIsMember.unsubscribe();
   }
 
   public isAdmin(): Boolean {

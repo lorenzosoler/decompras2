@@ -10,6 +10,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
 import { NetworkService } from "../../providers/network-service";
 import { UsersListPage } from "../users-list/users-list";
 import { ListaPage } from "../lista/lista";
+import { MisListasPage } from "../mis-listas/mis-listas";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'page-add-user',
@@ -23,6 +25,8 @@ export class AddUserPage {
 	public offset: number = 10;
 	public currentList: any;
 	public isSearch: boolean = false;
+
+	private subscribeIsMember: Subscription;
 
 	constructor(public userService: UserService,
 				public alertCtrl: AlertController,
@@ -41,7 +45,25 @@ export class AddUserPage {
 		setTimeout(() => {
 		  this.searchBar.setFocus();
 		}, 150);
+		this.subscribeIsMember = this.listService.isMember(this.currentList.$key, this.userService.getCurrentUser().uid).subscribe((user) => {
+			if (!user.$value) {
+				this.alertCtrl.create({
+				title: '',
+				message: 'Has sido eliminado de esta lista: ' + this.currentList.name,
+				buttons: [{
+					text: 'ACEPTAR',
+					handler: data => {
+					this.navCtrl.setRoot(MisListasPage);
+					}
+				}]
+				}).present();
+			}
+		});
 	}
+
+	ionViewDidLeave() {
+    	this.subscribeIsMember.unsubscribe();
+  	}
 
 	public searchUsers(ev: any) {
 		let val: string = ev.target.value;
