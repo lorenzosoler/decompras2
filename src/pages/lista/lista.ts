@@ -264,11 +264,12 @@ export class ListaPage {
     this.items.forEach((item) => {
       total = total + item.price;
     })
-    if (this.currentList.disc) {
-      total = total - (total*(this.currentList.disc/100));
-      this.totalDisc = total;
+    if (this.currentList.disc && this.currentList.disc != 0) {
+      this.total = total;
+      this.totalDisc = total - (total*(this.currentList.disc/100));
     } else {
       this.total = total;
+      this.totalDisc = 0;
     }
   }
 }
